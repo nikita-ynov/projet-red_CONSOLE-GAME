@@ -1,3 +1,3 @@
-module main.go
+module PROJETRED
 
 go 1.25.0
