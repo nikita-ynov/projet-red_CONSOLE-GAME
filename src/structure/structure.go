@@ -1,16 +1,16 @@
 package structure
 
 type Inventory struct {
-	name     string
-	changeHp int
-	quantity int
+	Name     string
+	ChangeHp int
+	Quantity int
 }
 
 type Character struct {
-	name      string
-	class     string
-	lvl       int
-	hpMax     int
-	currentHp int
-	inventory []Inventory
+	Name      string
+	Class     string
+	Lvl       int
+	HpMax     int
+	CurrentHp int
+	Inventory []Inventory
 }
