@@ -1,12 +1,13 @@
 package main
 
 import (
-	pc "PROJETRED/structure"
+	structure "PROJETRED/structure"
 	"fmt"
 )
 
-var p3 pc.Character
+var character structure.Character
 
 func main() {
 	fmt.Println("START GAME")
+
 }
