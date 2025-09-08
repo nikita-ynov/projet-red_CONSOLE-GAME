@@ -21,6 +21,6 @@ func DisplayInfo(u character) character {
 }
 
 func main() {
-	c := character{name: "Kevin", age: 25}
+	c := character{name: "Kevin", classe: "25", lvl: 1, maxHp: 1, currentHp: 1, inventory: []item{{name: "", number: 0}}}
 	fmt.Println(DisplayInfo(c))
 }
