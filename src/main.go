@@ -8,6 +8,5 @@ import (
 func main() {
 	fmt.Println("START GAME")
 	player := functions.InitCharacter()
-	fmt.Print(player)
 	functions.DisplayInfo(player)
 }
