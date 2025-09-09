@@ -8,6 +8,16 @@ import (
 func main() {
 	fmt.Println("START GAME")
 	player := functions.InitCharacter()
-	fmt.Print(player)
-	functions.DisplayInfo(player)
+
+	choise := functions.Menu()
+	switch choise {
+	case 1:
+		functions.DisplayInfo(player)
+	case 2:
+		fmt.Print("takepot function")
+	case 3:
+		functions.Merchant(player)
+	case 4:
+		fmt.Print("====== GOODBYE ======")
+	}
 }

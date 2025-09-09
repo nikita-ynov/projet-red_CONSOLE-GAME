@@ -15,7 +15,7 @@ func InitCharacter() structure.Character {
 	fmt.Print("Enter your name :   ")
 	fmt.Scan(&name)
 
-	for strings.ToUpper(class) != "H" && strings.ToUpper(class) != "F" {
+	for strings.ToUpper(class) != "M" && strings.ToUpper(class) != "F" {
 		fmt.Print("Enter your sex (M - Man or F - Female) :   ")
 		fmt.Scan(&class)
 	}
