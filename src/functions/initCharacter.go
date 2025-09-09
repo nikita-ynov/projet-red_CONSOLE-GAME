@@ -2,11 +2,9 @@ package functions
 
 import (
 	structure "PROJETRED/structure"
-	"fmt"
 )
 
 func InitCharacter() structure.Character {
-
 	fmt.Println("===== INIT CHARACTER =====")
 
 	var name string
