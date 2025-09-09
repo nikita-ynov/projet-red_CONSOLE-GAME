@@ -5,15 +5,16 @@ import (
 )
 
 func Menu() int {
-	fmt.Print("====== MENU ======\n")
-	fmt.Print("1 - Display Player Info\n")
-	fmt.Print("2 - Take Potion\n")
-	fmt.Print("3 - Merchant\n")
-	fmt.Print("4 - Exit\n")
 
 	var maxChoice int = 4
 	var choice int
 	for choice < 1 || choice > maxChoice {
+		fmt.Print("\033[H\033[2J")
+		fmt.Print("====== MENU ======\n")
+		fmt.Print("1 - Display Player Info\n")
+		fmt.Print("2 - Take Potion\n")
+		fmt.Print("3 - Merchant\n")
+		fmt.Print("4 - Exit\n")
 		fmt.Print("Enter your choice :   ")
 		fmt.Scan(&choice)
 	}
