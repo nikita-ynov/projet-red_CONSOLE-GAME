@@ -6,14 +6,16 @@ import (
 )
 
 func main() {
-	fmt.Println("START GAME")
+	fmt.Println("====== START GAME ======")
+
 	player := functions.InitCharacter()
 	var exit bool = true
+
 	for exit {
 		menuChoise := functions.Menu()
 		switch menuChoise {
 		case 1:
-			functions.DisplayInfo(player)
+			functions.DisplayInfo(&player)
 		case 2:
 			functions.Takepot(player)
 		case 3:

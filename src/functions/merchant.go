@@ -58,6 +58,6 @@ func Merchant(player structure.Character) {
 		ChangeHp: selected.ChangeHp,
 		Quantity: selected.Quantity,
 	})
+
 	fmt.Printf("You bought %s!\n", selected.Name)
-	fmt.Print(player)
 }

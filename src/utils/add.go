@@ -1,6 +1,8 @@
 package utils
 
-import "PROJETRED/structure"
+import (
+	"PROJETRED/structure"
+)
 
 func AddObj(player *structure.Character, item structure.Inventory) {
 	for i, element := range player.Inventory {
