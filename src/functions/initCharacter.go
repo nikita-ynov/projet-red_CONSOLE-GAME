@@ -16,14 +16,14 @@ func InitCharacter() structure.Character {
 	fmt.Scan(&name)
 
 	for strings.ToUpper(class) != "H" && strings.ToUpper(class) != "F" {
-		fmt.Print("Enter your sex (H - Homme or F - Femme) :   ")
+		fmt.Print("Enter your sex (M - Man or F - Female) :   ")
 		fmt.Scan(&class)
 	}
 	switch strings.ToUpper(class) {
-	case "H":
-		class = "Homme"
+	case "M":
+		class = "Man"
 	case "F":
-		class = "Femme"
+		class = "Female"
 	}
 	objects := []structure.Inventory{}
 
