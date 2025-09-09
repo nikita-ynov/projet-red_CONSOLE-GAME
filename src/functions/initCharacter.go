@@ -2,6 +2,7 @@ package functions
 
 import (
 	structure "PROJETRED/structure"
+	"fmt"
 )
 
 func InitCharacter() structure.Character {
