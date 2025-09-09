@@ -5,8 +5,8 @@ import (
 	"fmt"
 )
 
-func DisplayInfo(player *structure.Character) {
-	fmt.Println(player)
+func DisplayInfo(player structure.Character) {
+	fmt.Print("\033[H\033[2J")
 	fmt.Println("====== DISPLAY INFO - " + player.Name + " ======")
 	fmt.Println("Class: " + player.Class)
 	fmt.Printf("Lvl: %v", player.Lvl)
@@ -30,4 +30,8 @@ func DisplayInfo(player *structure.Character) {
 		fmt.Printf("\n")
 		fmt.Println("------------")
 	}
+
+	var choise int
+	fmt.Print("Enter any key to close :   ")
+	fmt.Scan(&choise)
 }
