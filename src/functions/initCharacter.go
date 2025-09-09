@@ -5,20 +5,24 @@ import (
 	"fmt"
 )
 
-func InitCharacter(u structure.Character, obj []structure.Inventory) structure.Character {
-	// // Example
-	// var obj1 structure.Inventory = structure.Inventory{Name: "Bubble Gum", ChangeHp: 2, Quantity: 3}
-	// fmt.Println(obj1)
-	// // {Bubble Gum 2} {Phone 1}
+func InitCharacter() structure.Character {
 
-	var player structure.Character = structure.Character{
-		Name:      u.Name,
-		Class:     u.Class,
-		Lvl:       u.Lvl,
-		HpMax:     u.HpMax,
-		CurrentHp: u.CurrentHp,
-		Inventory: obj,
+	fmt.Println("===== INIT CHARACTER =====")
+
+	var name string
+
+	fmt.Print("Enter your name :   ")
+	fmt.Scan(&name)
+
+	objects := []structure.Inventory{{Name: "Bubble Gum", ChangeHp: 2, Quantity: 3}}
+
+	player := structure.Character{
+		Name:      name,
+		Class:     "homme",
+		Lvl:       0,
+		HpMax:     1000,
+		CurrentHp: 100,
+		Inventory: objects,
 	}
-	fmt.Println(player)
 	return player
 }
