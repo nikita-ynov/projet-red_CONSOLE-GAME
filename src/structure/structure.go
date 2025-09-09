@@ -6,13 +6,19 @@ type Inventory struct {
 	Quantity int
 }
 
+type Spells struct {
+	Name         string
+	SpellDammage int
+}
+
 type Character struct {
-	Name      string
-	Class     string
-	Lvl       int
-	HpMax     int
-	CurrentHp int
-	Inventory []Inventory
+	Name       string
+	Class      string
+	Lvl        int
+	HpMax      int
+	CurrentHp  int
+	Inventory  []Inventory
+	ListSpells []Spells
 }
 
 type MerchantItems struct {

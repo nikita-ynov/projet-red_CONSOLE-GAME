@@ -26,14 +26,15 @@ func InitCharacter() structure.Character {
 		class = "Female"
 	}
 	objects := []structure.Inventory{}
-
+	punch := []structure.Spells{}
 	player := structure.Character{
-		Name:      name,
-		Class:     class,
-		Lvl:       0,
-		HpMax:     1000,
-		CurrentHp: 100,
-		Inventory: objects,
+		Name:       name,
+		Class:      class,
+		Lvl:        0,
+		HpMax:      1000,
+		CurrentHp:  100,
+		Inventory:  objects,
+		ListSpells: punch,
 	}
 	return player
 }
