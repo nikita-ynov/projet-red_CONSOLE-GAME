@@ -12,8 +12,8 @@ func main() {
 	var exit bool = true
 
 	for exit {
-		menuChoise := functions.Menu()
-		switch menuChoise {
+		menuChoice := functions.Menu()
+		switch menuChoice {
 		case 1:
 			functions.DisplayInfo(&player)
 		case 2:

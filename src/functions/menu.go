@@ -11,12 +11,12 @@ func Menu() int {
 	fmt.Print("3 - Merchant\n")
 	fmt.Print("4 - Exit\n")
 
-	var maxChoise int = 4
-	var choise int
-	for choise < 1 || choise > maxChoise {
+	var maxChoice int = 4
+	var choice int
+	for choice < 1 || choice > maxChoice {
 		fmt.Print("Enter your choice :   ")
-		fmt.Scan(&choise)
+		fmt.Scan(&choice)
 	}
 
-	return choise
+	return choice
 }
