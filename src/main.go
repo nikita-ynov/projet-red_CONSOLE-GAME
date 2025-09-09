@@ -10,5 +10,5 @@ var character structure.Character
 
 func main() {
 	fmt.Println("START GAME")
-	functions.Test()
+	functions.InitCharacter()
 }

@@ -2,6 +2,6 @@ package functions
 
 import "fmt"
 
-func Test() {
+func InitCharacter() {
 	fmt.Println("Test func")
 }
