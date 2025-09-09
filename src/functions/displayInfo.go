@@ -24,7 +24,7 @@ func DisplayInfo(player *structure.Character) {
 		fmt.Printf("\n")
 		if item.ChangeHp < 0 {
 			fmt.Printf("Damage Hp: %v", item.ChangeHp)
-		} else {
+		} else if item.ChangeHp > 0 {
 			fmt.Printf("Health Hp: %v", item.ChangeHp)
 		}
 		fmt.Printf("\n")
