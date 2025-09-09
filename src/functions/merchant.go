@@ -6,7 +6,7 @@ import (
 	"fmt"
 )
 
-func Merchant(player structure.Character) {
+func Merchant(player *structure.Character) {
 	var exit int = 1
 	for exit == 1 {
 
@@ -55,7 +55,7 @@ func Merchant(player structure.Character) {
 
 		// Example action when buying:
 		selected := merchantItems[choice-1]
-		utils.AddObj(&player, structure.Inventory{
+		utils.AddObj(player, structure.Inventory{
 			Name:     selected.Name,
 			ChangeHp: selected.ChangeHp,
 			Quantity: selected.Quantity,

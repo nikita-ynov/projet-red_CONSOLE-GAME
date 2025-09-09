@@ -18,11 +18,11 @@ func main() {
 		menuChoice := functions.Menu()
 		switch menuChoice {
 		case 1:
-			functions.DisplayInfo(player)
+			functions.DisplayInfo(&player)
 		case 2:
-			functions.Takepot(player)
+			functions.Takepot(&player)
 		case 3:
-			functions.Merchant(player)
+			functions.Merchant(&player)
 		case 4:
 			fmt.Print("====== GOODBYE ======")
 			exit = false

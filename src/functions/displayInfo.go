@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func DisplayInfo(player structure.Character) {
+func DisplayInfo(player *structure.Character) {
 	fmt.Print("\033[H\033[2J")
 	fmt.Println("====== DISPLAY INFO - " + player.Name + " ======")
 	fmt.Println("Class: " + player.Class)
