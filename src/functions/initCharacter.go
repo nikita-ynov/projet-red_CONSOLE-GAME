@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func InitCharacter() {
+func InitCharacter() structure.Character {
 	// Example
 	var obj1 structure.Inventory = structure.Inventory{Name: "Bubble Gum", ChangeHp: 2, Quantity: 3}
 	fmt.Println(obj1)
@@ -19,6 +19,6 @@ func InitCharacter() {
 		CurrentHp: 70,
 		Inventory: []structure.Inventory{obj1},
 	}
-
 	fmt.Println(player)
+	return player
 }
