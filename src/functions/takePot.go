@@ -2,7 +2,7 @@ package functions
 
 import structure "PROJETRED/structure"
 
-func Takepot(player structure.Character, effect int) {
+func Takepot(player structure.Character) {
 
 	newInventory := []structure.Inventory{}
 	hasDone := false
