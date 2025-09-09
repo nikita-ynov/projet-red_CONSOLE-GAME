@@ -3,22 +3,33 @@ package functions
 import (
 	structure "PROJETRED/structure"
 	"fmt"
+	"strings"
 )
 
 func InitCharacter() structure.Character {
-
 	fmt.Println("===== INIT CHARACTER =====")
 
 	var name string
+	var class string
 
 	fmt.Print("Enter your name :   ")
 	fmt.Scan(&name)
 
-	objects := []structure.Inventory{{Name: "Bubble Gum", ChangeHp: 2, Quantity: 3}}
+	for strings.ToUpper(class) != "M" && strings.ToUpper(class) != "F" {
+		fmt.Print("Enter your sex (M - Man or F - Female) :   ")
+		fmt.Scan(&class)
+	}
+	switch strings.ToUpper(class) {
+	case "M":
+		class = "Man"
+	case "F":
+		class = "Female"
+	}
+	objects := []structure.Inventory{}
 
 	player := structure.Character{
 		Name:      name,
-		Class:     "homme",
+		Class:     class,
 		Lvl:       0,
 		HpMax:     1000,
 		CurrentHp: 100,

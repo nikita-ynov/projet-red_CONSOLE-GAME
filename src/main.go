@@ -2,13 +2,22 @@ package main
 
 import (
 	functions "PROJETRED/functions"
-	structure "PROJETRED/structure"
 	"fmt"
 )
 
-var character structure.Character
-
 func main() {
 	fmt.Println("START GAME")
-	functions.InitCharacter()
+	player := functions.InitCharacter()
+
+	choise := functions.Menu()
+	switch choise {
+	case 1:
+		functions.DisplayInfo(player)
+	case 2:
+		fmt.Print("takepot function")
+	case 3:
+		functions.Merchant(player)
+	case 4:
+		fmt.Print("====== GOODBYE ======")
+	}
 }

@@ -14,3 +14,10 @@ type Character struct {
 	CurrentHp int
 	Inventory []Inventory
 }
+
+type MerchantItems struct {
+	Name     string
+	ChangeHp int
+	Quantity int
+	Price    int
+}
