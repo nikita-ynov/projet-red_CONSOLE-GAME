@@ -12,4 +12,5 @@ func AddObj(player *structure.Character, item structure.Inventory) {
 		}
 	}
 	player.Inventory = append(player.Inventory, item)
+
 }
