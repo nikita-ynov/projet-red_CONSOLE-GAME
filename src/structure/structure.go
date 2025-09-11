@@ -6,7 +6,7 @@ type Inventory struct {
 	Quantity int
 }
 
-type Spell struct {
+type Skills struct {
 	Name    string
 	Dammage int
 }
@@ -17,7 +17,7 @@ type Character struct {
 	HpMax     int
 	CurrentHp int
 	Inventory []Inventory
-	Skills    []Spell
+	Skills    []Skills
 }
 
 type MerchantItems struct {
