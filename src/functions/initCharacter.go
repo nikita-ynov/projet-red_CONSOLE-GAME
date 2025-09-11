@@ -6,14 +6,14 @@ import (
 	"strings"
 )
 
-func InitCharacter() structure.Character {
+func InitCharacter(name string, class string) structure.Character {
 	fmt.Println("===== INIT CHARACTER =====")
 
-	var name string
-	var class string
+	// var class string
+	// var name string
 
-	fmt.Print("Enter your name :   ")
-	fmt.Scan(&name)
+	// fmt.Print("Enter your name :   ")
+	// fmt.Scan(&name)
 
 	for strings.ToUpper(class) != "M" && strings.ToUpper(class) != "F" {
 		fmt.Print("Enter your sex (M - Man or F - Female) :   ")
