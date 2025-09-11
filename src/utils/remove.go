@@ -22,6 +22,8 @@ func RemoveHp(player *structure.Character, n int) bool {
 	if player.CurrentHp-n > 0 {
 		player.CurrentHp += n
 		return false
+	} else {
+		player.CurrentHp = 0
+		return true
 	}
-	return true
 }

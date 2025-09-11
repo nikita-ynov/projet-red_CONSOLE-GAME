@@ -12,7 +12,9 @@ func PoisonPot(player *structure.Character, potion structure.Inventory) {
 	fmt.Print("\033[H\033[2J")
 	fmt.Print("====== POISON POT ======\n")
 	for i := 0; i < 3; i++ {
-		if utils.RemoveHp(player, potion.ChangeHp) {
+		check := utils.RemoveHp(player, potion.ChangeHp)
+		fmt.Println(check)
+		if check {
 			utils.IsWasted(player)
 			break
 		}
