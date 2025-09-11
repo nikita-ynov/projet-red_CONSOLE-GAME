@@ -7,6 +7,9 @@ import (
 
 func IsWasted(player *structure.Character) {
 	if player.CurrentHp <= 0 {
-		fmt.Print("====== YOU ARE DEAD ======")
+		fmt.Print("\033[H\033[2J")
+		fmt.Print("====== YOU ARE DEAD ======\n")
+		player.CurrentHp = player.HpMax / 2
+		fmt.Printf("You are rebirth with %v/%v HP", player.HpMax/2, player.HpMax)
 	}
 }
