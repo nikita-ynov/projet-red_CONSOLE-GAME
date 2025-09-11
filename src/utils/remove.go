@@ -15,6 +15,3 @@ func RemoveObj(player *structure.Character, item structure.Inventory) {
 	}
 	player.Inventory = arr
 }
-
-func RemoveObjMerchant(MerchantItem *structure.MerchantItems) {
-}
