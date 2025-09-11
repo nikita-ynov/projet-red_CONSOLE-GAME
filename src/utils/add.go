@@ -14,6 +14,10 @@ func AddObj(player *structure.Character, item structure.Inventory) {
 	player.Inventory = append(player.Inventory, item)
 }
 
-func AddHP(player *structure.Character, quantity int) {
-	player.CurrentHp += quantity
+func AddHP(player *structure.Character, n int) {
+	if n+player.CurrentHp > player.HpMax || n > player.HpMax {
+		player.CurrentHp = player.HpMax
+	} else {
+		player.CurrentHp += n
+	}
 }
