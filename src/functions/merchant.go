@@ -13,25 +13,29 @@ func Merchant(player *structure.Character) {
 		fmt.Print("\033[H\033[2J")
 		merchantItems := []structure.MerchantItems{
 			{
-				Name:     "Life Potion",
-				ChangeHp: 50,
-				Quantity: 1,
-				Price:    0,
+				Name:      "Life Potion",
+				ChangeHp:  50,
+				Quantity:  1,
+				UniqueObj: 1,
+				Price:     0,
 			}, {
-				Name:     "Kill Potion",
-				ChangeHp: -50,
-				Quantity: 1,
-				Price:    0,
+				Name:      "Kill Potion",
+				ChangeHp:  -50,
+				Quantity:  1,
+				UniqueObj: 1,
+				Price:     0,
 			}, {
-				Name:     "Snus",
-				ChangeHp: 0,
-				Quantity: 1,
-				Price:    0,
+				Name:      "Snus",
+				ChangeHp:  0,
+				Quantity:  1,
+				UniqueObj: 1,
+				Price:     0,
 			}, {
-				Name:     "SpellBook : Fire Ball",
-				ChangeHp: 0,
-				Quantity: 1,
-				Price:    0,
+				Name:      "SpellBook : Fire Ball",
+				ChangeHp:  0,
+				Quantity:  1,
+				UniqueObj: 1,
+				Price:     0,
 			},
 		}
 

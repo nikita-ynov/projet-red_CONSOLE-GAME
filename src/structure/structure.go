@@ -21,8 +21,9 @@ type Character struct {
 }
 
 type MerchantItems struct {
-	Name     string
-	ChangeHp int
-	Quantity int
-	Price    int
+	Name      string
+	ChangeHp  int
+	Quantity  int
+	UniqueObj int
+	Price     int
 }
