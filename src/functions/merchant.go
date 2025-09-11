@@ -27,6 +27,11 @@ func Merchant(player *structure.Character) {
 				ChangeHp: 0,
 				Quantity: 1,
 				Price:    0,
+			}, {
+				Name:     "SpellBook : Fire Ball",
+				ChangeHp: 0,
+				Quantity: 1,
+				Price:    0,
 			},
 		}
 
