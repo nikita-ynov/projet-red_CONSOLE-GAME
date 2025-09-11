@@ -7,7 +7,7 @@ import (
 func Menu() int {
 	fmt.Print("====== MENU ======\n")
 	fmt.Print("1 - Display Player Info\n")
-	fmt.Print("2 - Take Potion\n")
+	fmt.Print("2 - Take Health Potion\n")
 	fmt.Print("3 - Merchant\n")
 	fmt.Print("4 - Exit\n")
 
