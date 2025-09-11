@@ -39,7 +39,7 @@ func Takepot(player *structure.Character) {
 			return
 		}
 	}
-	utils.AddHP(player, potions[choice-1].ChangeHp)
+	utils.AddHp(player, potions[choice-1].ChangeHp)
 	utils.RemoveObj(player, potions[choice-1])
 	fmt.Print("\033[H\033[2J")
 	fmt.Println("Used potion: " + potions[choice-1].Name)

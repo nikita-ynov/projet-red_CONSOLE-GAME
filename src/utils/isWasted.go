@@ -1,4 +1,4 @@
-package functions
+package utils
 
 import (
 	"PROJETRED/structure"
@@ -10,6 +10,6 @@ func IsWasted(player *structure.Character) {
 		fmt.Print("\033[H\033[2J")
 		fmt.Print("====== YOU ARE DEAD ======\n")
 		player.CurrentHp = player.HpMax / 2
-		fmt.Printf("You are rebirth with %v/%v HP", player.HpMax/2, player.HpMax)
+		fmt.Printf("You are rebirth with %v/%v HP\n", player.HpMax/2, player.HpMax)
 	}
 }
