@@ -6,15 +6,42 @@ import (
 )
 
 func CharacterCreation() structure.Character {
-	fmt.Println("===== CHARACTER CREATION =====")
+
+	chooseClass := []string{"Humain", "Elfe", "Nain"}
+
 	var name string
+	var choice int
 	var class string
+	var maxHp int
+	var spawnHp int
 
 	fmt.Print("Enter your name :   ")
 	fmt.Scan(&name)
 	name = StartWithUppercase(name)
 
-	mainCharacter := InitCharacter(name, class)
+	fmt.Print("Choose your Class : \n")
+	fmt.Print("1 - Humain : \n")
+	fmt.Print("2 - Elfe : \n")
+	fmt.Print("3 - Merchant : \n")
+
+	fmt.Print("Choose your class :  ")
+	fmt.Scan(&choice)
+
+	switch choice {
+	case 1:
+		maxHp = 100
+		class = chooseClass[0]
+	case 2:
+		maxHp = 80
+		class = chooseClass[1]
+	case 3:
+		maxHp = 120
+		class = chooseClass[2]
+	}
+
+	spawnHp = maxHp / 2
+
+	mainCharacter := InitCharacter(name, class, maxHp, spawnHp)
 
 	return mainCharacter
 }
