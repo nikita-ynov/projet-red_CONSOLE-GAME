@@ -6,7 +6,7 @@ import (
 )
 
 func CharacterCreation() structure.Character {
-
+	fmt.Println("===== CHARACTER CREATION =====")
 	var name string
 	var class string
 

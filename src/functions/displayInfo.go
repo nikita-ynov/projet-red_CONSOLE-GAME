@@ -12,11 +12,10 @@ func DisplayInfo(player *structure.Character) {
 	fmt.Printf("Lvl: %v\n", player.Lvl)
 	fmt.Printf("Hp Max: %v\n", player.HpMax)
 	fmt.Printf("Current Hp: %v\n", player.CurrentHp)
-	fmt.Printf("INVENTORY ITEMS: %v\n", len(player.Inventory))
 	for i := 0; i < len(player.Skills); i++ {
 		fmt.Printf("SKILLS :  %s ,", player.Skills[i].Name)
 	}
-
+	fmt.Printf("INVENTORY ITEMS: %v\n", len(player.Inventory))
 	for _, item := range player.Inventory {
 		fmt.Println("------------")
 		fmt.Println(item.Name)
