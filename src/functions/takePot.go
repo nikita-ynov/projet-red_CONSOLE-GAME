@@ -32,9 +32,6 @@ func Takepot(player *structure.Character) {
 		fmt.Printf("%d. %s (HP %+d) \n", i+1, potion.Name, potion.ChangeHp)
 	}
 
-	fmt.Print("Enter your choice :   ")
-	fmt.Scan(&choice)
-
 	for choice < 1 || choice > len(potions) {
 		fmt.Print("Enter your choice :   ")
 		fmt.Scan(&choice)
