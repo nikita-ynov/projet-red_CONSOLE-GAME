@@ -11,7 +11,7 @@ func main() {
 
 	fmt.Println("====== START GAME ======")
 
-	player := functions.InitCharacter()
+	player := functions.CharacterCreation()
 	var exit bool = true
 
 	for exit {
