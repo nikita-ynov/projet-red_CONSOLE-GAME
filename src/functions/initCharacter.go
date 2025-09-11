@@ -19,7 +19,7 @@ func InitCharacter(name string, class string) structure.Character {
 	}
 	objects := []structure.Inventory{}
 
-	punch := []structure.Skills{{Name: "Punch", Dammage: 1}}
+	punch := []structure.Skills{{Name: "Punch", Dammage: 10}}
 
 	player := structure.Character{
 		Name:      name,
