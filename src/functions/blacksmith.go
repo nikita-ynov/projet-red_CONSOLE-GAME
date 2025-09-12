@@ -12,6 +12,26 @@ func Forgeron(player *structure.Character) {
 
 		fmt.Print("\033[H\033[2J")
 
+		WolfFur := 0
+		WildBoarLeather := 0
+		TrollSkin := 0
+		CrowFeather := 0
+
+		//boucle pour compter le nombre de ressources dans l'inventaire du joueur
+		for _, item := range player.Inventory {
+			switch item.Name {
+			case "CrowFeather":
+				CrowFeather++
+			case "WolfFur":
+				WolfFur++
+			case "WildBoarLeather":
+				WildBoarLeather++
+			case "TrollSkin":
+				TrollSkin++
+			}
+
+		}
+
 		BlacksmithItems := []structure.BlacksmithItems{
 			{
 				Name:            "Explorer hat",
@@ -51,6 +71,43 @@ func Forgeron(player *structure.Character) {
 
 		selected := BlacksmithItems[choice-1]
 
+		//verifie que le joueur possede bien les ressources necessaires
+		if selected.TrollSkin > TrollSkin {
+			fmt.Println("You don't have the ressources yet")
+			fmt.Print("Press any key to go back to the MENU :")
+			fmt.Scan(&exit)
+			return
+		}
+		if selected.CrowFeather > CrowFeather {
+			fmt.Println("You don't have the ressources yet")
+			fmt.Print("Press any key to go back to the MENU :")
+			fmt.Scan(&exit)
+			return
+		}
+		if selected.WildBoarLeather > WildBoarLeather {
+			fmt.Println("You don't have the ressources yet")
+			fmt.Print("Press any key to go back to the MENU :")
+			fmt.Scan(&exit)
+			return
+		}
+		if selected.WolfFur > WolfFur {
+			fmt.Println("You don't have the ressources yet")
+			fmt.Print("Press any key to go back to the MENU :")
+			fmt.Scan(&exit)
+			return
+		}
+
+		//verifie que le joueur possede 5 pieces d'or
+		if player.Money < 6 {
+			fmt.Println("You don't have enough money")
+			return
+		}
+		//verifie que l'ajout de l'équipement n'excede pas la capacité max de l'inventaire
+		if utils.InventoryIsAtMaxCapacity(&player.Inventory) {
+			fmt.Println("You're inventory is full")
+			return
+		}
+
 		utils.RemoveMoney(player, 5)
 		utils.AddObj(player, structure.Inventory{
 			Name:     selected.Name,
@@ -63,6 +120,5 @@ func Forgeron(player *structure.Character) {
 
 		fmt.Print("Press any key to leave")
 		fmt.Scan(&exit)
-
 	}
 }

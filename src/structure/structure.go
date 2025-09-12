@@ -27,3 +27,12 @@ type MerchantItems struct {
 	Quantity int
 	Price    int
 }
+
+type BlacksmithItems struct {
+	Name            string
+	Price           int
+	CrowFeather     int
+	WildBoarLeather int
+	TrollSkin       int
+	WolfFur         int
+}
