@@ -2,6 +2,7 @@ package main
 
 import (
 	functions "PROJETRED/functions"
+	"PROJETRED/structure"
 	"fmt"
 )
 
@@ -10,7 +11,7 @@ func main() {
 
 	fmt.Println("====== START GAME ======")
 
-	player := functions.InitCharacter()
+	player := functions.CharacterCreation()
 	var exit bool = true
 
 	for exit {
@@ -24,6 +25,12 @@ func main() {
 		case 3:
 			functions.Merchant(&player)
 		case 4:
+			functions.PoisonPot(&player, structure.Inventory{
+				Name:     "Test Potion",
+				ChangeHp: -30,
+				Quantity: 1,
+			})
+		case 5:
 			fmt.Print("====== GOODBYE ======")
 			exit = false
 		}

@@ -1,6 +1,8 @@
 package utils
 
-import "PROJETRED/structure"
+import (
+	"PROJETRED/structure"
+)
 
 func RemoveObj(player *structure.Character, item structure.Inventory) {
 	arr := []structure.Inventory{}
@@ -14,4 +16,14 @@ func RemoveObj(player *structure.Character, item structure.Inventory) {
 		}
 	}
 	player.Inventory = arr
+}
+
+func RemoveHp(player *structure.Character, n int) bool {
+	if player.CurrentHp-n > 0 {
+		player.CurrentHp += n
+		return false
+	} else {
+		player.CurrentHp = 0
+		return true
+	}
 }
