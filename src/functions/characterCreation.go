@@ -7,7 +7,7 @@ import (
 
 func CharacterCreation() structure.Character {
 
-	chooseClass := []string{"Humain", "Elfe", "Nain"}
+	chooseClass := []string{"Human", "Elfe", "Dwarf"}
 
 	var name string
 	var choice int

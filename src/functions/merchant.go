@@ -88,6 +88,12 @@ func Merchant(player *structure.Character) {
 			return
 
 		}
+    if InventoryIsAtMaxCapacity(&player.Inventory) {
+			fmt.Print("You've reached your 10 items inventory limit\n")
+			fmt.Print("Press any key to go back to MENU")
+			fmt.Scan(&exit)
+			return
+		}
 		utils.RemoveMoney(player, selected.Price)
 		utils.AddObj(player, structure.Inventory{
 			Name:     selected.Name,
