@@ -46,7 +46,7 @@ func CharacterCreation() structure.Character {
 
 	spawnHp = maxHp / 2
 
-	mainCharacter := InitCharacter(name, class, maxHp, spawnHp)
+	mainCharacter := InitCharacter(name, class, maxHp, spawnHp, 100)
 
 	return mainCharacter
 }
