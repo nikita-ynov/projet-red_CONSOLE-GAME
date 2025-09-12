@@ -29,7 +29,7 @@ type MerchantItems struct {
 	Price    int
 }
 
-type Moster struct {
+type Monster struct {
 	Name      string
 	HpMax     int
 	CurrentHp int
