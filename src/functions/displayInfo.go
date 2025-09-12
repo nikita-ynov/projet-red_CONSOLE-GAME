@@ -16,8 +16,8 @@ func DisplayInfo(player *structure.Character) {
 	fmt.Printf("SKILLS %v:\n", len(player.Skills))
 	for i := 0; i < len(player.Skills); i++ {
 		fmt.Println("------------")
-		fmt.Println(skill.Name)
-		fmt.Printf("Damage: %v\n", skill.Dammage)
+		fmt.Println(player.Skills[i].Name)
+		fmt.Printf("Damage: %v\n", player.Skills[i].Dammage)
 		fmt.Println("------------")
 		fmt.Println(player.Skills)
 	}
