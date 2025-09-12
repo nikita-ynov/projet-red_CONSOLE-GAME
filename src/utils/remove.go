@@ -27,3 +27,11 @@ func RemoveHp(player *structure.Character, n int) bool {
 		return true
 	}
 }
+
+func RemoveMoney(player *structure.Character, n int) {
+	if player.Money-n >= 0 {
+		player.Money -= n
+	} else {
+		player.Money = 0
+	}
+}
