@@ -20,17 +20,24 @@ func GoblinPattern(player *structure.Character) {
 		damage := goblin.Damage
 		if i != 0 && i%3 == 0 {
 			damage *= 2
-			fmt.Printf("%v Attack %v (Crit Damage: %v)", goblin.Name, player.Name, damage)
+			fmt.Printf("%v Default Attack %v (Crit Damage: %v)", goblin.Name, player.Name, damage)
 		} else {
-			fmt.Printf("%v Attack %v (Damage: %v)", goblin.Name, player.Name, damage)
+			fmt.Printf("%v Default Attack %v (Damage: %v)", goblin.Name, player.Name, damage)
 		}
 		utils.RemoveHp(player, damage)
 		fmt.Printf(" Player HP: %v\n", player.CurrentHp)
 
 		// Le joueur attaque le goblin
 		time.Sleep(1 * time.Second)
-		utils.MonsterRemoveHp(&goblin, -10) // -10 = soin, +10 = dégâts, selon ta logique
-		fmt.Printf("%v Attack %v (Damage: %v) Goblin HP: %v\n", player.Name, goblin.Name, -10, goblin.CurrentHp)
+		res := CharacterTurn()
+		switch res {
+		case "attack":
+			utils.MonsterRemoveHp(&goblin, player.Dammage)
+			fmt.Printf("%v Default Attack %v (Damage: %v) Goblin HP: %v\n", player.Name, goblin.Name, player.Dammage, goblin.CurrentHp)
+		case "skill":
+			fmt.Println("skill")
+		}
+
 	}
 
 	// Résultat

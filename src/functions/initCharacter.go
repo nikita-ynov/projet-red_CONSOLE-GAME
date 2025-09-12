@@ -16,7 +16,7 @@ func InitCharacter(name string, class string, maxHp, spawnHp, money int) structu
 		HpMax:          maxHp,
 		CurrentHp:      spawnHp,
 		Money:          money,
-		Dammage:        5,
+		Dammage:        -5,
 		InventoryLimit: 10,
 		Inventory:      objects,
 		Skills:         punch,
