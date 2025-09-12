@@ -13,7 +13,7 @@ func DisplayInfo(player *structure.Character) {
 	fmt.Printf("Hp Max: %v\n", player.HpMax)
 	fmt.Printf("Current Hp: %v\n", player.CurrentHp)
 	fmt.Printf("Money: %v\n", player.Money)
-	fmt.Print("SKILLS :\n")
+	fmt.Printf("SKILLS %v:\n", len(player.Skills))
 	for i := 0; i < len(player.Skills); i++ {
 		fmt.Println("------------")
 		fmt.Println(player.Skills[i].Name)
