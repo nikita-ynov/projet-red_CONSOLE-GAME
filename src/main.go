@@ -12,7 +12,6 @@ func main() {
 	fmt.Println("====== START GAME ======")
 
 	player := functions.CharacterCreation()
-	inventory := []structure.Inventory{}
 	var exit bool = true
 
 	for exit {
@@ -22,7 +21,7 @@ func main() {
 		case 1:
 			functions.DisplayInfo(&player)
 		case 2:
-			functions.TakeSkills(&player, inventory) // pour apprendre des skills
+			functions.TakeSkills(&player) // pour apprendre des skills
 		case 3:
 			functions.Takepot(&player)
 		case 4:
