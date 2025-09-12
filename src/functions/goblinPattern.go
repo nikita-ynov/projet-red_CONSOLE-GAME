@@ -26,7 +26,9 @@ func GoblinPattern(player *structure.Character) {
 		}
 		utils.RemoveHp(player, damage)
 		fmt.Printf(" Player HP: %v\n", player.CurrentHp)
-
+		if player.CurrentHp <= 0 {
+			break
+		}
 		// Le joueur attaque le goblin
 		time.Sleep(1 * time.Second)
 		res := CharacterTurn()
@@ -37,7 +39,9 @@ func GoblinPattern(player *structure.Character) {
 		case "skill":
 			fmt.Println("skill")
 		}
-
+		if goblin.CurrentHp <= 0 {
+			break
+		}
 	}
 
 	// Résultat
