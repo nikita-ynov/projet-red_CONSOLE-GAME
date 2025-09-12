@@ -27,12 +27,14 @@ func main() {
 		case 4:
 			functions.Merchant(&player)
 		case 5:
+			functions.GoblinPattern(&player)
+		case 6:
 			functions.PoisonPot(&player, structure.Inventory{
 				Name:     "Test Potion",
 				ChangeHp: -30,
 				Quantity: 1,
 			})
-		case 6:
+		case 7:
 			fmt.Print("====== GOODBYE ======")
 			exit = false
 		}
