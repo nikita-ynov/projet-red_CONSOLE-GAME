@@ -16,42 +16,22 @@ func Merchant(player *structure.Character) {
 				Name:     "Life Potion",
 				ChangeHp: 50,
 				Quantity: 1,
-				Price:    3,
+				Price:    0,
 			}, {
 				Name:     "Kill Potion",
 				ChangeHp: -50,
 				Quantity: 1,
-				Price:    7,
-			},
-			{
+				Price:    0,
+			}, {
+				Name:     "Snus",
+				ChangeHp: 0,
+				Quantity: 1,
+				Price:    0,
+			}, {
 				Name:     "SpellBook : Fire Ball",
 				ChangeHp: 0,
 				Quantity: 1,
-				Price:    25,
-			},
-			{
-				Name:     "Wolf fur",
-				ChangeHp: 0,
-				Quantity: 1,
-				Price:    4,
-			},
-			{
-				Name:     "Skin Troll",
-				ChangeHp: 0,
-				Quantity: 1,
-				Price:    7,
-			},
-			{
-				Name:     "Wild boar leather",
-				ChangeHp: 0,
-				Quantity: 1,
-				Price:    3,
-			},
-			{
-				Name:     "Crow Featherl",
-				ChangeHp: 0,
-				Quantity: 1,
-				Price:    1,
+				Price:    0,
 			},
 		}
 
@@ -78,25 +58,15 @@ func Merchant(player *structure.Character) {
 			}
 		}
 
-		selected := merchantItems[choice-1]
-
-		if selected.Price > player.Money {
-			fmt.Print("\033[H\033[2J")
-			fmt.Print("You don't have enough money for buy this item.\n")
-			fmt.Print("Enter any key to quit :   ")
-			fmt.Scan(&exit)
-			return
-
-		}
-
 		if utils.InventoryIsAtMaxCapacity(&player.Inventory) {
-			fmt.Print("You've reached your 10 items inventory limit\n")
-			fmt.Print("Press any key to go back to MENU")
+			fmt.Print("You've reached your 10 items inventory limit")
+			fmt.Print("Press any key to go back to the MENU")
 			fmt.Scan(&exit)
 			return
 		}
 
-		utils.RemoveMoney(player, selected.Price)
+		// Example action when buying:
+		selected := merchantItems[choice-1]
 		utils.AddObj(player, structure.Inventory{
 			Name:     selected.Name,
 			ChangeHp: selected.ChangeHp,
