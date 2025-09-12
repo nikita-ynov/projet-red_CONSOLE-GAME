@@ -19,13 +19,18 @@ func CharacterCreation() structure.Character {
 	fmt.Scan(&name)
 	name = StartWithUppercase(name)
 
-	fmt.Print("Choose your Class : \n")
-	fmt.Printf("1 - %v : \n", chooseClass[0])
-	fmt.Printf("2 - %v : \n", chooseClass[1])
-	fmt.Printf("3 - %v : \n", chooseClass[2])
+	fmt.Print("\033[H\033[2J")
 
-	fmt.Print("Choose your class :  ")
-	fmt.Scan(&choice)
+	for i, class := range chooseClass {
+		fmt.Printf("%v - %v\n", i+1, class)
+	}
+
+	maxChoice := len(chooseClass)
+
+	for choice < 1 || choice > maxChoice {
+		fmt.Print("Choose your class :  ")
+		fmt.Scan(&choice)
+	}
 
 	switch choice {
 	case 1:
@@ -41,7 +46,7 @@ func CharacterCreation() structure.Character {
 
 	spawnHp = maxHp / 2
 
-	mainCharacter := InitCharacter(name, class, maxHp, spawnHp)
+	mainCharacter := InitCharacter(name, class, maxHp, spawnHp, 100)
 
 	return mainCharacter
 }

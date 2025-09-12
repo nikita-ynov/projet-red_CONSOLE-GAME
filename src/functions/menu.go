@@ -12,7 +12,7 @@ func Menu() int {
 	fmt.Print("4 - Test funcs\n")
 	fmt.Print("5 - Exit\n")
 
-	var maxChoice int = 4
+	var maxChoice int = 5
 	var choice int
 	for choice < 1 || choice > maxChoice {
 		fmt.Print("Enter your choice :   ")

@@ -4,7 +4,7 @@ import (
 	structure "PROJETRED/structure"
 )
 
-func InitCharacter(name string, class string, maxHp int, spawnHp int) structure.Character {
+func InitCharacter(name string, class string, maxHp, spawnHp, money int) structure.Character {
 	objects := []structure.Inventory{}
 
 	punch := []structure.Skills{{Name: "Punch", Dammage: 10}}
@@ -15,6 +15,7 @@ func InitCharacter(name string, class string, maxHp int, spawnHp int) structure.
 		Lvl:       0,
 		HpMax:     maxHp,
 		CurrentHp: spawnHp,
+		Money:     money,
 		Inventory: objects,
 		Skills:    punch,
 	}

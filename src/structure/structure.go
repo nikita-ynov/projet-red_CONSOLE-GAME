@@ -16,6 +16,7 @@ type Character struct {
 	Lvl       int
 	HpMax     int
 	CurrentHp int
+	Money     int
 	Inventory []Inventory
 	Skills    []Skills
 }
