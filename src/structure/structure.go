@@ -31,7 +31,7 @@ type MerchantItems struct {
 
 type Moster struct {
 	Name      string
-	hpMax     int
-	currentHp int
-	damage    int
+	HpMax     int
+	CurrentHp int
+	Damage    int
 }
