@@ -25,7 +25,7 @@ func TakeSkills(player *structure.Character) {
 
 	// Vérifier si aucun sort n’est disponible
 	if len(skillsAvailable) == 0 {
-		fmt.Println("You don't have any Spell Book to use")
+		fmt.Println("You don't have any Skill to use")
 		fmt.Print("Enter any key to exit: ")
 		fmt.Scan(&exit)
 		return
