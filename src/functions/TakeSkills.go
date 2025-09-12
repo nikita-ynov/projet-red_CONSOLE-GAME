@@ -32,7 +32,7 @@ func TakeSkills(player *structure.Character) {
 	}
 
 	// Affichage des Spell Books disponibles
-	fmt.Println("Choose what Spell Book to learn:")
+	fmt.Println("Choose what skill to learn:")
 	for i, skill := range skillsAvailable {
 		fmt.Printf("%d: %s\n", i+1, skill.Name)
 	}
