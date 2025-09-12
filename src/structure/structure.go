@@ -11,14 +11,15 @@ type Skills struct {
 	Dammage int
 }
 type Character struct {
-	Name      string
-	Class     string
-	Lvl       int
-	HpMax     int
-	CurrentHp int
-	Money     int
-	Inventory []Inventory
-	Skills    []Skills
+	Name           string
+	Class          string
+	Lvl            int
+	HpMax          int
+	CurrentHp      int
+	Money          int
+	InventoryLimit int
+	Inventory      []Inventory
+	Skills         []Skills
 }
 
 type MerchantItems struct {

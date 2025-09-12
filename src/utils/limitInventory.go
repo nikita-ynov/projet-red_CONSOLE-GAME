@@ -4,8 +4,8 @@ import (
 	"PROJETRED/structure"
 )
 
-func InventoryIsAtMaxCapacity(inventory *[]structure.Inventory) bool {
-	if len(*inventory) < 10 {
+func InventoryIsAtMaxCapacity(player *structure.Character) bool {
+	if len(player.Inventory) < player.InventoryLimit {
 		return false
 	} else {
 		return true
