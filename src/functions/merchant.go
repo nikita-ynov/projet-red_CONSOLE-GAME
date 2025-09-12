@@ -16,22 +16,22 @@ func Merchant(player *structure.Character) {
 				Name:      "Life Potion",
 				ChangeHp:  50,
 				Quantity:  1,
-				UniqueObj: 1,
+				UniqueObj: 0,
 				Price:     0,
 			}, {
 				Name:      "Kill Potion",
 				ChangeHp:  -50,
 				Quantity:  1,
-				UniqueObj: 1,
+				UniqueObj: 0,
 				Price:     0,
 			}, {
 				Name:      "Snus",
 				ChangeHp:  0,
 				Quantity:  1,
-				UniqueObj: 1,
+				UniqueObj: 0,
 				Price:     0,
 			}, {
-				Name:      "SpellBook : Fire Ball",
+				Name:      "Spell Book : Fire Ball",
 				ChangeHp:  0,
 				Quantity:  1,
 				UniqueObj: 1,
@@ -65,9 +65,10 @@ func Merchant(player *structure.Character) {
 		// Example action when buying:
 		selected := merchantItems[choice-1]
 		utils.AddObj(player, structure.Inventory{
-			Name:     selected.Name,
-			ChangeHp: selected.ChangeHp,
-			Quantity: selected.Quantity,
+			Name:      selected.Name,
+			ChangeHp:  selected.ChangeHp,
+			Quantity:  selected.Quantity,
+			UniqueObj: selected.UniqueObj,
 		})
 		fmt.Print("\033[H\033[2J")
 		fmt.Printf("====== YOU BOUGHT : %s! ======\n", selected.Name)

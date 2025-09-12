@@ -30,6 +30,8 @@ func DisplayInfo(player *structure.Character) {
 			fmt.Printf("Damage Hp: %v\n", item.ChangeHp)
 		} else if item.ChangeHp > 0 {
 			fmt.Printf("Health Hp: %v\n", item.ChangeHp)
+		} else if item.UniqueObj > 0 {
+			fmt.Printf("Unique skill")
 		}
 		fmt.Println("------------")
 	}

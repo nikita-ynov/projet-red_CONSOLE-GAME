@@ -1,9 +1,10 @@
 package structure
 
 type Inventory struct {
-	Name     string
-	ChangeHp int
-	Quantity int
+	Name      string
+	ChangeHp  int
+	Quantity  int
+	UniqueObj int
 }
 
 type Skills struct {
