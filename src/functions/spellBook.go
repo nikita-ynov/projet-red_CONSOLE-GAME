@@ -2,6 +2,7 @@ package functions
 
 import (
 	"PROJETRED/structure"
+	"PROJETRED/utils"
 )
 
 func SpellBook(player *structure.Character, nameSpell string) {
@@ -15,6 +16,7 @@ func SpellBook(player *structure.Character, nameSpell string) {
 		if spell.Name == nameSpell {
 			// ajouter le sort au joueur
 			player.Skills = append(player.Skills, spell)
+			utils.RemoveObj(player, structure.Inventory{})
 		}
 	}
 }
