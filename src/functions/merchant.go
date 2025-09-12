@@ -83,11 +83,9 @@ func Merchant(player *structure.Character) {
 		if selected.Price > player.Money {
 			fmt.Print("\033[H\033[2J")
 			fmt.Print("You don't have enough money for buy this item.\n")
-			fmt.Print("0. Exit\nEnter your choice :   ")
+			fmt.Print("Enter any key to quit :   ")
 			fmt.Scan(&exit)
-			if choice == 0 {
-				return
-			}
+			return
 
 		}
 		utils.RemoveMoney(player, selected.Price)
