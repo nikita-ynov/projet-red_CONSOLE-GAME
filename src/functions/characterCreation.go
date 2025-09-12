@@ -7,7 +7,7 @@ import (
 
 func CharacterCreation() structure.Character {
 
-	chooseClass := []string{"Humain", "Elfe", "Nain"}
+	chooseClass := []string{"Human", "Elfe", "Dwarf"}
 
 	var name string
 	var choice int
@@ -19,13 +19,18 @@ func CharacterCreation() structure.Character {
 	fmt.Scan(&name)
 	name = StartWithUppercase(name)
 
-	fmt.Print("Choose your Class : \n")
-	fmt.Print("1 - Humain : \n")
-	fmt.Print("2 - Elfe : \n")
-	fmt.Print("3 - Merchant : \n")
+	fmt.Print("\033[H\033[2J")
 
-	fmt.Print("Choose your class :  ")
-	fmt.Scan(&choice)
+	for i, class := range chooseClass {
+		fmt.Printf("%v - %v\n", i+1, class)
+	}
+
+	maxChoice := len(chooseClass)
+
+	for choice < 1 || choice > maxChoice {
+		fmt.Print("Choose your class :  ")
+		fmt.Scan(&choice)
+	}
 
 	switch choice {
 	case 1:
@@ -41,7 +46,7 @@ func CharacterCreation() structure.Character {
 
 	spawnHp = maxHp / 2
 
-	mainCharacter := InitCharacter(name, class, maxHp, spawnHp)
+	mainCharacter := InitCharacter(name, class, maxHp, spawnHp, 100)
 
 	return mainCharacter
 }

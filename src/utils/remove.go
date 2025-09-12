@@ -27,3 +27,19 @@ func RemoveHp(player *structure.Character, n int) bool {
 		return true
 	}
 }
+func MonsterRemoveHp(monster *structure.Monster, n int) bool {
+	if monster.CurrentHp-n > 0 {
+		monster.CurrentHp += n
+		return false
+	} else {
+		monster.CurrentHp = 0
+		return true
+	}
+}
+func RemoveMoney(player *structure.Character, n int) {
+	if player.Money-n >= 0 {
+		player.Money -= n
+	} else {
+		player.Money = 0
+	}
+}

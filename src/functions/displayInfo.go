@@ -12,15 +12,16 @@ func DisplayInfo(player *structure.Character) {
 	fmt.Printf("Lvl: %v\n", player.Lvl)
 	fmt.Printf("Hp Max: %v\n", player.HpMax)
 	fmt.Printf("Current Hp: %v\n", player.CurrentHp)
-	fmt.Print("SKILLS :\n")
-	for _, skill := range player.Skills {
+	fmt.Printf("Money: %v\n", player.Money)
+	fmt.Printf("SKILLS %v:\n", len(player.Skills))
+	for i := 0; i < len(player.Skills); i++ {
 		fmt.Println("------------")
 		fmt.Println(skill.Name)
 		fmt.Printf("Damage: %v\n", skill.Dammage)
 		fmt.Println("------------")
 		fmt.Println(player.Skills)
 	}
-	fmt.Printf("INVENTORY ITEMS: %v\n", len(player.Inventory))
+	fmt.Printf("INVENTORY ITEMS: %v/%v\n", len(player.Inventory), player.InventoryLimit)
 	for _, item := range player.Inventory {
 		fmt.Println("------------")
 		fmt.Println(item.Name)

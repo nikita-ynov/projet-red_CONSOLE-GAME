@@ -12,13 +12,15 @@ type Skills struct {
 	Dammage int
 }
 type Character struct {
-	Name      string
-	Class     string
-	Lvl       int
-	HpMax     int
-	CurrentHp int
-	Inventory []Inventory
-	Skills    []Skills
+	Name           string
+	Class          string
+	Lvl            int
+	HpMax          int
+	CurrentHp      int
+	Money          int
+	InventoryLimit int
+	Inventory      []Inventory
+	Skills         []Skills
 }
 
 type MerchantItems struct {
@@ -27,4 +29,11 @@ type MerchantItems struct {
 	Quantity  int
 	UniqueObj int
 	Price     int
+}
+
+type Monster struct {
+	Name      string
+	HpMax     int
+	CurrentHp int
+	Damage    int
 }
