@@ -55,6 +55,15 @@ func Merchant(player *structure.Character) {
 			},
 		}
 
+		if player.InventoryLimit < 30 {
+			merchantItems = append(merchantItems, structure.MerchantItems{
+				Name:     "Upgrade Inventory (+10 slot)",
+				ChangeHp: 0,
+				Quantity: 1,
+				Price:    30,
+			})
+		}
+
 		fmt.Println("====== MERCHANT ======")
 		fmt.Println("0. Exit")
 		for index, merchantItem := range merchantItems {
@@ -86,7 +95,6 @@ func Merchant(player *structure.Character) {
 			fmt.Print("Enter any key to quit :   ")
 			fmt.Scan(&exit)
 			return
-
 		}
 
 		if utils.InventoryIsAtMaxCapacity(player) {
@@ -97,11 +105,15 @@ func Merchant(player *structure.Character) {
 		}
 
 		utils.RemoveMoney(player, selected.Price)
-		utils.AddObj(player, structure.Inventory{
-			Name:     selected.Name,
-			ChangeHp: selected.ChangeHp,
-			Quantity: selected.Quantity,
-		})
+		if selected.Name == "Upgrade Inventory (+10 slot)" {
+			utils.UpgradeInvenorySlot(player, 10)
+		} else {
+			utils.AddObj(player, structure.Inventory{
+				Name:     selected.Name,
+				ChangeHp: selected.ChangeHp,
+				Quantity: selected.Quantity,
+			})
+		}
 		fmt.Print("\033[H\033[2J")
 		fmt.Printf("====== YOU BOUGHT : %s! ======\n", selected.Name)
 

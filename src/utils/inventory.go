@@ -11,3 +11,9 @@ func InventoryIsAtMaxCapacity(player *structure.Character) bool {
 		return true
 	}
 }
+
+func UpgradeInvenorySlot(player *structure.Character, n int) {
+	if player.InventoryLimit+n <= 30 {
+		player.InventoryLimit += n
+	}
+}

@@ -21,7 +21,7 @@ func DisplayInfo(player *structure.Character) {
 		fmt.Print(player.Skills[i].Dammage)
 		fmt.Println("\n------------")
 	}
-	fmt.Printf("INVENTORY ITEMS: %v\n", len(player.Inventory))
+	fmt.Printf("INVENTORY ITEMS: %v/%v\n", len(player.Inventory), player.InventoryLimit)
 	for _, item := range player.Inventory {
 		fmt.Println("------------")
 		fmt.Println(item.Name)
