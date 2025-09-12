@@ -28,3 +28,10 @@ type MerchantItems struct {
 	Quantity int
 	Price    int
 }
+
+type Moster struct {
+	Name      string
+	hpMax     int
+	currentHp int
+	damage    int
+}
