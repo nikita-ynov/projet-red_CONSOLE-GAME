@@ -58,6 +58,11 @@ func Merchant(player *structure.Character) {
 			}
 		}
 
+		if InventoryIsAtMaxCapacity(&player.Inventory) {
+			fmt.Print("You've reached your 10 items inventory limit")
+			return
+		}
+
 		// Example action when buying:
 		selected := merchantItems[choice-1]
 		utils.AddObj(player, structure.Inventory{
