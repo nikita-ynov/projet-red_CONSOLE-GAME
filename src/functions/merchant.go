@@ -8,60 +8,69 @@ import (
 
 func Merchant(player *structure.Character) {
 	var exit int = 1
+
 	for exit == 1 {
 
 		fmt.Print("\033[H\033[2J")
 		merchantItems := []structure.MerchantItems{
 			{
 
-				Name:     "Life Potion",
-				ChangeHp: 50,
-				Quantity: 1,
-				Price:    3,
+				Name:      "Life Potion",
+				ChangeHp:  50,
+				Quantity:  1,
+				UniqueObj: 0,
+				Price:     3,
 			}, {
-				Name:     "Kill Potion",
-				ChangeHp: -50,
-				Quantity: 1,
-				Price:    7,
+				Name:      "Kill Potion",
+				ChangeHp:  -50,
+				Quantity:  1,
+				UniqueObj: 0,
+				Price:     7,
 			},
 			{
-				Name:     "SpellBook : Fire Ball",
-				ChangeHp: 0,
-				Quantity: 1,
-				Price:    25,
+				Name:      "SpellBook : Fire Ball",
+				ChangeHp:  0,
+				Quantity:  1,
+				UniqueObj: 1,
+				Price:     25,
 			},
 			{
-				Name:     "Wolf fur",
-				ChangeHp: 0,
-				Quantity: 1,
-				Price:    4,
+				Name:      "Wolf fur",
+				ChangeHp:  0,
+				Quantity:  1,
+				UniqueObj: 0,
+				Price:     4,
 			},
 			{
-				Name:     "Skin Troll",
-				ChangeHp: 0,
-				Quantity: 1,
-				Price:    7,
+				Name:      "Skin Troll",
+				ChangeHp:  0,
+				Quantity:  1,
+				UniqueObj: 0,
+				Price:     7,
 			},
 			{
-				Name:     "Wild boar leather",
-				ChangeHp: 0,
-				Quantity: 1,
-				Price:    3,
+				Name:      "Wild boar leather",
+				ChangeHp:  0,
+				Quantity:  1,
+				UniqueObj: 0,
+				Price:     3,
 			},
 			{
-				Name:     "Crow Featherl",
-				ChangeHp: 0,
-				Quantity: 1,
-				Price:    1,
+				Name:      "Crow Featherl",
+				ChangeHp:  0,
+				Quantity:  1,
+				UniqueObj: 0,
+				Price:     1,
 			},
 		}
 
 		if player.InventoryLimit < 30 {
 			merchantItems = append(merchantItems, structure.MerchantItems{
-				Name:     "Upgrade Inventory (+10 slot)",
-				ChangeHp: 0,
-				Quantity: 1,
-				Price:    30,
+				Name:      "Upgrade Inventory (+10 slot)",
+				ChangeHp:  0,
+				Quantity:  1,
+				UniqueObj: 0,
+				Price:     30,
 			})
 		}
 
@@ -110,11 +119,14 @@ func Merchant(player *structure.Character) {
 			utils.UpgradeInvenorySlot(player, 10)
 		} else {
 			utils.AddObj(player, structure.Inventory{
-				Name:     selected.Name,
-				ChangeHp: selected.ChangeHp,
-				Quantity: selected.Quantity,
-			UniqueObj: selected.UniqueObj,
+				Name:      selected.Name,
+				ChangeHp:  selected.ChangeHp,
+				Quantity:  selected.Quantity,
+				UniqueObj: selected.UniqueObj,
 			})
+		}
+		if selected.Name == "SpellBook : Fire Ball" {
+			NewMerchant(&merchantItems, selected.Name)
 		}
 		fmt.Print("\033[H\033[2J")
 		fmt.Printf("====== YOU BOUGHT : %s! ======\n", selected.Name)
