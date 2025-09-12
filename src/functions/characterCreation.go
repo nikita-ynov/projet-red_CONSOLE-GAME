@@ -7,7 +7,7 @@ import (
 
 func CharacterCreation() structure.Character {
 
-	chooseClass := []string{"Humain", "Elfe", "Nain"}
+	chooseClass := []string{"Human", "Elfe", "Dwarf"}
 
 	var name string
 	var choice int
@@ -20,9 +20,9 @@ func CharacterCreation() structure.Character {
 	name = StartWithUppercase(name)
 
 	fmt.Print("Choose your Class : \n")
-	fmt.Print("1 - Humain : \n")
-	fmt.Print("2 - Elfe : \n")
-	fmt.Print("3 - Merchant : \n")
+	fmt.Printf("1 - %v : \n", chooseClass[0])
+	fmt.Printf("2 - %v : \n", chooseClass[1])
+	fmt.Printf("3 - %v : \n", chooseClass[2])
 
 	fmt.Print("Choose your class :  ")
 	fmt.Scan(&choice)
