@@ -15,7 +15,7 @@ func Menu() int {
 	fmt.Print("7 - Blacksmith\n")
 	fmt.Print("8 - Exit\n")
 
-	var maxChoice int = 7
+	var maxChoice int = 8
 	var choice int
 	for choice < 1 || choice > maxChoice {
 		fmt.Print("Enter your choice :   ")

@@ -158,7 +158,7 @@ func Forgeron(player *structure.Character) {
 		fmt.Print("\033[H\033[2J")
 		fmt.Printf("====== YOU BOUGHT : %s! ======\n", selected.Name)
 
-		fmt.Print("Press any key to leave")
+		fmt.Print("0. Exit\n1. Buy more\nEnter your choice :   ")
 		fmt.Scan(&exit)
 	}
 }
