@@ -21,18 +21,22 @@ func main() {
 		case 1:
 			functions.DisplayInfo(&player)
 		case 2:
-			functions.Takepot(&player)
+			functions.TakeSkills(&player) // pour apprendre des skills
 		case 3:
-			functions.Merchant(&player)
+			functions.Takepot(&player)
 		case 4:
+			functions.Merchant(&player)
+		case 5:
+			functions.GoblinPattern(&player)
+		case 6:
 			functions.PoisonPot(&player, structure.Inventory{
 				Name:     "Test Potion",
 				ChangeHp: -30,
 				Quantity: 1,
 			})
-		case 5:
+		case 7:
 			functions.Forgeron(&player)
-		case 6:
+		case 8:
 			fmt.Print("====== GOODBYE ======")
 			exit = false
 		}

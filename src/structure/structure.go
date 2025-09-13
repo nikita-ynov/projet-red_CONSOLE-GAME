@@ -1,9 +1,10 @@
 package structure
 
 type Inventory struct {
-	Name     string
-	ChangeHp int
-	Quantity int
+	Name      string
+	ChangeHp  int
+	Quantity  int
+	UniqueObj int
 }
 
 type Skills struct {
@@ -11,21 +12,31 @@ type Skills struct {
 	Dammage int
 }
 type Character struct {
-	Name      string
-	Class     string
-	Lvl       int
-	HpMax     int
-	CurrentHp int
-	Money     int
-	Inventory []Inventory
-	Skills    []Skills
+	Name           string
+	Class          string
+	Lvl            int
+	HpMax          int
+	CurrentHp      int
+	Money          int
+	Dammage        int
+	InventoryLimit int
+	Inventory      []Inventory
+	Skills         []Skills
 }
 
 type MerchantItems struct {
-	Name     string
-	ChangeHp int
-	Quantity int
-	Price    int
+	Name      string
+	ChangeHp  int
+	Quantity  int
+	UniqueObj int
+	Price     int
+}
+
+type Monster struct {
+	Name      string
+	HpMax     int
+	CurrentHp int
+	Damage    int
 }
 
 type BlacksmithItems struct {

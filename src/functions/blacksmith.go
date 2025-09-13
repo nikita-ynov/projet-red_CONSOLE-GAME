@@ -20,17 +20,19 @@ func Forgeron(player *structure.Character) {
 		//boucle pour compter le nombre de ressources dans l'inventaire du joueur
 		for _, item := range player.Inventory {
 			switch item.Name {
-			case "CrowFeather":
+			case "Crow Featherl":
 				CrowFeather++
-			case "WolfFur":
+			case "Wolf Fur":
 				WolfFur++
-			case "WildBoarLeather":
+			case "Wild boar leather":
 				WildBoarLeather++
-			case "TrollSkin":
+			case "Skin Troll":
 				TrollSkin++
 			}
 
 		}
+
+		itemsToRemove := []structure.Inventory{}
 
 		BlacksmithItems := []structure.BlacksmithItems{
 			{
@@ -74,24 +76,28 @@ func Forgeron(player *structure.Character) {
 		//verifie que le joueur possede bien les ressources necessaires
 		if selected.TrollSkin > TrollSkin {
 			fmt.Println("You don't have the ressources yet")
+			fmt.Printf("You have %v TrollSkin", TrollSkin)
 			fmt.Print("Press any key to go back to the MENU :")
 			fmt.Scan(&exit)
 			return
 		}
 		if selected.CrowFeather > CrowFeather {
 			fmt.Println("You don't have the ressources yet")
+			fmt.Printf("You have %v CrowFeather", CrowFeather)
 			fmt.Print("Press any key to go back to the MENU :")
 			fmt.Scan(&exit)
 			return
 		}
 		if selected.WildBoarLeather > WildBoarLeather {
 			fmt.Println("You don't have the ressources yet")
+			fmt.Printf("You have %v WildBoarLeather", WildBoarLeather)
 			fmt.Print("Press any key to go back to the MENU :")
 			fmt.Scan(&exit)
 			return
 		}
 		if selected.WolfFur > WolfFur {
 			fmt.Println("You don't have the ressources yet")
+			fmt.Printf("You have %v WolfFur", WolfFur)
 			fmt.Print("Press any key to go back to the MENU :")
 			fmt.Scan(&exit)
 			return
@@ -103,12 +109,46 @@ func Forgeron(player *structure.Character) {
 			return
 		}
 		//verifie que l'ajout de l'équipement n'excede pas la capacité max de l'inventaire
-		if utils.InventoryIsAtMaxCapacity(&player.Inventory) {
+		if utils.InventoryIsAtMaxCapacity(player) {
 			fmt.Println("You're inventory is full")
 			return
 		}
 
 		utils.RemoveMoney(player, 5)
+
+		if selected.CrowFeather > 0 {
+			itemsToRemove = append(itemsToRemove, structure.Inventory{
+				Name:     "Crow Featherl",
+				ChangeHp: 0,
+				Quantity: selected.CrowFeather,
+			})
+		}
+		if selected.WolfFur > 0 {
+			itemsToRemove = append(itemsToRemove, structure.Inventory{
+				Name:     "Wolf Fur",
+				ChangeHp: 0,
+				Quantity: selected.WolfFur,
+			})
+		}
+		if selected.WildBoarLeather > 0 {
+			itemsToRemove = append(itemsToRemove, structure.Inventory{
+				Name:     "Wild boar leather",
+				ChangeHp: 0,
+				Quantity: selected.WildBoarLeather,
+			})
+		}
+		if selected.TrollSkin > 0 {
+			itemsToRemove = append(itemsToRemove, structure.Inventory{
+				Name:     "Skin Troll",
+				ChangeHp: 0,
+				Quantity: selected.TrollSkin,
+			})
+		}
+
+		for _, item := range itemsToRemove {
+			utils.RemoveObj(player, item)
+		}
+
 		utils.AddObj(player, structure.Inventory{
 			Name:     selected.Name,
 			ChangeHp: 0,

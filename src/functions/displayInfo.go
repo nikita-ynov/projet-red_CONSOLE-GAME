@@ -13,15 +13,15 @@ func DisplayInfo(player *structure.Character) {
 	fmt.Printf("Hp Max: %v\n", player.HpMax)
 	fmt.Printf("Current Hp: %v\n", player.CurrentHp)
 	fmt.Printf("Money: %v\n", player.Money)
-	fmt.Print("SKILLS :\n")
+	fmt.Printf("SKILLS %v:\n", len(player.Skills))
 	for i := 0; i < len(player.Skills); i++ {
 		fmt.Println("------------")
 		fmt.Println(player.Skills[i].Name)
-		fmt.Print("Damage: ")
-		fmt.Print(player.Skills[i].Dammage)
-		fmt.Println("\n------------")
+		fmt.Printf("Damage: %v\n", player.Skills[i].Dammage)
+		fmt.Println("------------")
+		fmt.Println(player.Skills)
 	}
-	fmt.Printf("INVENTORY ITEMS: %v\n", len(player.Inventory))
+	fmt.Printf("INVENTORY ITEMS: %v/%v\n", len(player.Inventory), player.InventoryLimit)
 	for _, item := range player.Inventory {
 		fmt.Println("------------")
 		fmt.Println(item.Name)
@@ -31,11 +31,13 @@ func DisplayInfo(player *structure.Character) {
 			fmt.Printf("Damage Hp: %v\n", item.ChangeHp)
 		} else if item.ChangeHp > 0 {
 			fmt.Printf("Health Hp: %v\n", item.ChangeHp)
+		} else if item.UniqueObj > 0 {
+			fmt.Println("(can be use one time in the game)")
 		}
 		fmt.Println("------------")
 	}
 
-	var choise int
+	var choice string
 	fmt.Print("Enter any key to close :   ")
-	fmt.Scan(&choise)
+	fmt.Scan(&choice)
 }

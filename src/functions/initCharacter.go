@@ -10,14 +10,16 @@ func InitCharacter(name string, class string, maxHp, spawnHp, money int) structu
 	punch := []structure.Skills{{Name: "Punch", Dammage: 10}}
 
 	player := structure.Character{
-		Name:      name,
-		Class:     class,
-		Lvl:       0,
-		HpMax:     maxHp,
-		CurrentHp: spawnHp,
-		Money:     money,
-		Inventory: objects,
-		Skills:    punch,
+		Name:           name,
+		Class:          class,
+		Lvl:            0,
+		HpMax:          maxHp,
+		CurrentHp:      spawnHp,
+		Money:          money,
+		Dammage:        -5,
+		InventoryLimit: 10,
+		Inventory:      objects,
+		Skills:         punch,
 	}
 	return player
 }
