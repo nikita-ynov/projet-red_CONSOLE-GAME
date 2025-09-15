@@ -35,6 +35,8 @@ func main() {
 				Quantity: 1,
 			})
 		case 7:
+			functions.Forgeron(&player)
+		case 8:
 			fmt.Print("====== GOODBYE ======")
 			exit = false
 		}
