@@ -34,10 +34,14 @@ func GoblinPattern(player *structure.Character) {
 		res := CharacterTurn()
 		switch res {
 		case "attack":
-			utils.MonsterRemoveHp(&goblin, player.Dammage)
-			fmt.Printf("%v Default Attack %v (Damage: %v) Goblin HP: %v\n", player.Name, goblin.Name, player.Dammage, goblin.CurrentHp)
+			utils.MonsterRemoveHp(&goblin, player.Damage)
+			fmt.Printf("%v Default Attack %v (Damage: %v) Goblin HP: %v\n", player.Name, goblin.Name, player.Damage, goblin.CurrentHp)
 		case "skill":
-			fmt.Println("skill")
+			skillName, skillDamage := TakeSkill(player)
+			utils.MonsterRemoveHp(&goblin, skillDamage)
+			fmt.Printf("%v Skill: %v Attack %v (Damage: %v) Goblin HP: %v\n", player.Name, skillName, goblin.Name, skillDamage, goblin.CurrentHp)
+		case "health potion":
+			Takepot(player)
 		}
 		if goblin.CurrentHp <= 0 {
 			break

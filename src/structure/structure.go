@@ -8,8 +8,8 @@ type Inventory struct {
 }
 
 type Skills struct {
-	Name    string
-	Dammage int
+	Name   string
+	Damage int
 }
 type Character struct {
 	Name           string
@@ -18,7 +18,7 @@ type Character struct {
 	HpMax          int
 	CurrentHp      int
 	Money          int
-	Dammage        int
+	Damage         int
 	InventoryLimit int
 	Inventory      []Inventory
 	Skills         []Skills

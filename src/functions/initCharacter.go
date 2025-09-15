@@ -7,7 +7,7 @@ import (
 func InitCharacter(name string, class string, maxHp, spawnHp, money int) structure.Character {
 	objects := []structure.Inventory{}
 
-	punch := []structure.Skills{{Name: "Punch", Dammage: 10}}
+	punch := []structure.Skills{{Name: "Punch", Damage: 10}}
 
 	player := structure.Character{
 		Name:           name,
@@ -16,7 +16,7 @@ func InitCharacter(name string, class string, maxHp, spawnHp, money int) structu
 		HpMax:          maxHp,
 		CurrentHp:      spawnHp,
 		Money:          money,
-		Dammage:        -5,
+		Damage:         -5,
 		InventoryLimit: 10,
 		Inventory:      objects,
 		Skills:         punch,

@@ -9,7 +9,8 @@ func CharacterTurn() string {
 	fmt.Println("======= PLAYER TURN =======")
 	fmt.Println("1. Attack")
 	fmt.Println("2. Use Skill")
-	maxChoice := 2
+	fmt.Println("3. Take Health Potion")
+	maxChoice := 3
 	for choice < 1 || choice > maxChoice {
 		fmt.Print("Enter your choice :   ")
 		fmt.Scan(&choice)
@@ -17,6 +18,9 @@ func CharacterTurn() string {
 	}
 	if choice == 2 {
 		return "skill"
+	}
+	if choice == 3 {
+		return "health potion"
 	}
 	return "attack"
 }
