@@ -18,6 +18,7 @@ type Character struct {
 	HpMax           int
 	CurrentHp       int
 	Money           int
+	Dammage         int
 	InventoryLimit  int
 	Inventory       []Inventory
 	Skills          []Skills
@@ -42,4 +43,13 @@ type Equipment struct {
 	Helmet      int
 	Breastplate int
 	Legwarmer   int
+}
+
+type BlacksmithItems struct {
+	Name            string
+	Price           int
+	CrowFeather     int
+	WildBoarLeather int
+	TrollSkin       int
+	WolfFur         int
 }
