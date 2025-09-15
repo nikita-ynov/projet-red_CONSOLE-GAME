@@ -20,7 +20,7 @@ func Forgeron(player *structure.Character) {
 		//boucle pour compter le nombre de ressources dans l'inventaire du joueur
 		for _, item := range player.Inventory {
 			switch item.Name {
-			case "Crow Featherl":
+			case "Crow Feather":
 				CrowFeather++
 			case "Wolf Fur":
 				WolfFur++
