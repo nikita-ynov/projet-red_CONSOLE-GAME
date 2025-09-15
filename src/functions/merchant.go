@@ -9,69 +9,75 @@ import (
 func Merchant(player *structure.Character) {
 	var exit int = 1
 
+	// Déclaration et initialisation de merchantItems en dehors de la boucle
+	merchantItems := []structure.MerchantItems{
+		{
+			Name:      "Life Potion",
+			ChangeHp:  50,
+			Quantity:  1,
+			UniqueObj: 0,
+			Price:     3,
+		}, {
+			Name:      "Kill Potion",
+			ChangeHp:  -50,
+			Quantity:  1,
+			UniqueObj: 0,
+			Price:     7,
+		}, {
+			Name:      "SpellBook : Fire Ball",
+			ChangeHp:  0,
+			Quantity:  1,
+			UniqueObj: 1,
+			Price:     25,
+		}, {
+			Name:      "Wolf fur",
+			ChangeHp:  0,
+			Quantity:  1,
+			UniqueObj: 0,
+			Price:     4,
+		}, {
+			Name:      "Skin Troll",
+			ChangeHp:  0,
+			Quantity:  1,
+			UniqueObj: 0,
+			Price:     7,
+		}, {
+			Name:      "Wild boar leather",
+			ChangeHp:  0,
+			Quantity:  1,
+			UniqueObj: 0,
+			Price:     3,
+		}, {
+			Name:      "Crow Feather",
+			ChangeHp:  0,
+			Quantity:  1,
+			UniqueObj: 0,
+			Price:     1,
+		},
+	}
+
 	for exit == 1 {
 
 		fmt.Print("\033[H\033[2J")
-		merchantItems := []structure.MerchantItems{
-			{
 
-				Name:      "Life Potion",
-				ChangeHp:  50,
-				Quantity:  1,
-				UniqueObj: 0,
-				Price:     3,
-			}, {
-				Name:      "Kill Potion",
-				ChangeHp:  -50,
-				Quantity:  1,
-				UniqueObj: 0,
-				Price:     7,
-			},
-			{
-				Name:      "SpellBook : Fire Ball",
-				ChangeHp:  0,
-				Quantity:  1,
-				UniqueObj: 1,
-				Price:     25,
-			},
-			{
-				Name:      "Wolf fur",
-				ChangeHp:  0,
-				Quantity:  1,
-				UniqueObj: 0,
-				Price:     4,
-			},
-			{
-				Name:      "Skin Troll",
-				ChangeHp:  0,
-				Quantity:  1,
-				UniqueObj: 0,
-				Price:     7,
-			},
-			{
-				Name:      "Wild boar leather",
-				ChangeHp:  0,
-				Quantity:  1,
-				UniqueObj: 0,
-				Price:     3,
-			},
-			{
-				Name:      "Crow Featherl",
-				ChangeHp:  0,
-				Quantity:  1,
-				UniqueObj: 0,
-				Price:     1,
-			},
-		}
-
+		// Ajouter upgrade inventaire si nécessaire (vérification chaque tour)
 		if player.InventoryLimit < 30 {
-			merchantItems = append(merchantItems, structure.MerchantItems{
-				Name:      "Upgrade Inventory (+10 slot)",
-				ChangeHp:  0,
-				Quantity:  1,
-				UniqueObj: 0,
-				Price:     30,
-			})
+			upgradeExists := false
+			for _, item := range merchantItems {
+				if item.Name == "Upgrade Inventory (+10 slot)" {
+					upgradeExists = true
+					break
+				}
+			}
+			if !upgradeExists {
+				merchantItems = append(merchantItems, structure.MerchantItems{
+					Name:      "Upgrade Inventory (+10 slot)",
+					ChangeHp:  0,
+					Quantity:  1,
+					UniqueObj: 0,
+					Price:     30,
+				})
+			}
 		}
 
 		fmt.Println("====== MERCHANT ======")
@@ -125,9 +131,17 @@ func Merchant(player *structure.Character) {
 				UniqueObj: selected.UniqueObj,
 			})
 		}
-		if selected.Name == "SpellBook : Fire Ball" {
-			NewMerchant(&merchantItems, selected.Name)
+
+		// Suppression de l'item unique après achat
+		if selected.UniqueObj == 1 {
+			for i, item := range merchantItems {
+				if item.Name == selected.Name {
+					merchantItems = append(merchantItems[:i], merchantItems[i+1:]...)
+					break
+				}
+			}
 		}
+
 		fmt.Print("\033[H\033[2J")
 		fmt.Printf("====== YOU BOUGHT : %s! ======\n", selected.Name)
 
