@@ -110,10 +110,10 @@ func Merchant(player *structure.Character) {
 			utils.UpgradeInvenorySlot(player, 10)
 		} else {
 			utils.AddObj(player, structure.Inventory{
-				Name:     selected.Name,
-				ChangeHp: selected.ChangeHp,
-				Quantity: selected.Quantity,
-			UniqueObj: selected.UniqueObj,
+				Name:      selected.Name,
+				ChangeHp:  selected.ChangeHp,
+				Quantity:  selected.Quantity,
+				UniqueObj: selected.UniqueObj,
 			})
 		}
 		fmt.Print("\033[H\033[2J")
