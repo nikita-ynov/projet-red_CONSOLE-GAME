@@ -21,13 +21,13 @@ func Forgeron(player *structure.Character) {
 		for _, item := range player.Inventory {
 			switch item.Name {
 			case "Crow Featherl":
-				CrowFeather++
+				CrowFeather += item.Quantity
 			case "Wolf Fur":
-				WolfFur++
+				WolfFur += item.Quantity
 			case "Wild boar leather":
-				WildBoarLeather++
+				WildBoarLeather += item.Quantity
 			case "Skin Troll":
-				TrollSkin++
+				TrollSkin += item.Quantity
 			}
 
 		}
@@ -76,28 +76,28 @@ func Forgeron(player *structure.Character) {
 		//verifie que le joueur possede bien les ressources necessaires
 		if selected.TrollSkin > TrollSkin {
 			fmt.Println("You don't have the ressources yet")
-			fmt.Printf("You have %v TrollSkin", TrollSkin)
+			fmt.Printf("You have %v TrollSkin\n", TrollSkin)
 			fmt.Print("Press any key to go back to the MENU :")
 			fmt.Scan(&exit)
 			return
 		}
 		if selected.CrowFeather > CrowFeather {
 			fmt.Println("You don't have the ressources yet")
-			fmt.Printf("You have %v CrowFeather", CrowFeather)
+			fmt.Printf("You have %v CrowFeather\n", CrowFeather)
 			fmt.Print("Press any key to go back to the MENU :")
 			fmt.Scan(&exit)
 			return
 		}
 		if selected.WildBoarLeather > WildBoarLeather {
 			fmt.Println("You don't have the ressources yet")
-			fmt.Printf("You have %v WildBoarLeather", WildBoarLeather)
+			fmt.Printf("You have %v WildBoarLeather\n", WildBoarLeather)
 			fmt.Print("Press any key to go back to the MENU :")
 			fmt.Scan(&exit)
 			return
 		}
 		if selected.WolfFur > WolfFur {
 			fmt.Println("You don't have the ressources yet")
-			fmt.Printf("You have %v WolfFur", WolfFur)
+			fmt.Printf("You have %v WolfFur\n", WolfFur)
 			fmt.Print("Press any key to go back to the MENU :")
 			fmt.Scan(&exit)
 			return
