@@ -38,3 +38,12 @@ type Monster struct {
 	CurrentHp int
 	Damage    int
 }
+
+type BlacksmithItems struct {
+	Name            string
+	Price           int
+	CrowFeather     int
+	WildBoarLeather int
+	TrollSkin       int
+	WolfFur         int
+}
