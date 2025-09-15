@@ -6,6 +6,15 @@ import (
 	"fmt"
 )
 
+func checkSkill(player structure.Character, name string) bool {
+	for _, el := range player.Skills {
+		if el.Name == name {
+			return false
+		}
+	}
+	return true
+}
+
 func Merchant(player *structure.Character) {
 	var exit int = 1
 	for exit == 1 {
@@ -27,11 +36,6 @@ func Merchant(player *structure.Character) {
 				ChangeHp: 0,
 				Quantity: 1,
 				Price:    0,
-			}, {
-				Name:     "SpellBook : Fire Ball",
-				ChangeHp: 0,
-				Quantity: 1,
-				Price:    4,
 			},
 			{
 				Name:     "Skin Troll",
@@ -65,6 +69,15 @@ func Merchant(player *structure.Character) {
 				ChangeHp: 0,
 				Quantity: 1,
 				Price:    30,
+			})
+		}
+
+		if checkSkill(*player, "Fire Ball") {
+			merchantItems = append(merchantItems, structure.MerchantItems{
+				Name:     "Fire Ball", // skill
+				ChangeHp: -20,
+				Quantity: 1,
+				Price:    4,
 			})
 		}
 
@@ -111,6 +124,11 @@ func Merchant(player *structure.Character) {
 		utils.RemoveMoney(player, selected.Price)
 		if selected.Name == "Upgrade Inventory (+10 slot)" {
 			utils.UpgradeInvenorySlot(player, 10)
+		} else if selected.Name == "Fire Ball" {
+			utils.AddSkill(player, structure.Skills{
+				Name:   selected.Name,
+				Damage: selected.ChangeHp,
+			})
 		} else {
 			utils.AddObj(player, structure.Inventory{
 				Name:      selected.Name,

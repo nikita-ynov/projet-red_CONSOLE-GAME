@@ -12,7 +12,15 @@ func AddObj(player *structure.Character, item structure.Inventory) {
 		}
 	}
 	player.Inventory = append(player.Inventory, item)
+}
 
+func AddSkill(player *structure.Character, skill structure.Skills) {
+	for _, element := range player.Skills {
+		if element.Name == skill.Name {
+			return
+		}
+	}
+	player.Skills = append(player.Skills, skill)
 }
 
 func AddHp(player *structure.Character, n int) {
