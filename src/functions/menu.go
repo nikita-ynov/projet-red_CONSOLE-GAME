@@ -10,9 +10,8 @@ func Menu() int {
 	fmt.Print("2 - Take Health Potion\n")
 	fmt.Print("3 - Merchant \n")
 	fmt.Print("4 - Training Fight\n")
-	fmt.Print("5 - Poison Pot\n")
-	fmt.Print("6 - Blacksmith\n")
-	fmt.Print("7 - Exit\n")
+	fmt.Print("5 - Blacksmith\n")
+	fmt.Print("6 - Exit\n")
 
 	var maxChoice int = 8
 	var choice int
