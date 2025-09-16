@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func DisplayInfo(player *structure.Character) {
+func DisplayInfo(player *structure.Character, equipmentplayer structure.Equipment) {
 	fmt.Print("\033[H\033[2J")
 	fmt.Println("====== DISPLAY INFO - " + player.Name + " ======")
 	fmt.Println("Class: " + player.Class)
@@ -37,6 +37,13 @@ func DisplayInfo(player *structure.Character) {
 	}
 
 	var choice string
-	fmt.Print("Enter any key to close :   ")
+
+	fmt.Println("-----------------------")
+	fmt.Println("1 - Open equipment menu")
+	fmt.Println("other key - exit")
+	fmt.Print("enter your choice : ")
 	fmt.Scan(&choice)
+	if choice == "1" {
+		DisplayEquipment(equipmentplayer)
+	}
 }

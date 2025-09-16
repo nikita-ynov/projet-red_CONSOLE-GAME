@@ -47,6 +47,11 @@ type Monster struct {
 	Initiative int
 }
 
+type Listequipment struct {
+	Name       string
+	Protection int
+}
+
 type Equipment struct {
 	Helmet      []Helmet
 	Breastplate []Breastplate
