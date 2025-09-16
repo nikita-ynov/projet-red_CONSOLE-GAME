@@ -4,6 +4,7 @@ type Inventory struct {
 	Name        string
 	ChangeHp    int
 	ChangeManna int
+	Protection  int
 	Quantity    int
 }
 
@@ -11,22 +12,23 @@ type Skills struct {
 	Name   string
 	Damage int
 }
+
 type Character struct {
-	Name            string
-	Class           string
-	Lvl             int
-	Exp             int
-	HpMax           int
-	CurrentHp       int
-	MannaMax        int
-	CurrentManna    int
-	Money           int
-	Damage          int
-	Initiative      int
-	InventoryLimit  int
-	Inventory       []Inventory
-	Skills          []Skills
-	PlayerEquipment []Equipment
+	Name           string
+	Class          string
+	Lvl            int
+	Exp            int
+	HpMax          int
+	CurrentHp      int
+	MannaMax       int
+	CurrentManna   int
+	Money          int
+	Damage         int
+	Initiative     int
+	InventoryLimit int
+	Inventory      []Inventory
+	Skills         []Skills
+	Equipment      Equipment // maintenant c’est bien défini
 }
 
 type MerchantItems struct {
@@ -45,10 +47,31 @@ type Monster struct {
 	Damage     int
 	Initiative int
 }
+
+type Listequipment struct {
+	Name       string
+	Protection int
+}
+
 type Equipment struct {
-	Helmet      int
-	Breastplate int
-	Legwarmer   int
+	Helmet      Helmet
+	Breastplate Breastplate
+	Legwarmer   Legwarmer
+}
+
+type Helmet struct {
+	Name       string
+	Protection int
+}
+
+type Breastplate struct {
+	Name       string
+	Protection int
+}
+
+type Legwarmer struct {
+	Name       string
+	Protection int
 }
 
 type BlacksmithItems struct {
