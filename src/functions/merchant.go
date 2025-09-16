@@ -22,62 +22,71 @@ func Merchant(player *structure.Character) {
 		fmt.Print("\033[H\033[2J")
 		merchantItems := []structure.MerchantItems{
 			{
-				Name:     "Life Potion",
-				ChangeHp: 50,
-				Quantity: 1,
-				Price:    0,
+				Name:        "Life Potion",
+				ChangeHp:    50,
+				ChangeManna: 0,
+				Quantity:    1,
+				Price:       0,
 			}, {
-				Name:     "Kill Potion",
-				ChangeHp: -50,
-				Quantity: 1,
-				Price:    0,
+				Name:        "Kill Potion",
+				ChangeHp:    -50,
+				ChangeManna: 0,
+				Quantity:    1,
+				Price:       0,
 			}, {
-				Name:     "Snus",
-				ChangeHp: 0,
-				Quantity: 1,
-				Price:    0,
+				Name:        "Snus",
+				ChangeHp:    0,
+				ChangeManna: 0,
+				Quantity:    1,
+				Price:       0,
 			},
 			{
-				Name:     "Skin Troll",
-				ChangeHp: 0,
-				Quantity: 1,
-				Price:    7,
+				Name:        "Skin Troll",
+				ChangeHp:    0,
+				ChangeManna: 0,
+				Quantity:    1,
+				Price:       7,
 			},
 			{
-				Name:     "Wild boar leather",
-				ChangeHp: 0,
-				Quantity: 1,
-				Price:    3,
+				Name:        "Wild boar leather",
+				ChangeHp:    0,
+				ChangeManna: 0,
+				Quantity:    1,
+				Price:       3,
 			},
 			{
-				Name:     "Crow Featherl",
-				ChangeHp: 0,
-				Quantity: 1,
-				Price:    1,
+				Name:        "Crow Featherl",
+				ChangeHp:    0,
+				ChangeManna: 0,
+				Quantity:    1,
+				Price:       1,
 			},
 			{
-				Name:     "Wolf Fur",
-				ChangeHp: 0,
-				Quantity: 1,
-				Price:    1,
+				Name:        "Wolf Fur",
+				ChangeHp:    0,
+				ChangeManna: 0,
+				Quantity:    1,
+				Price:       1,
 			},
 		}
 
 		if player.InventoryLimit < 30 {
 			merchantItems = append(merchantItems, structure.MerchantItems{
-				Name:     "Upgrade Inventory (+10 slot)",
-				ChangeHp: 0,
-				Quantity: 1,
-				Price:    30,
+				Name:        "Upgrade Inventory (+10 slot)",
+				ChangeHp:    0,
+				ChangeManna: 0,
+				Quantity:    1,
+				Price:       30,
 			})
 		}
 
 		if checkSkill(*player, "Fire Ball") {
 			merchantItems = append(merchantItems, structure.MerchantItems{
-				Name:     "Fire Ball", // skill
-				ChangeHp: -20,
-				Quantity: 1,
-				Price:    4,
+				Name:        "Fire Ball", // skill
+				ChangeHp:    -20,
+				ChangeManna: 0,
+				Quantity:    1,
+				Price:       4,
 			})
 		}
 
@@ -88,6 +97,8 @@ func Merchant(player *structure.Character) {
 				fmt.Printf("%d. %s (HP %+d) - %d$\n", index+1, merchantItem.Name, merchantItem.ChangeHp, merchantItem.Price)
 			} else if merchantItem.ChangeHp < 0 {
 				fmt.Printf("%d. %s (HP %-d) - %d$\n", index+1, merchantItem.Name, merchantItem.ChangeHp, merchantItem.Price)
+			} else if merchantItem.ChangeManna > 0 {
+				fmt.Printf("%d. %s (Manna %+d) - %d$\n", index+1, merchantItem.Name, merchantItem.ChangeManna, merchantItem.Price)
 			} else {
 				fmt.Printf("%d. %s - %d$\n", index+1, merchantItem.Name, merchantItem.Price)
 			}
@@ -131,10 +142,11 @@ func Merchant(player *structure.Character) {
 			})
 		} else {
 			utils.AddObj(player, structure.Inventory{
-				Name:      selected.Name,
-				ChangeHp:  selected.ChangeHp,
-				Quantity:  selected.Quantity,
-				UniqueObj: selected.UniqueObj,
+				Name:        selected.Name,
+				ChangeHp:    selected.ChangeHp,
+				ChangeManna: selected.ChangeManna,
+				Quantity:    selected.Quantity,
+				UniqueObj:   selected.UniqueObj,
 			})
 		}
 		fmt.Print("\033[H\033[2J")

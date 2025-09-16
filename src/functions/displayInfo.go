@@ -9,9 +9,9 @@ func DisplayInfo(player *structure.Character) {
 	fmt.Print("\033[H\033[2J")
 	fmt.Println("====== DISPLAY INFO - " + player.Name + " ======")
 	fmt.Println("Class: " + player.Class)
+	fmt.Printf("Current Hp: %v/%v\n", player.CurrentHp, player.HpMax)
 	fmt.Printf("Lvl: %v\n", player.Lvl)
-	fmt.Printf("Hp Max: %v\n", player.HpMax)
-	fmt.Printf("Current Hp: %v\n", player.CurrentHp)
+	fmt.Printf("Expireience: %v/%v\n", player.Exp, player.Lvl*10)
 	fmt.Printf("Money: %v\n", player.Money)
 	fmt.Printf("SKILLS %v:\n", len(player.Skills))
 	for i := 0; i < len(player.Skills); i++ {

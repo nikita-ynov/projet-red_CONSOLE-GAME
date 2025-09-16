@@ -12,15 +12,17 @@ func InitCharacter(name string, class string, maxHp, spawnHp, money int) structu
 	player := structure.Character{
 		Name:            name,
 		Class:           class,
-		Lvl:             0,
+		Lvl:             1,
 		HpMax:           maxHp,
 		CurrentHp:       spawnHp,
 		Money:           money,
 		Damage:          -5,
+		Initiative:      10,
 		InventoryLimit:  10,
 		Inventory:       objects,
 		Skills:          punch,
 		PlayerEquipment: equipements,
 	}
+
 	return player
 }
