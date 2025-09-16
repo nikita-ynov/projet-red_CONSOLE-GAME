@@ -16,9 +16,7 @@ func TakeSkill(player *structure.Character) (string, int) {
 
 	// Construire la liste des Skill disponibles
 	skillsAvailable := []structure.Skills{}
-	for _, item := range player.Skills {
-		skillsAvailable = append(skillsAvailable, item)
-	}
+	skillsAvailable = append(skillsAvailable, player.Skills...)
 
 	// Vérifier si aucun sort n’est disponible
 	if len(skillsAvailable) == 0 {

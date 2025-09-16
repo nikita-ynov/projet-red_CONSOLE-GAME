@@ -33,12 +33,6 @@ func Merchant(player *structure.Character) {
 			UniqueObj: 0,
 			Price:     7,
 		}, {
-			Name:      "SpellBook : Fire Ball",
-			ChangeHp:  0,
-			Quantity:  1,
-			UniqueObj: 1,
-			Price:     25,
-		}, {
 			Name:      "Wolf fur",
 			ChangeHp:  0,
 			Quantity:  1,
@@ -97,16 +91,6 @@ func Merchant(player *structure.Character) {
 				Price:    4,
 			})
 		}
-
-		if checkSkill(*player, "Fire Ball") {
-			merchantItems = append(merchantItems, structure.MerchantItems{
-				Name:     "Fire Ball", // skill
-				ChangeHp: -20,
-				Quantity: 1,
-				Price:    4,
-			})
-		}
-
 		fmt.Println("====== MERCHANT ======")
 		fmt.Println("0. Exit")
 		for index, merchantItem := range merchantItems {
