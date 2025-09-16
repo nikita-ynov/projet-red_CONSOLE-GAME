@@ -27,9 +27,15 @@ func characterAttack(player structure.Character, goblin structure.Monster) {
 		utils.MonsterRemoveHp(&goblin, player.Damage)
 		fmt.Printf("%v Default Attack %v (Damage: %v) Goblin HP: %v\n", player.Name, goblin.Name, player.Damage, goblin.CurrentHp)
 	case "skill":
-		skillName, skillDamage := TakeSkill(&player)
-		utils.MonsterRemoveHp(&goblin, skillDamage)
-		fmt.Printf("%v use Skill: %v and Attack %v (Damage: %v) Goblin HP: %v\n", player.Name, skillName, goblin.Name, skillDamage, goblin.CurrentHp)
+		if player.CurrentHp > 10 {
+			skillName, skillDamage := TakeSkill(&player)
+			utils.MonsterRemoveHp(&goblin, skillDamage)
+			utils.RemoveMana(&player, 10)
+			fmt.Printf("%v use Skill: %v and Attack %v (Damage: %v) Goblin HP: %v\n", player.Name, skillName, goblin.Name, skillDamage, goblin.CurrentHp)
+		} else {
+			fmt.Println("You don't have Manna")
+			characterAttack(player, goblin)
+		}
 	case "health potion":
 		Takepot(&player)
 	}
