@@ -2,7 +2,6 @@ package functions
 
 import (
 	"PROJETRED/structure"
-	"PROJETRED/utils"
 	"fmt"
 	"time"
 )
@@ -18,7 +17,6 @@ func TrainingFight(player *structure.Character) {
 	}
 
 	var isPlayerTurn bool = true
-	var inflictedDamage int
 
 	fmt.Print("\033[H\033[2J")
 
@@ -31,37 +29,42 @@ func TrainingFight(player *structure.Character) {
 	for player.CurrentHp > 0 || monster.CurrentHp > 0 {
 
 		if isPlayerTurn {
-			fmt.Println("====== CHOOSE YOUR ATTACK ======")
-			for i := range player.Skills {
-				fmt.Println("------------")
-				fmt.Println(i+1, ".", player.Skills[i].Name)
-				fmt.Println("------------")
-			}
 
-			var choice int
-			fmt.Print("Choose the spell you want to use : ")
-			fmt.Scan(&choice)
+			CharacterTurn()
+			// fmt.Println("====== CHOOSE YOUR ATTACK ======")
+			// for i := range player.Skills {
+			// 	fmt.Println("------------")
+			// 	fmt.Println(i+1, ".", player.Skills[i].Name)
+			// 	fmt.Println("------------")
+			// }
 
-			if choice < 1 || choice > len(player.Skills) {
-				fmt.Println("Invalid choice")
-				return
-			}
+			// var choice int
+			// fmt.Print("Choose the spell you want to use : ")
+			// fmt.Scan(&choice)
 
-			selected := player.Skills[choice-1]
+			// if choice < 1 || choice > len(player.Skills) {
+			// 	fmt.Println("Invalid choice")
+			// 	return
+			// }
 
-			utils.MonsterRemoveHp(monster, selected.Damage)
+			// selected := player.Skills[choice-1]
 
-			fmt.Printf("====== MONSTER HAS NOW %d HP ======", monster.CurrentHp)
+			// utils.MonsterRemoveHp(monster, selected.Damage)
 
-			time.Sleep(2 * time.Second)
+			// fmt.Printf("MONSTER HAS NOW %d HP\n", monster.CurrentHp)
+
+			// time.Sleep(2 * time.Second)
 
 			isPlayerTurn = !isPlayerTurn
 		} else {
-			fmt.Println("====== MONSTER IS ATTACKING YOU ======")
+			GoblinPattern(player)
+			// fmt.Println("====== MONSTER IS ATTACKING YOU ======")
 
-			time.Sleep(2 * time.Second)
+			// time.Sleep(2 * time.Second)
 
-			utils.RemoveHp(player, inflictedDamage)
+			// utils.RemoveHp(player, inflictedDamage)
+
+			// fmt.Printf("YOU HAVE %d HP\n", player.CurrentHp)
 
 			isPlayerTurn = !isPlayerTurn
 		}
