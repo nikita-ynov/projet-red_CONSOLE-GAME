@@ -28,7 +28,7 @@ func main() {
 			functions.GoblinPattern(&player)
 		case 5:
 			functions.PoisonPot(&player, structure.Inventory{
-				Name:     "Test Potion",
+				Name:     "Potion Pot",
 				ChangeHp: -30,
 				Quantity: 1,
 			})

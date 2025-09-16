@@ -27,6 +27,13 @@ func Merchant(player *structure.Character) {
 				ChangeManna: 0,
 				Quantity:    1,
 				Price:       0,
+			},
+			{
+				Name:        "Manna Potion",
+				ChangeHp:    0,
+				ChangeManna: 50,
+				Quantity:    1,
+				Price:       0,
 			}, {
 				Name:        "Kill Potion",
 				ChangeHp:    -50,

@@ -13,7 +13,6 @@ func PoisonPot(player *structure.Character, potion structure.Inventory) {
 	fmt.Print("====== POISON POT ======\n")
 	for i := 0; i < 3; i++ {
 		check := utils.RemoveHp(player, potion.ChangeHp)
-		fmt.Println(check)
 		if check {
 			utils.IsWasted(player)
 			break
