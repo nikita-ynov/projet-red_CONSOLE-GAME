@@ -36,6 +36,20 @@ func RemoveHp(player *structure.Character, n int) bool {
 	return false // encore en vie
 }
 
+func RemoveMana(player *structure.Character, n int) bool {
+	player.CurrentManna += n
+
+	if player.CurrentManna > player.MannaMax {
+		player.CurrentManna = player.MannaMax
+	}
+	if player.CurrentManna <= 0 {
+		player.CurrentManna = 0
+		return true
+	}
+
+	return false
+}
+
 func MonsterRemoveHp(monster *structure.Monster, n int) bool {
 	monster.CurrentHp += n
 

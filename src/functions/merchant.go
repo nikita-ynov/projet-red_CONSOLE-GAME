@@ -27,10 +27,11 @@ func Merchant(player *structure.Character) {
 				ChangeManna: 0,
 				Quantity:    1,
 				Price:       0,
-			}, {
-				Name:        "Kill Potion",
-				ChangeHp:    -50,
-				ChangeManna: 0,
+			},
+			{
+				Name:        "Manna Potion",
+				ChangeHp:    0,
+				ChangeManna: 50,
 				Quantity:    1,
 				Price:       0,
 			}, {
@@ -120,33 +121,31 @@ func Merchant(player *structure.Character) {
 		if selected.Price > player.Money {
 			fmt.Print("\033[H\033[2J")
 			fmt.Print("You don't have enough money for buy this item.\n")
-			fmt.Print("Enter any key to quit :   ")
-			fmt.Scan(&exit)
+			utils.Exit()
 			return
 		}
 
 		if utils.InventoryIsAtMaxCapacity(player) {
 			fmt.Print("You've reached your 10 items inventory limit\n")
-			fmt.Print("Press any key to go back to MENU")
-			fmt.Scan(&exit)
+			utils.Exit()
 			return
 		}
 
 		utils.RemoveMoney(player, selected.Price)
-		if selected.Name == "Upgrade Inventory (+10 slot)" {
+		switch selected.Name {
+		case "Upgrade Inventory (+10 slot)":
 			utils.UpgradeInvenorySlot(player, 10)
-		} else if selected.Name == "Fire Ball" {
+		case "Fire Ball":
 			utils.AddSkill(player, structure.Skills{
 				Name:   selected.Name,
 				Damage: selected.ChangeHp,
 			})
-		} else {
+		default:
 			utils.AddObj(player, structure.Inventory{
 				Name:        selected.Name,
 				ChangeHp:    selected.ChangeHp,
 				ChangeManna: selected.ChangeManna,
 				Quantity:    selected.Quantity,
-				UniqueObj:   selected.UniqueObj,
 			})
 		}
 		fmt.Print("\033[H\033[2J")

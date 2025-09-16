@@ -2,7 +2,6 @@ package main
 
 import (
 	functions "PROJETRED/functions"
-	"PROJETRED/structure"
 	"fmt"
 )
 
@@ -27,14 +26,8 @@ func main() {
 		case 4:
 			functions.GoblinPattern(&player)
 		case 5:
-			functions.PoisonPot(&player, structure.Inventory{
-				Name:     "Test Potion",
-				ChangeHp: -30,
-				Quantity: 1,
-			})
-		case 6:
 			functions.Forgeron(&player)
-		case 7:
+		case 6:
 			fmt.Print("====== GOODBYE ======")
 			exit = false
 		}
