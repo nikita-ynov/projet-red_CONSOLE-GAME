@@ -134,14 +134,15 @@ func Merchant(player *structure.Character) {
 		}
 
 		utils.RemoveMoney(player, selected.Price)
-		if selected.Name == "Upgrade Inventory (+10 slot)" {
+		switch selected.Name {
+		case "Upgrade Inventory (+10 slot)":
 			utils.UpgradeInvenorySlot(player, 10)
-		} else if selected.Name == "Fire Ball" {
+		case "Fire Ball":
 			utils.AddSkill(player, structure.Skills{
 				Name:   selected.Name,
 				Damage: selected.ChangeHp,
 			})
-		} else {
+		default:
 			utils.AddObj(player, structure.Inventory{
 				Name:        selected.Name,
 				ChangeHp:    selected.ChangeHp,
