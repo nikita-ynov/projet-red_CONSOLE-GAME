@@ -39,10 +39,26 @@ type Monster struct {
 	CurrentHp int
 	Damage    int
 }
+
 type Equipment struct {
-	Helmet      int
-	Breastplate int
-	Legwarmer   int
+	Helmet      []Helmet
+	Breastplate []Breastplate
+	Legwarmer   []Legwarmer
+}
+
+type Helmet struct {
+	Name       string
+	Protection int
+}
+
+type Breastplate struct {
+	Name       string
+	Protection int
+}
+
+type Legwarmer struct {
+	Name       string
+	Protection int
 }
 
 type BlacksmithItems struct {
