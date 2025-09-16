@@ -18,6 +18,8 @@ type Character struct {
 	Exp             int
 	HpMax           int
 	CurrentHp       int
+	MannaMax        int
+	CurrentManna    int
 	Money           int
 	Damage          int
 	Initiative      int
