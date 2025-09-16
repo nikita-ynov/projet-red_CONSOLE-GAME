@@ -23,7 +23,7 @@ func Forgeron(player *structure.Character) {
 				CrowFeather += item.Quantity
 			case "Wolf Fur":
 				WolfFur += item.Quantity
-			case "Wild boar leather":
+			case "Wild Boar Leather":
 				WildBoarLeather += item.Quantity
 			case "Skin Troll":
 				TrollSkin += item.Quantity
@@ -104,24 +104,28 @@ func Forgeron(player *structure.Character) {
 		if selected.CrowFeather > 0 {
 			itemsToRemove = append(itemsToRemove, structure.Inventory{
 				Name:     "Crow Feather",
+				ChangeHp: 0,
 				Quantity: selected.CrowFeather,
 			})
 		}
 		if selected.WolfFur > 0 {
 			itemsToRemove = append(itemsToRemove, structure.Inventory{
 				Name:     "Wolf Fur",
+				ChangeHp: 0,
 				Quantity: selected.WolfFur,
 			})
 		}
 		if selected.WildBoarLeather > 0 {
 			itemsToRemove = append(itemsToRemove, structure.Inventory{
 				Name:     "Wild boar leather",
+				ChangeHp: 0,
 				Quantity: selected.WildBoarLeather,
 			})
 		}
 		if selected.TrollSkin > 0 {
 			itemsToRemove = append(itemsToRemove, structure.Inventory{
 				Name:     "Skin Troll",
+				ChangeHp: 0,
 				Quantity: selected.TrollSkin,
 			})
 		}
@@ -145,6 +149,7 @@ func Forgeron(player *structure.Character) {
 		utils.AddObj(player, structure.Inventory{
 			Name:       selected.Name,
 			Quantity:   1,
+			ChangeHp:   0,
 			Protection: protection,
 		})
 
