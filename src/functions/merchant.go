@@ -18,128 +18,96 @@ func checkSkill(player structure.Character, name string) bool {
 func Merchant(player *structure.Character) {
 	var exit int = 1
 	for exit == 1 {
-
 		fmt.Print("\033[H\033[2J")
+
+		// Items disponibles
 		merchantItems := []structure.MerchantItems{
-			{
-				Name:        "Life Potion",
-				ChangeHp:    50,
-				ChangeManna: 0,
-				Quantity:    1,
-				Price:       0,
-			},
-			{
-				Name:        "Manna Potion",
-				ChangeHp:    0,
-				ChangeManna: 50,
-				Quantity:    1,
-				Price:       0,
-			}, {
-				Name:        "Snus",
-				ChangeHp:    0,
-				ChangeManna: 0,
-				Quantity:    1,
-				Price:       0,
-			},
-			{
-				Name:        "Skin Troll",
-				ChangeHp:    0,
-				ChangeManna: 0,
-				Quantity:    1,
-				Price:       7,
-			},
-			{
-				Name:        "Wild boar leather",
-				ChangeHp:    0,
-				ChangeManna: 0,
-				Quantity:    1,
-				Price:       3,
-			},
-			{
-				Name:        "Crow Featherl",
-				ChangeHp:    0,
-				ChangeManna: 0,
-				Quantity:    1,
-				Price:       1,
-			},
-			{
-				Name:        "Wolf Fur",
-				ChangeHp:    0,
-				ChangeManna: 0,
-				Quantity:    1,
-				Price:       1,
-			},
+			{Name: "Life Potion", ChangeHp: 50, Quantity: 1, Price: 5},
+			{Name: "Mana Potion", ChangeManna: 50, Quantity: 1, Price: 5},
+			{Name: "Snus", Quantity: 1, Price: 1},
+			{Name: "Skin Troll", Quantity: 1, Price: 7},
+			{Name: "Wild Boar Leather", Quantity: 1, Price: 3},
+			{Name: "Crow Feather", Quantity: 1, Price: 1},
+			{Name: "Wolf Fur", Quantity: 1, Price: 1},
 		}
 
 		if player.InventoryLimit < 30 {
 			merchantItems = append(merchantItems, structure.MerchantItems{
-				Name:        "Upgrade Inventory (+10 slot)",
-				ChangeHp:    0,
-				ChangeManna: 0,
-				Quantity:    1,
-				Price:       30,
+				Name: "Upgrade Inventory (+10 slots)", Quantity: 1, Price: 30,
 			})
 		}
-
 		if checkSkill(*player, "Fire Ball") {
 			merchantItems = append(merchantItems, structure.MerchantItems{
-				Name:        "Fire Ball", // skill
-				ChangeHp:    -20,
-				ChangeManna: 0,
-				Quantity:    1,
-				Price:       4,
+				Name: "Fire Ball", ChangeHp: -20, Quantity: 1, Price: 10,
 			})
 		}
 
-		fmt.Println("====== MERCHANT ======")
+		// Affichage du marchand
+		fmt.Println("\033[1;33m====== MERCHANT ======\033[0m")
+		fmt.Printf("Your Money: \033[1;32m%d 💰\033[0m\n", player.Money)
 		fmt.Println("0. Exit")
-		for index, merchantItem := range merchantItems {
-			if merchantItem.ChangeHp > 0 {
-				fmt.Printf("%d. %s (HP %+d) - %d$\n", index+1, merchantItem.Name, merchantItem.ChangeHp, merchantItem.Price)
-			} else if merchantItem.ChangeHp < 0 {
-				fmt.Printf("%d. %s (HP %-d) - %d$\n", index+1, merchantItem.Name, merchantItem.ChangeHp, merchantItem.Price)
-			} else if merchantItem.ChangeManna > 0 {
-				fmt.Printf("%d. %s (Manna %+d) - %d$\n", index+1, merchantItem.Name, merchantItem.ChangeManna, merchantItem.Price)
+		for index, item := range merchantItems {
+			icon := ""
+			if item.ChangeHp > 0 {
+				icon = fmt.Sprintf("❤️ %+d HP", item.ChangeHp)
+			} else if item.ChangeHp < 0 {
+				icon = fmt.Sprintf("🔥 %d Damage", item.ChangeHp)
+			} else if item.ChangeManna > 0 {
+				icon = fmt.Sprintf("💧 %+d Mana", item.ChangeManna)
+			}
+
+			if icon != "" {
+				fmt.Printf("%d. %-25s [%s] - %d💰\n", index+1, item.Name, icon, item.Price)
 			} else {
-				fmt.Printf("%d. %s - %d$\n", index+1, merchantItem.Name, merchantItem.Price)
+				fmt.Printf("%d. %-25s - %d💰\n", index+1, item.Name, item.Price)
 			}
 		}
 
+		// Choix du joueur
 		var choice int
-		maxChoice := len(merchantItems)
+		for {
+			fmt.Print("\nEnter your choice: ")
+			_, err := fmt.Scan(&choice)
+			if err != nil {
+				fmt.Println("Invalid input, try again.")
+				var discard string
+				fmt.Scanln(&discard) // vider buffer
+				continue
+			}
 
-		for choice < 1 || choice > maxChoice {
-			fmt.Print("Enter your choice :   ")
-			fmt.Scan(&choice)
 			if choice == 0 {
 				return
 			}
+			if choice < 0 || choice > len(merchantItems) {
+				fmt.Println("Invalid choice, try again.")
+				continue
+			}
+			break
 		}
 
 		selected := merchantItems[choice-1]
 
+		// Vérification argent
 		if selected.Price > player.Money {
-			fmt.Print("\033[H\033[2J")
-			fmt.Print("You don't have enough money for buy this item.\n")
+			fmt.Print("\033[1;31mYou don't have enough money to buy this item!\033[0m\n")
 			utils.Exit()
-			return
+			continue
 		}
 
+		// Vérification inventaire
 		if utils.InventoryIsAtMaxCapacity(player) {
-			fmt.Print("You've reached your 10 items inventory limit\n")
+			fmt.Print("\033[1;31mYour inventory is full!\033[0m\n")
 			utils.Exit()
-			return
+			continue
 		}
 
+		// Achat
 		utils.RemoveMoney(player, selected.Price)
 		switch selected.Name {
-		case "Upgrade Inventory (+10 slot)":
+		case "Upgrade Inventory (+10 slots)":
 			utils.UpgradeInvenorySlot(player, 10)
 		case "Fire Ball":
-			utils.AddSkill(player, structure.Skills{
-				Name:   selected.Name,
-				Damage: selected.ChangeHp,
-			})
+			utils.AddSkill(player, structure.Skills{Name: selected.Name, Damage: selected.ChangeHp})
 		default:
 			utils.AddObj(player, structure.Inventory{
 				Name:        selected.Name,
@@ -148,10 +116,10 @@ func Merchant(player *structure.Character) {
 				Quantity:    selected.Quantity,
 			})
 		}
-		fmt.Print("\033[H\033[2J")
-		fmt.Printf("====== YOU BOUGHT : %s! ======\n", selected.Name)
 
-		fmt.Print("0. Exit\n1. Buy more\nEnter your choice :   ")
+		// Confirmation
+		fmt.Printf("\n\033[1;32mYou bought: %s ✅\033[0m\n", selected.Name)
+		fmt.Print("0. Exit\n1. Buy more\nEnter your choice: ")
 		fmt.Scan(&exit)
 	}
 }

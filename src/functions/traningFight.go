@@ -12,12 +12,12 @@ func goblinAttack(i int, goblin structure.Monster, player *structure.Character) 
 	damage := goblin.Damage
 	if i != 0 && i%3 == 0 {
 		damage *= 2
-		fmt.Printf("%v Default Attack %v (Crit Damage: %v)", goblin.Name, player.Name, damage)
+		fmt.Printf("\033[1;31m%s attacks %s! Critical hit! (%d damage)\033[0m\n", goblin.Name, player.Name, damage)
 	} else {
-		fmt.Printf("%v Default Attack %v (Damage: %v)", goblin.Name, player.Name, damage)
+		fmt.Printf("\033[1;31m%s attacks %s! (%d damage)\033[0m\n", goblin.Name, player.Name, damage)
 	}
 	utils.RemoveHp(player, damage)
-	fmt.Printf(" Player HP: %v\n", player.CurrentHp)
+	fmt.Printf("Player HP: %d/%d\n", player.CurrentHp, player.HpMax)
 }
 
 func characterAttack(player *structure.Character, goblin *structure.Monster) {
@@ -25,15 +25,18 @@ func characterAttack(player *structure.Character, goblin *structure.Monster) {
 	switch res {
 	case "attack":
 		utils.MonsterRemoveHp(goblin, player.Damage)
-		fmt.Printf("%v Default Attack %v (Damage: %v) Goblin HP: %v\n", player.Name, goblin.Name, player.Damage, goblin.CurrentHp)
+		fmt.Printf("\033[1;32m%s attacks %s! (%d damage)\033[0m\n", player.Name, goblin.Name, player.Damage)
+		fmt.Printf("Goblin HP: %d/%d\n", goblin.CurrentHp, goblin.HpMax)
 	case "skill":
 		if player.CurrentHp > 10 {
 			skillName, skillDamage := TakeSkill(player)
 			utils.MonsterRemoveHp(goblin, skillDamage)
-			utils.RemoveMana(player, 10)
-			fmt.Printf("%v use Skill: %v and Attack %v (Damage: %v) Goblin HP: %v\n", player.Name, skillName, goblin.Name, skillDamage, goblin.CurrentHp)
+			utils.RemoveMana(player, -10)
+			fmt.Printf("\033[1;34m%s uses skill '%s'! (%d damage)\033[0m\n", player.Name, skillName, skillDamage)
+			fmt.Printf("Goblin HP: %d/%d | Mana: %d/%d\n", goblin.CurrentHp, goblin.HpMax, player.CurrentManna, player.MannaMax)
+
 		} else {
-			fmt.Println("You don't have Manna")
+			fmt.Println("\033[1;33mNot enough Mana to use a skill!\033[0m")
 			characterAttack(player, goblin)
 		}
 	case "health potion":
@@ -42,9 +45,9 @@ func characterAttack(player *structure.Character, goblin *structure.Monster) {
 }
 
 func TrainingFight(player *structure.Character) {
-	fmt.Print("====== GOBLIN PATTERN ======\n")
+	fmt.Print("\033[H\033[2J")
 	goblin := InitGoblin("Training Goblin", 100, 100, -5)
-	fmt.Print("====== START TRAINING ======\n")
+	fmt.Println("\033[1;32m====== START TRAINING ======\033[0m")
 
 	for i := 0; goblin.CurrentHp > 0 && player.CurrentHp > 0; i++ {
 		time.Sleep(3 * time.Second)
