@@ -8,13 +8,12 @@ import (
 
 func TrainingFight(player *structure.Character) {
 
-	monster := &structure.Monster{
-		Name:       "Crawmerax",
-		HpMax:      100,
-		CurrentHp:  100,
-		Damage:     10,
-		Initiative: 0,
-	}
+	monster := InitGoblin(
+		"Crawmerax",
+		100,
+		100,
+		-5,
+	)
 
 	var isPlayerTurn bool = true
 
@@ -34,7 +33,7 @@ func TrainingFight(player *structure.Character) {
 
 			isPlayerTurn = !isPlayerTurn
 		} else {
-			GoblinPattern(player)
+			GoblinPattern(player, &monster)
 
 			isPlayerTurn = !isPlayerTurn
 		}

@@ -41,32 +41,31 @@ func characterAttack(player *structure.Character, goblin *structure.Monster) {
 	}
 }
 
-func GoblinPattern(player *structure.Character) {
+func GoblinPattern(player *structure.Character, goblin *structure.Monster) {
 	fmt.Print("====== GOBLIN PATTERN ======\n")
-	goblin := InitGoblin("Goblin", 100, 100, -5)
 
 	for i := 0; goblin.CurrentHp > 0 && player.CurrentHp > 0; i++ {
 		time.Sleep(3 * time.Second)
 		if player.Initiative > goblin.Initiative {
-			characterAttack(player, &goblin)
+			characterAttack(player, goblin)
 			if goblin.CurrentHp <= 0 {
 				break
 			}
 			time.Sleep(1 * time.Second)
 
-			goblinAttack(i, goblin, player)
+			goblinAttack(i, *goblin, player)
 			if player.CurrentHp <= 0 {
 				break
 			}
 		} else {
-			goblinAttack(i, goblin, player)
+			goblinAttack(i, *goblin, player)
 			if player.CurrentHp <= 0 {
 				break
 			}
 
 			time.Sleep(1 * time.Second)
 
-			characterAttack(player, &goblin)
+			characterAttack(player, goblin)
 			if goblin.CurrentHp <= 0 {
 				break
 			}
