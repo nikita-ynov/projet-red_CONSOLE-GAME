@@ -121,15 +121,13 @@ func Merchant(player *structure.Character) {
 		if selected.Price > player.Money {
 			fmt.Print("\033[H\033[2J")
 			fmt.Print("You don't have enough money for buy this item.\n")
-			fmt.Print("Enter any key to quit :   ")
-			fmt.Scan(&exit)
+			utils.Exit()
 			return
 		}
 
 		if utils.InventoryIsAtMaxCapacity(player) {
 			fmt.Print("You've reached your 10 items inventory limit\n")
-			fmt.Print("Press any key to go back to MENU")
-			fmt.Scan(&exit)
+			utils.Exit()
 			return
 		}
 

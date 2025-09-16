@@ -42,7 +42,6 @@ func characterAttack(player *structure.Character, goblin *structure.Monster) {
 }
 
 func GoblinPattern(player *structure.Character) {
-	var exit string
 	fmt.Print("====== GOBLIN PATTERN ======\n")
 	goblin := InitGoblin("Training Goblin", 100, 100, -5)
 	fmt.Print("====== START TRAINING ======\n")
@@ -83,6 +82,5 @@ func GoblinPattern(player *structure.Character) {
 		utils.AddExp(player, 5)
 	}
 
-	fmt.Print("Enter any key to exit :   ")
-	fmt.Scan(&exit)
+	utils.Exit()
 }

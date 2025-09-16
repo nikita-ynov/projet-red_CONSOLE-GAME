@@ -78,40 +78,38 @@ func Forgeron(player *structure.Character) {
 		if selected.TrollSkin > TrollSkin {
 			fmt.Println("You don't have the ressources yet")
 			fmt.Printf("You have %v TrollSkin\n", TrollSkin)
-			fmt.Print("Press any key to go back to the MENU :")
-			fmt.Scan(&exit)
+			utils.Exit()
 			return
 		}
 		if selected.CrowFeather > CrowFeather {
 			fmt.Println("You don't have the ressources yet")
 			fmt.Printf("You have %v CrowFeather\n", CrowFeather)
-			fmt.Print("Press any key to go back to the MENU :")
-			fmt.Scan(&exit)
+			utils.Exit()
 			return
 		}
 		if selected.WildBoarLeather > WildBoarLeather {
 			fmt.Println("You don't have the ressources yet")
 			fmt.Printf("You have %v WildBoarLeather\n", WildBoarLeather)
-			fmt.Print("Press any key to go back to the MENU :")
-			fmt.Scan(&exit)
+			utils.Exit()
 			return
 		}
 		if selected.WolfFur > WolfFur {
 			fmt.Println("You don't have the ressources yet")
 			fmt.Printf("You have %v WolfFur\n", WolfFur)
-			fmt.Print("Press any key to go back to the MENU :")
-			fmt.Scan(&exit)
+			utils.Exit()
 			return
 		}
 
 		//verifie que le joueur possede 5 pieces d'or
 		if player.Money < 6 {
 			fmt.Println("You don't have enough money")
+			utils.Exit()
 			return
 		}
 		//verifie que l'ajout de l'équipement n'excede pas la capacité max de l'inventaire
 		if utils.InventoryIsAtMaxCapacity(player) {
 			fmt.Println("You're inventory is full")
+			utils.Exit()
 			return
 		}
 

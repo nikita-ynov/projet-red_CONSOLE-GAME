@@ -2,6 +2,7 @@ package functions
 
 import (
 	structure "PROJETRED/structure"
+	"PROJETRED/utils"
 	"fmt"
 )
 
@@ -14,6 +15,7 @@ func DisplayInfo(player *structure.Character) {
 	fmt.Printf("Expireience: %v/%v\n", player.Exp, player.Lvl*10)
 	fmt.Printf("Money: %v\n", player.Money)
 	fmt.Printf("SKILLS (%v):\n", len(player.Skills))
+
 	for i := 0; i < len(player.Skills); i++ {
 		fmt.Println("   " + player.Skills[i].Name)
 		fmt.Printf("   Damage: %v\n", player.Skills[i].Damage)
@@ -32,7 +34,5 @@ func DisplayInfo(player *structure.Character) {
 		fmt.Println("------------")
 	}
 
-	var choice string
-	fmt.Print("Enter any key to close :   ")
-	fmt.Scan(&choice)
+	utils.Exit()
 }

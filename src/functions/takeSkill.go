@@ -2,12 +2,12 @@ package functions
 
 import (
 	"PROJETRED/structure"
+	"PROJETRED/utils"
 	"fmt"
 	"strconv"
 )
 
 func TakeSkill(player *structure.Character) (string, int) {
-	var exit string
 	var choice string
 
 	// Nettoyage de l'écran
@@ -21,8 +21,7 @@ func TakeSkill(player *structure.Character) (string, int) {
 	// Vérifier si aucun sort n’est disponible
 	if len(skillsAvailable) == 0 {
 		fmt.Println("You don't have any Skill to use")
-		fmt.Print("Enter any key to exit: ")
-		fmt.Scan(&exit)
+		utils.Exit()
 		return "", 0 //  return empty values
 	}
 

@@ -7,7 +7,6 @@ import (
 )
 
 func Takepot(player *structure.Character) {
-	var exit string
 	var choice int
 
 	fmt.Print("\033[H\033[2J")
@@ -21,8 +20,7 @@ func Takepot(player *structure.Character) {
 
 	if len(potions) == 0 { //verifie si l'inventaire est vide
 		fmt.Printf("You don't have any potion for use\n")
-		fmt.Print("Enter any key to exit :   ")
-		fmt.Scan(&exit)
+		utils.Exit()
 		return //si il est vide alors return
 	}
 
@@ -60,6 +58,5 @@ func Takepot(player *structure.Character) {
 		fmt.Printf("You has now %v/%v Manna \n", player.CurrentManna, player.MannaMax)
 	}
 
-	fmt.Print("Enter any key to exit :   ")
-	fmt.Scan(&exit)
+	utils.Exit()
 }
