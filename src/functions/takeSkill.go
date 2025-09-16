@@ -16,16 +16,14 @@ func TakeSkill(player *structure.Character) (string, int) {
 
 	// Construire la liste des Skill disponibles
 	skillsAvailable := []structure.Skills{}
-	for _, item := range player.Skills {
-		skillsAvailable = append(skillsAvailable, item)
-	}
+	skillsAvailable = append(skillsAvailable, player.Skills...)
 
 	// Vérifier si aucun sort n’est disponible
 	if len(skillsAvailable) == 0 {
 		fmt.Println("You don't have any Skill to use")
 		fmt.Print("Enter any key to exit: ")
 		fmt.Scan(&exit)
-		return "", 0 // 👈 return empty values
+		return "", 0 //  return empty values
 	}
 
 	// Affichage des Skill disponibles
@@ -41,7 +39,7 @@ func TakeSkill(player *structure.Character) (string, int) {
 		fmt.Scan(&choice)
 
 		if choice == "0" {
-			return "", 0 // 👈 return empty values if exit
+			return "", 0 //  return empty values if exit
 		}
 
 		// Conversion du choix en entier

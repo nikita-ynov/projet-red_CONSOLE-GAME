@@ -12,16 +12,17 @@ type Skills struct {
 	Damage int
 }
 type Character struct {
-	Name           string
-	Class          string
-	Lvl            int
-	HpMax          int
-	CurrentHp      int
-	Money          int
-	Damage         int
-	InventoryLimit int
-	Inventory      []Inventory
-	Skills         []Skills
+	Name            string
+	Class           string
+	Lvl             int
+	HpMax           int
+	CurrentHp       int
+	Money           int
+	Damage          int
+	InventoryLimit  int
+	Inventory       []Inventory
+	Skills          []Skills
+	PlayerEquipment []Equipment
 }
 
 type MerchantItems struct {
@@ -37,6 +38,11 @@ type Monster struct {
 	HpMax     int
 	CurrentHp int
 	Damage    int
+}
+type Equipment struct {
+	Helmet      int
+	Breastplate int
+	Legwarmer   int
 }
 
 type BlacksmithItems struct {
