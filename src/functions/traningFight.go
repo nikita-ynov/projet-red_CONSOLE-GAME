@@ -41,7 +41,7 @@ func characterAttack(player *structure.Character, goblin *structure.Monster) {
 	}
 }
 
-func GoblinPattern(player *structure.Character) {
+func TrainingFight(player *structure.Character) {
 	fmt.Print("====== GOBLIN PATTERN ======\n")
 	goblin := InitGoblin("Training Goblin", 100, 100, -5)
 	fmt.Print("====== START TRAINING ======\n")

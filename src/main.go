@@ -24,7 +24,7 @@ func main() {
 		case 3:
 			functions.Merchant(&player)
 		case 4:
-			functions.GoblinPattern(&player)
+			functions.TrainingFight(&player)
 		case 5:
 			functions.Forgeron(&player)
 		case 6:
