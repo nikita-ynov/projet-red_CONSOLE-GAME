@@ -30,3 +30,11 @@ func AddHp(player *structure.Character, n int) {
 		player.CurrentHp += n
 	}
 }
+
+func AddExp(player *structure.Character, exp int) {
+	player.Exp += exp
+
+	if exp >= 10*player.Lvl {
+		player.Lvl += 1
+	}
+}

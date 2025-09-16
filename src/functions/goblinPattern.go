@@ -74,6 +74,7 @@ func GoblinPattern(player *structure.Character) {
 		utils.IsWasted(player)
 	} else if goblin.CurrentHp <= 0 {
 		fmt.Print("====== YOU WIN ======\n")
+		utils.AddExp(player, 5)
 	}
 
 	fmt.Print("Enter any key to exit :   ")
