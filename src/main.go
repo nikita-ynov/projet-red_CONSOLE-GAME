@@ -24,10 +24,11 @@ func main() {
 		case 3:
 			functions.Merchant(&player)
 		case 4:
-			functions.GoblinPattern(&player)
+			functions.TrainingFight(&player)
+			//functions.GoblinPattern(&player)
 		case 5:
 			functions.Forgeron(&player)
-		case 6:
+		case 7:
 			fmt.Print("====== GOODBYE ======")
 			exit = false
 		}
