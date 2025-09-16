@@ -50,6 +50,6 @@ func TakeSkill(player *structure.Character) (string, int) {
 		}
 
 		chosenSkill := skillsAvailable[selectedIndex-1]
-		return chosenSkill.Name, chosenSkill.Dammage
+		return chosenSkill.Name, chosenSkill.Damage
 	}
 }

@@ -17,70 +17,59 @@ func checkSkill(player structure.Character, name string) bool {
 
 func Merchant(player *structure.Character) {
 	var exit int = 1
-
-	// Déclaration et initialisation de merchantItems en dehors de la boucle
-	merchantItems := []structure.MerchantItems{
-		{
-			Name:      "Life Potion",
-			ChangeHp:  50,
-			Quantity:  1,
-			UniqueObj: 0,
-			Price:     3,
-		}, {
-			Name:      "Kill Potion",
-			ChangeHp:  -50,
-			Quantity:  1,
-			UniqueObj: 0,
-			Price:     7,
-		}, {
-			Name:      "Wolf fur",
-			ChangeHp:  0,
-			Quantity:  1,
-			UniqueObj: 0,
-			Price:     4,
-		}, {
-			Name:      "Skin Troll",
-			ChangeHp:  0,
-			Quantity:  1,
-			UniqueObj: 0,
-			Price:     7,
-		}, {
-			Name:      "Wild boar leather",
-			ChangeHp:  0,
-			Quantity:  1,
-			UniqueObj: 0,
-			Price:     3,
-		}, {
-			Name:      "Crow Feather",
-			ChangeHp:  0,
-			Quantity:  1,
-			UniqueObj: 0,
-			Price:     1,
-		},
-	}
-
 	for exit == 1 {
 
 		fmt.Print("\033[H\033[2J")
+		merchantItems := []structure.MerchantItems{
+			{
+				Name:     "Life Potion",
+				ChangeHp: 50,
+				Quantity: 1,
+				Price:    0,
+			}, {
+				Name:     "Kill Potion",
+				ChangeHp: -50,
+				Quantity: 1,
+				Price:    0,
+			}, {
+				Name:     "Snus",
+				ChangeHp: 0,
+				Quantity: 1,
+				Price:    0,
+			},
+			{
+				Name:     "Skin Troll",
+				ChangeHp: 0,
+				Quantity: 1,
+				Price:    7,
+			},
+			{
+				Name:     "Wild boar leather",
+				ChangeHp: 0,
+				Quantity: 1,
+				Price:    3,
+			},
+			{
+				Name:     "Crow Featherl",
+				ChangeHp: 0,
+				Quantity: 1,
+				Price:    1,
+			},
+			{
+				Name:     "Wolf Fur",
+				ChangeHp: 0,
+				Quantity: 1,
+				Price:    1,
+			},
+		}
 
-		// Ajouter upgrade inventaire si nécessaire (vérification chaque tour)
 		if player.InventoryLimit < 30 {
-			upgradeExists := false
-			for _, item := range merchantItems {
-				if item.Name == "Upgrade Inventory (+10 slot)" {
-					upgradeExists = true
-					break
-				}
-			}
-			if !upgradeExists {
-				merchantItems = append(merchantItems, structure.MerchantItems{
-					Name:      "Upgrade Inventory (+10 slot)",
-					ChangeHp:  0,
-					Quantity:  1,
-					UniqueObj: 0,
-					Price:     30,
-				})
-			}
+			merchantItems = append(merchantItems, structure.MerchantItems{
+				Name:     "Upgrade Inventory (+10 slot)",
+				ChangeHp: 0,
+				Quantity: 1,
+				Price:    30,
+			})
 		}
 
 		if checkSkill(*player, "Fire Ball") {
@@ -91,6 +80,7 @@ func Merchant(player *structure.Character) {
 				Price:    4,
 			})
 		}
+
 		fmt.Println("====== MERCHANT ======")
 		fmt.Println("0. Exit")
 		for index, merchantItem := range merchantItems {
@@ -136,8 +126,8 @@ func Merchant(player *structure.Character) {
 			utils.UpgradeInvenorySlot(player, 10)
 		} else if selected.Name == "Fire Ball" {
 			utils.AddSkill(player, structure.Skills{
-				Name:    selected.Name,
-				Dammage: selected.ChangeHp,
+				Name:   selected.Name,
+				Damage: selected.ChangeHp,
 			})
 		} else {
 			utils.AddObj(player, structure.Inventory{
@@ -147,17 +137,6 @@ func Merchant(player *structure.Character) {
 				UniqueObj: selected.UniqueObj,
 			})
 		}
-
-		// Suppression de l'item unique après achat
-		if selected.UniqueObj == 1 {
-			for i, item := range merchantItems {
-				if item.Name == selected.Name {
-					merchantItems = append(merchantItems[:i], merchantItems[i+1:]...)
-					break
-				}
-			}
-		}
-
 		fmt.Print("\033[H\033[2J")
 		fmt.Printf("====== YOU BOUGHT : %s! ======\n", selected.Name)
 
