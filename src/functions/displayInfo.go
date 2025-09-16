@@ -6,7 +6,7 @@ import (
 	"fmt"
 )
 
-func DisplayInfo(player *structure.Character, equipmentplayer structure.Equipment) {
+func DisplayInfo(player *structure.Character) {
 	fmt.Print("\033[H\033[2J")
 
 	// En-tête avec couleur
@@ -48,6 +48,15 @@ func DisplayInfo(player *structure.Character, equipmentplayer structure.Equipmen
 			}
 		}
 	}
+	var choice string
+	fmt.Println("-----------------------")
+	fmt.Println("1 - Open equipment menu")
+	fmt.Println("other key - exit")
+	fmt.Print("enter your choice : ")
+	fmt.Scan(&choice)
+	if choice == "1" {
+		DisplayEquipment(player)
+	}
 
 	fmt.Println("\n===============================")
 	utils.Exit()
@@ -70,11 +79,3 @@ func progressBar(current, max, width int, symbol string) string {
 	}
 	return fmt.Sprintf("[%s]", bar)
 }
-	fmt.Println("-----------------------")
-	fmt.Println("1 - Open equipment menu")
-	fmt.Println("other key - exit")
-	fmt.Print("enter your choice : ")
-	fmt.Scan(&choice)
-	if choice == "1" {
-		DisplayEquipment(equipmentplayer)
-	}

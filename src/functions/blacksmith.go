@@ -123,7 +123,7 @@ func Forgeron(player *structure.Character) {
 
 		if selected.CrowFeather > 0 {
 			itemsToRemove = append(itemsToRemove, structure.Inventory{
-				Name:     "Crow Featherl",
+				Name:     "Crow Feather",
 				ChangeHp: 0,
 				Quantity: selected.CrowFeather,
 			})

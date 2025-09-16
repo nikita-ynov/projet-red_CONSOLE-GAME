@@ -11,22 +11,23 @@ type Skills struct {
 	Name   string
 	Damage int
 }
+
 type Character struct {
-	Name            string
-	Class           string
-	Lvl             int
-	Exp             int
-	HpMax           int
-	CurrentHp       int
-	MannaMax        int
-	CurrentManna    int
-	Money           int
-	Damage          int
-	Initiative      int
-	InventoryLimit  int
-	Inventory       []Inventory
-	Skills          []Skills
-	PlayerEquipment []Equipment
+	Name           string
+	Class          string
+	Lvl            int
+	Exp            int
+	HpMax          int
+	CurrentHp      int
+	MannaMax       int
+	CurrentManna   int
+	Money          int
+	Damage         int
+	Initiative     int
+	InventoryLimit int
+	Inventory      []Inventory
+	Skills         []Skills
+	Equipment      Equipment // maintenant c’est bien défini
 }
 
 type MerchantItems struct {
@@ -52,9 +53,9 @@ type Listequipment struct {
 }
 
 type Equipment struct {
-	Helmet      []Helmet
-	Breastplate []Breastplate
-	Legwarmer   []Legwarmer
+	Helmet      Helmet
+	Breastplate Breastplate
+	Legwarmer   Legwarmer
 }
 
 type Helmet struct {

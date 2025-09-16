@@ -12,6 +12,6 @@ func SwitchEquipmentPlayer(inventory *structure.Inventory, equipmentPlayer *stru
 
 }
 
-func EquipPlayer(inventory *structure.Inventory, equipmentPlayer *structure.Equipment, listequipment structure.Listequipment) {
+func EquipPlayer(player *structure.Character) {
 
 }

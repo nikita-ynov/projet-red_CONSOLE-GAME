@@ -18,7 +18,7 @@ func main() {
 		menuChoice := functions.Menu()
 		switch menuChoice {
 		case 1:
-			functions.DisplayInfo(&player, structure.Equipment{})
+			functions.DisplayInfo(&player)
 		case 2:
 			functions.Takepot(&player)
 		case 3:

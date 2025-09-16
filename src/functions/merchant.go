@@ -56,7 +56,7 @@ func Merchant(player *structure.Character) {
 				Price:       3,
 			},
 			{
-				Name:        "Crow Featherl",
+				Name:        "Crow Feather",
 				ChangeHp:    0,
 				ChangeManna: 0,
 				Quantity:    1,
