@@ -19,6 +19,7 @@ type Character struct {
 	CurrentHp      int
 	Money          int
 	Damage         int
+	Initiative     int
 	InventoryLimit int
 	Inventory      []Inventory
 	Skills         []Skills
@@ -33,10 +34,11 @@ type MerchantItems struct {
 }
 
 type Monster struct {
-	Name      string
-	HpMax     int
-	CurrentHp int
-	Damage    int
+	Name       string
+	HpMax      int
+	CurrentHp  int
+	Damage     int
+	Initiative int
 }
 
 type BlacksmithItems struct {

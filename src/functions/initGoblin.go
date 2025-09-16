@@ -6,9 +6,10 @@ import (
 
 func InitGoblin(name string, maxHp, spawnHp, damage int) structure.Monster {
 	return structure.Monster{
-		Name:      name,
-		HpMax:     maxHp,
-		CurrentHp: spawnHp,
-		Damage:    damage,
+		Name:       name,
+		HpMax:      maxHp,
+		CurrentHp:  spawnHp,
+		Damage:     damage,
+		Initiative: 15,
 	}
 }

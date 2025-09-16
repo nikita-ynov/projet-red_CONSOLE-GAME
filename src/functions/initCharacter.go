@@ -17,9 +17,11 @@ func InitCharacter(name string, class string, maxHp, spawnHp, money int) structu
 		CurrentHp:      spawnHp,
 		Money:          money,
 		Damage:         -5,
+		Initiative:     10,
 		InventoryLimit: 10,
 		Inventory:      objects,
 		Skills:         punch,
 	}
+
 	return player
 }
