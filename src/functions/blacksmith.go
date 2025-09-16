@@ -25,7 +25,7 @@ func Forgeron(player *structure.Character) {
 				CrowFeather += item.Quantity
 			case "Wolf Fur":
 				WolfFur += item.Quantity
-			case "Wild boar leather":
+			case "Wild Boar Leather":
 				WildBoarLeather += item.Quantity
 			case "Skin Troll":
 				TrollSkin += item.Quantity
@@ -123,7 +123,7 @@ func Forgeron(player *structure.Character) {
 
 		if selected.CrowFeather > 0 {
 			itemsToRemove = append(itemsToRemove, structure.Inventory{
-				Name:     "Crow Featherl",
+				Name:     "Crow Feather",
 				ChangeHp: 0,
 				Quantity: selected.CrowFeather,
 			})
