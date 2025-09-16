@@ -20,7 +20,7 @@ func goblinAttack(i int, goblin structure.Monster, player structure.Character) {
 	fmt.Printf(" Player HP: %v\n", player.CurrentHp)
 }
 
-func characterAttack(player structure.Character, goblin structure.Monster) {
+func characterAttack(player *structure.Character, goblin structure.Monster) {
 	res := CharacterTurn()
 	switch res {
 	case "attack":
@@ -28,16 +28,16 @@ func characterAttack(player structure.Character, goblin structure.Monster) {
 		fmt.Printf("%v Default Attack %v (Damage: %v) Goblin HP: %v\n", player.Name, goblin.Name, player.Damage, goblin.CurrentHp)
 	case "skill":
 		if player.CurrentHp > 10 {
-			skillName, skillDamage := TakeSkill(&player)
+			skillName, skillDamage := TakeSkill(player)
 			utils.MonsterRemoveHp(&goblin, skillDamage)
-			utils.RemoveMana(&player, 10)
+			utils.RemoveMana(player, 10)
 			fmt.Printf("%v use Skill: %v and Attack %v (Damage: %v) Goblin HP: %v\n", player.Name, skillName, goblin.Name, skillDamage, goblin.CurrentHp)
 		} else {
 			fmt.Println("You don't have Manna")
 			characterAttack(player, goblin)
 		}
 	case "health potion":
-		Takepot(&player)
+		Takepot(player)
 	}
 }
 
@@ -50,7 +50,7 @@ func GoblinPattern(player *structure.Character) {
 	for i := 0; goblin.CurrentHp > 0 && player.CurrentHp > 0; i++ {
 		time.Sleep(3 * time.Second)
 		if player.Initiative > goblin.Initiative {
-			characterAttack(*player, goblin)
+			characterAttack(player, goblin)
 			if goblin.CurrentHp <= 0 {
 				break
 			}
@@ -68,7 +68,7 @@ func GoblinPattern(player *structure.Character) {
 
 			time.Sleep(1 * time.Second)
 
-			characterAttack(*player, goblin)
+			characterAttack(player, goblin)
 			if goblin.CurrentHp <= 0 {
 				break
 			}
