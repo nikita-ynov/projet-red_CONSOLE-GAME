@@ -4,6 +4,7 @@ type Inventory struct {
 	Name        string
 	ChangeHp    int
 	ChangeManna int
+	Protection  int
 	Quantity    int
 }
 
