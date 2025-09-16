@@ -31,6 +31,14 @@ func AddHp(player *structure.Character, n int) {
 	}
 }
 
+func AddManna(player *structure.Character, n int) {
+	if n+player.CurrentManna > player.MannaMax || n > player.MannaMax {
+		player.CurrentManna = player.MannaMax
+	} else {
+		player.CurrentManna += n
+	}
+}
+
 func AddExp(player *structure.Character, exp int) {
 	player.Exp += exp
 
