@@ -25,7 +25,7 @@ func TakeSkill(player *structure.Character) (string, int) {
 		fmt.Println("You don't have any Skill to use")
 		fmt.Print("Enter any key to exit: ")
 		fmt.Scan(&exit)
-		return "", 0 // 👈 return empty values
+		return "", 0 //  return empty values
 	}
 
 	// Affichage des Skill disponibles
@@ -41,7 +41,7 @@ func TakeSkill(player *structure.Character) (string, int) {
 		fmt.Scan(&choice)
 
 		if choice == "0" {
-			return "", 0 // 👈 return empty values if exit
+			return "", 0 //  return empty values if exit
 		}
 
 		// Conversion du choix en entier
