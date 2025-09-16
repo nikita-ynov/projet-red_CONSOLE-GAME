@@ -5,19 +5,29 @@ import (
 )
 
 func Menu() int {
-	fmt.Print("====== MENU ======\n")
-	fmt.Print("1 - Display Player Info\n")
-	fmt.Print("2 - Take Health Potion\n")
-	fmt.Print("3 - Merchant \n")
-	fmt.Print("4 - Training Fight\n")
-	fmt.Print("5 - Blacksmith\n")
-	fmt.Print("6 - Exit\n")
+	fmt.Print("\033[H\033[2J") // Clear console
+	fmt.Println("\033[1;36m====== MAIN MENU ======\033[0m")
+	fmt.Println("1 - Display Player Info")
+	fmt.Println("2 - Use Health/Mana Potion")
+	fmt.Println("3 - Visit Merchant")
+	fmt.Println("4 - Training Battle")
+	fmt.Println("5 - Blacksmith")
+	fmt.Println("6 - Exit")
 
-	var maxChoice int = 8
 	var choice int
-	for choice < 1 || choice > maxChoice {
-		fmt.Print("Enter your choice :   ")
-		fmt.Scan(&choice)
+	for {
+		fmt.Print("\nEnter your choice: ")
+		_, err := fmt.Scan(&choice)
+		if err != nil {
+			fmt.Println("\033[1;33mInvalid input! Please enter a number.\033[0m")
+			var discard string
+			fmt.Scanln(&discard) // clear input buffer
+			continue
+		}
+		if choice >= 1 && choice <= 6 {
+			break
+		}
+		fmt.Println("\033[1;33mInvalid choice! Please choose a valid option.\033[0m")
 	}
 
 	return choice

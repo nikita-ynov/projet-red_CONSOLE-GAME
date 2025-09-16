@@ -10,45 +10,44 @@ import (
 func TakeSkill(player *structure.Character) (string, int) {
 	var choice string
 
-	// Nettoyage de l'écran
+	// Clear console
 	fmt.Print("\033[H\033[2J")
-	fmt.Println("====== USE SKILL ======")
+	fmt.Println("\033[1;36m====== USE SKILL ======\033[0m")
 
-	// Construire la liste des Skill disponibles
-	skillsAvailable := []structure.Skills{}
-	skillsAvailable = append(skillsAvailable, player.Skills...)
+	// Build available skills list
+	skillsAvailable := player.Skills
 
-	// Vérifier si aucun sort n’est disponible
+	// No skills available
 	if len(skillsAvailable) == 0 {
-		fmt.Println("You don't have any Skill to use")
+		fmt.Println("\033[1;33mYou don't have any skills to use!\033[0m")
 		utils.Exit()
-		return "", 0 //  return empty values
+		return "", 0
 	}
 
-	// Affichage des Skill disponibles
-	fmt.Println("Choose what skill to use:")
+	// Display skills
+	fmt.Println("Choose a skill to use:")
 	for i, skill := range skillsAvailable {
-		fmt.Printf("%d: %s\n", i+1, skill.Name)
+		fmt.Printf("%d: %s 🔥 (Damage: %d)\n", i+1, skill.Name, skill.Damage)
 	}
 	fmt.Println("0: Exit")
 
-	// Lecture du choix utilisateur
+	// Read user choice
 	for {
-		fmt.Print("Enter your choice: ")
+		fmt.Print("\nEnter your choice: ")
 		fmt.Scan(&choice)
 
 		if choice == "0" {
-			return "", 0 //  return empty values if exit
+			return "", 0
 		}
 
-		// Conversion du choix en entier
 		selectedIndex, err := strconv.Atoi(choice)
 		if err != nil || selectedIndex < 1 || selectedIndex > len(skillsAvailable) {
-			fmt.Println("Invalid choice, try again.")
+			fmt.Println("\033[1;33mInvalid choice! Please try again.\033[0m")
 			continue
 		}
 
 		chosenSkill := skillsAvailable[selectedIndex-1]
+		fmt.Printf("\033[1;34mYou used skill '%s'! Damage: %d 🔥\033[0m\n", chosenSkill.Name, chosenSkill.Damage)
 		return chosenSkill.Name, chosenSkill.Damage
 	}
 }

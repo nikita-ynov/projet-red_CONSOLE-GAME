@@ -9,8 +9,11 @@ import (
 func Takepot(player *structure.Character) {
 	var choice int
 
+	// Clear console and header
 	fmt.Print("\033[H\033[2J")
-	fmt.Println("====== TAKE HEALTH POTION ======")
+	fmt.Println("\033[1;36m====== USE POTION ======\033[0m")
+
+	// Filter usable potions
 	potions := []structure.Inventory{}
 	for _, item := range player.Inventory {
 		if item.ChangeHp > 0 || item.ChangeManna > 0 {
@@ -18,45 +21,48 @@ func Takepot(player *structure.Character) {
 		}
 	}
 
-	if len(potions) == 0 { //verifie si l'inventaire est vide
-		fmt.Printf("You don't have any potion for use\n")
+	// No potions available
+	if len(potions) == 0 {
+		fmt.Println("\033[1;33mYou don't have any potions to use!\033[0m")
 		utils.Exit()
-		return //si il est vide alors return
+		return
 	}
 
-	fmt.Println("Choise potion")
+	// Display potions menu
+	fmt.Println("\nChoose a potion to use:")
 	fmt.Println("0. Exit")
 	for i, potion := range potions {
 		if potion.ChangeHp > 0 {
-			fmt.Printf("%d. %s (HP %+d) \n", i+1, potion.Name, potion.ChangeHp)
+			fmt.Printf("%d. %s [❤️ +%d HP]\n", i+1, potion.Name, potion.ChangeHp)
 		} else if potion.ChangeManna > 0 {
-			fmt.Printf("%d. %s (Manna %+d) \n", i+1, potion.Name, potion.ChangeManna)
+			fmt.Printf("%d. %s [💧 +%d Mana]\n", i+1, potion.Name, potion.ChangeManna)
 		}
 	}
 
+	// Player choice loop
 	for choice < 1 || choice > len(potions) {
-		fmt.Print("Enter your choice :   ")
+		fmt.Print("\nEnter your choice: ")
 		fmt.Scan(&choice)
 		if choice == 0 {
 			return
 		}
 	}
 
-	if potions[choice-1].ChangeHp > 0 {
-		utils.AddHp(player, potions[choice-1].ChangeHp)
-	} else if potions[choice-1].ChangeManna > 0 {
-		utils.AddManna(player, potions[choice-1].ChangeManna)
+	selected := potions[choice-1]
+
+	// Apply potion effect
+	if selected.ChangeHp > 0 {
+		utils.AddHp(player, selected.ChangeHp)
+		fmt.Printf("\033[1;32mYou used %s and recovered %d HP!\033[0m\n", selected.Name, selected.ChangeHp)
+		fmt.Printf("Current HP: %d/%d\n", player.CurrentHp, player.HpMax)
+	} else if selected.ChangeManna > 0 {
+		utils.AddManna(player, selected.ChangeManna)
+		fmt.Printf("\033[1;34mYou used %s and recovered %d Mana!\033[0m\n", selected.Name, selected.ChangeManna)
+		fmt.Printf("Current Mana: %d/%d\n", player.CurrentManna, player.MannaMax)
 	}
 
-	utils.RemoveObj(player, potions[choice-1])
-	fmt.Print("\033[H\033[2J")
-	fmt.Println("Used potion: " + potions[choice-1].Name)
-
-	if potions[choice-1].ChangeHp > 0 {
-		fmt.Printf("You has now %v/%v HP \n", player.CurrentHp, player.HpMax)
-	} else if potions[choice-1].ChangeManna > 0 {
-		fmt.Printf("You has now %v/%v Manna \n", player.CurrentManna, player.MannaMax)
-	}
+	// Remove potion from inventory
+	utils.RemoveObj(player, selected)
 
 	utils.Exit()
 }
