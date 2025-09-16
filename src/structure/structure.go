@@ -5,7 +5,6 @@ type Inventory struct {
 	ChangeHp    int
 	ChangeManna int
 	Quantity    int
-	UniqueObj   int
 }
 
 type Skills struct {

@@ -147,7 +147,6 @@ func Merchant(player *structure.Character) {
 				ChangeHp:    selected.ChangeHp,
 				ChangeManna: selected.ChangeManna,
 				Quantity:    selected.Quantity,
-				UniqueObj:   selected.UniqueObj,
 			})
 		}
 		fmt.Print("\033[H\033[2J")
