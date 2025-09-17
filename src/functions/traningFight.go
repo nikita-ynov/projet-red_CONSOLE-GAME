@@ -44,12 +44,12 @@ func characterAttack(player *structure.Character, goblin *structure.Monster) {
 		fmt.Printf("\033[1;32m%s attacks %s! (%d damage)\033[0m\n", player.Name, goblin.Name, player.Damage)
 		fmt.Printf("Goblin HP: %d/%d\n", goblin.CurrentHp, goblin.HpMax)
 	case "skill":
-		if player.CurrentHp > 10 {
+		if player.CurrentMana >= 10 {
 			skillName, skillDamage := TakeSkill(player)
 			utils.MonsterRemoveHp(goblin, skillDamage)
 			utils.RemoveMana(player, -10)
 			fmt.Printf("\033[1;34m%s uses skill '%s'! (%d damage)\033[0m\n", player.Name, skillName, skillDamage)
-			fmt.Printf("Goblin HP: %d/%d | Mana: %d/%d\n", goblin.CurrentHp, goblin.HpMax, player.CurrentManna, player.MannaMax)
+			fmt.Printf("Goblin HP: %d/%d | Mana: %d/%d\n", goblin.CurrentHp, goblin.HpMax, player.CurrentMana, player.ManaMax)
 
 		} else {
 			fmt.Println("\033[1;33mNot enough Mana to use a skill!\033[0m")
@@ -66,12 +66,11 @@ func characterAttack(player *structure.Character, goblin *structure.Monster) {
 }
 
 func TrainingFight(player *structure.Character) {
-	fmt.Print("\033[H\033[2J")
 	goblin := InitGoblin("Training Goblin", 100, 100, -5)
 	fmt.Println("\033[1;32m====== START TRAINING ======\033[0m")
 
 	for i := 0; goblin.CurrentHp > 0 && player.CurrentHp > 0; i++ {
-		time.Sleep(3 * time.Second)
+		time.Sleep(1 * time.Second)
 		if player.Initiative > goblin.Initiative {
 			characterAttack(player, &goblin)
 			if goblin.CurrentHp <= 0 {
@@ -122,6 +121,12 @@ func TrainingFight(player *structure.Character) {
 		)
 
 	}
+	// Succès : tuer 10 goblins sans mourir
+	player.GoblinsKilledWithoutDying++
+	if player.GoblinsKilledWithoutDying >= 10 {
+		UnlockAchievement(player, "Goblin Slayer", "Killed 10 goblins without dying")
+		player.GoblinsKilledWithoutDying = 0 // reset pour un prochain cycle
 
+	}
 	utils.Exit()
 }

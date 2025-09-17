@@ -1,32 +1,43 @@
 package structure
 
-type Inventory struct {
+type Achievement struct {
 	Name        string
-	ChangeHp    int
-	ChangeManna int
-	Quantity    int
+	Description string
+	Unlocked    bool
+}
+
+type Inventory struct {
+	Name       string
+	ChangeHp   int
+	ChangeMana int
+	Protection int
+	Quantity   int
 }
 
 type Skills struct {
 	Name   string
 	Damage int
 }
+
 type Character struct {
-	Name            string
-	Class           string
-	Lvl             int
-	Exp             int
-	HpMax           int
-	CurrentHp       int
-	MannaMax        int
-	CurrentManna    int
-	Money           int
-	Damage          int
-	Initiative      int
-	InventoryLimit  int
-	Inventory       []Inventory
-	Skills          []Skills
-	PlayerEquipment []Equipment
+	Name                      string
+	Class                     string
+	Lvl                       int
+	Exp                       int
+	HpMax                     int
+	CurrentHp                 int
+	ManaMax                   int
+	CurrentMana               int
+	Money                     int
+	Damage                    int
+	Initiative                int
+	InventoryLimit            int
+	Inventory                 []Inventory
+	Skills                    []Skills
+	Equipment                 Equipment // maintenant c’est bien défini
+	Achievements              []Achievement
+	AchievementsMenuVisible   bool
+	GoblinsKilledWithoutDying int
 }
 
 type Weapon struct {
@@ -36,12 +47,12 @@ type Weapon struct {
 }
 
 type MerchantItems struct {
-	Name        string
-	ChangeHp    int
-	ChangeManna int
-	Quantity    int
-	UniqueObj   int
-	Price       int
+	Name       string
+	ChangeHp   int
+	ChangeMana int
+	Quantity   int
+	UniqueObj  int
+	Price      int
 }
 
 type Monster struct {
@@ -51,10 +62,31 @@ type Monster struct {
 	Damage     int
 	Initiative int
 }
+
+type Listequipment struct {
+	Name       string
+	Protection int
+}
+
 type Equipment struct {
-	Helmet      int
-	Breastplate int
-	Legwarmer   int
+	Helmet      Helmet
+	Breastplate Breastplate
+	Legwarmer   Legwarmer
+}
+
+type Helmet struct {
+	Name       string
+	Protection int
+}
+
+type Breastplate struct {
+	Name       string
+	Protection int
+}
+
+type Legwarmer struct {
+	Name       string
+	Protection int
 }
 
 type BlacksmithItems struct {

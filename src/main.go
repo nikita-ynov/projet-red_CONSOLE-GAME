@@ -2,6 +2,7 @@ package main
 
 import (
 	functions "PROJETRED/functions"
+	image "PROJETRED/image"
 	"fmt"
 )
 
@@ -15,7 +16,7 @@ func main() {
 
 	for exit {
 		fmt.Print("\033[H\033[2J")
-		menuChoice := functions.Menu()
+		menuChoice := functions.Menu(&player)
 		switch menuChoice {
 		case 1:
 			functions.DisplayInfo(&player)
@@ -24,12 +25,17 @@ func main() {
 		case 3:
 			functions.Merchant(&player)
 		case 4:
+			fmt.Print("\033[H\033[2J")
+			image.GoblinImage()
+			fmt.Println("")
 			functions.TrainingFight(&player)
 		case 5:
 			functions.Forgeron(&player)
 		case 6:
 			fmt.Print("====== GOODBYE ======")
 			exit = false
+		case 7:
+			functions.DisplayAchievements(&player)
 		}
 
 	}

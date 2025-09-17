@@ -32,17 +32,18 @@ func AddHp(player *structure.Character, n int) {
 }
 
 func AddManna(player *structure.Character, n int) {
-	if n+player.CurrentManna > player.MannaMax || n > player.MannaMax {
-		player.CurrentManna = player.MannaMax
+	if n+player.CurrentMana > player.ManaMax || n > player.ManaMax {
+		player.CurrentMana = player.ManaMax
 	} else {
-		player.CurrentManna += n
+		player.CurrentMana += n
 	}
 }
 
 func AddExp(player *structure.Character, exp int) {
 	player.Exp += exp
 
-	if exp >= 10*player.Lvl {
+	if player.Exp >= 10*player.Lvl {
 		player.Lvl += 1
+		player.Exp = 0
 	}
 }

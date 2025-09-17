@@ -23,7 +23,7 @@ func Merchant(player *structure.Character) {
 		// Items disponibles
 		merchantItems := []structure.MerchantItems{
 			{Name: "Life Potion", ChangeHp: 50, Quantity: 1, Price: 5},
-			{Name: "Mana Potion", ChangeManna: 50, Quantity: 1, Price: 5},
+			{Name: "Mana Potion", ChangeMana: 50, Quantity: 1, Price: 5},
 			{Name: "Snus", Quantity: 1, Price: 1},
 			{Name: "Skin Troll", Quantity: 1, Price: 7},
 			{Name: "Wild Boar Leather", Quantity: 1, Price: 3},
@@ -52,8 +52,8 @@ func Merchant(player *structure.Character) {
 				icon = fmt.Sprintf("❤️ %+d HP", item.ChangeHp)
 			} else if item.ChangeHp < 0 {
 				icon = fmt.Sprintf("🔥 %d Damage", item.ChangeHp)
-			} else if item.ChangeManna > 0 {
-				icon = fmt.Sprintf("💧 %+d Mana", item.ChangeManna)
+			} else if item.ChangeMana > 0 {
+				icon = fmt.Sprintf("💧 %+d Mana", item.ChangeMana)
 			}
 
 			if icon != "" {
@@ -110,10 +110,10 @@ func Merchant(player *structure.Character) {
 			utils.AddSkill(player, structure.Skills{Name: selected.Name, Damage: selected.ChangeHp})
 		default:
 			utils.AddObj(player, structure.Inventory{
-				Name:        selected.Name,
-				ChangeHp:    selected.ChangeHp,
-				ChangeManna: selected.ChangeManna,
-				Quantity:    selected.Quantity,
+				Name:       selected.Name,
+				ChangeHp:   selected.ChangeHp,
+				ChangeMana: selected.ChangeMana,
+				Quantity:   selected.Quantity,
 			})
 		}
 

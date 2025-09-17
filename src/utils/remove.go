@@ -7,14 +7,15 @@ import (
 func RemoveObj(player *structure.Character, item structure.Inventory) {
 	arr := []structure.Inventory{}
 	for _, element := range player.Inventory {
-
-		if element.Quantity > 1 && element == item {
-			element.Quantity -= item.Quantity
-			if element.Quantity > 0 {
+		if element.Name == item.Name { // comparaison sur le nom uniquement
+			// réduire la quantité
+			newQuantity := element.Quantity - item.Quantity
+			if newQuantity > 0 {
+				element.Quantity = newQuantity
 				arr = append(arr, element)
 			}
-
-		} else if element != item {
+			// si quantité <= 0 → on ne le remet pas (donc supprimé)
+		} else {
 			arr = append(arr, element)
 		}
 	}
@@ -37,13 +38,13 @@ func RemoveHp(player *structure.Character, n int) bool {
 }
 
 func RemoveMana(player *structure.Character, n int) bool {
-	player.CurrentManna += n
+	player.CurrentMana += n
 
-	if player.CurrentManna > player.MannaMax {
-		player.CurrentManna = player.MannaMax
+	if player.CurrentMana > player.ManaMax {
+		player.CurrentMana = player.ManaMax
 	}
-	if player.CurrentManna <= 0 {
-		player.CurrentManna = 0
+	if player.CurrentMana <= 0 {
+		player.CurrentMana = 0
 		return true
 	}
 
