@@ -12,6 +12,7 @@ type Inventory struct {
 	ChangeMana int
 	Protection int
 	Quantity   int
+	IsWeapon   bool
 }
 
 type Skills struct {

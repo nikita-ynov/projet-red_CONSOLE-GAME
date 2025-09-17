@@ -19,7 +19,9 @@ Tout se joue directement dans le terminal avec des choix numériques.
 - 🛡 **Équipement** : gestion des emplacements (casque, plastron, jambières).  
 - 📦 **Inventaire** : limité en taille (extensible via le marchand).  
 - ☠ **Mort & renaissance** : en cas de défaite, le joueur renaît avec la moitié de ses HP.  
-- 📈 **Progression** : gain d’expérience et montée de niveau.  
+- 📈 **Progression** : gain d’expérience et montée de niveau.
+- 🏆 **SUCCÈS** : Un système de succès pour les action du joueur.
+  
 
 ---
 
@@ -44,14 +46,18 @@ Tout se joue directement dans le terminal avec des choix numériques.
    │ ├── DisplayEquipment.go # Menu équipement
    │ ├── equipment.go # Gestion de l’équipement
    │ ├── merchant.go # Marchand (achat d’objets/compétences)
+   │ ├── achievement.go # ajoute les succès au joueur
+   │ ├── DisplayAchievement.go # Menu des succès
    │ └── blacksmith.go # Forgeron (craft d’armures)
    │
    └── utils/ # Fonctions utilitaires
    ├── add.go # Ajout (objets, compétences, HP, mana…)
-   ├── remove.go # Retrait (objets, HP, mana…)
-   ├── inventory.go # Gestion de l’inventaire
+   ├── addCoin.go # ajout de l'argent
    ├── exit.go # Pause / Attente touche entrée
-   └── isWasted.go # Mort et renaissance
+   ├── inventory.go # Gestion de l’inventaire
+   ├── isAchieveUnlock.go # verifie succès debloquer
+   ├── isWasted.go # Mort et renaissance
+   └── remove.go # Retrait (objets, HP, mana…)
    ```
 ---
 
