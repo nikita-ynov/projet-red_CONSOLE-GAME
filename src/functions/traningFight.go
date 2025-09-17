@@ -83,6 +83,12 @@ func TrainingFight(player *structure.Character) {
 		fmt.Print("====== YOU WIN ======\n")
 		utils.AddExp(player, 5)
 	}
+	// Succès : tuer 10 goblins sans mourir
+	player.GoblinsKilledWithoutDying++
+	if player.GoblinsKilledWithoutDying >= 10 {
+		UnlockAchievement(player, "Goblin Slayer", "Killed 10 goblins without dying")
+		player.GoblinsKilledWithoutDying = 0 // reset pour un prochain cycle
 
+	}
 	utils.Exit()
 }
