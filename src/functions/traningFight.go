@@ -99,6 +99,7 @@ func TrainingFight(player *structure.Character) {
 	// Résultat
 	if player.CurrentHp <= 0 {
 		utils.IsWasted(player)
+
 	} else if goblin.CurrentHp <= 0 {
 		weaponDrop := structure.Weapon{
 			Name:        "Excalibur",
@@ -111,6 +112,7 @@ func TrainingFight(player *structure.Character) {
 		fmt.Println(" + 5xp")
 		utils.AddCoin(player)
 		fmt.Println(" + 10 coins")
+
 		fmt.Printf("====== GOBLIN DROP %s ======\n", weaponDrop.Name)
 		fmt.Printf("%s damage : %d\n", weaponDrop.Name, weaponDrop.Damage)
 		utils.AddObj(
@@ -127,9 +129,12 @@ func TrainingFight(player *structure.Character) {
 	// Succès : tuer 10 goblins sans mourir
 	player.GoblinsKilledWithoutDying++
 	if player.GoblinsKilledWithoutDying >= 10 {
-		UnlockAchievement(player, "Goblin Slayer", "Killed 10 goblins without dying")
+		UnlockAchievement(player, "ez 10 Goblins!", "Slay 10 goblins in a row without dying")
 		player.GoblinsKilledWithoutDying = 0 // reset pour un prochain cycle
 
+	}
+	if player.Lvl == 10 {
+		UnlockAchievement(player, "Confirmed Hero", "Reach level 10")
 	}
 	utils.Exit()
 }

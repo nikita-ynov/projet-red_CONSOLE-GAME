@@ -40,11 +40,37 @@ func Merchant(player *structure.Character) {
 		}
 
 		// Skills spéciaux : apparaissent uniquement après succès
-		if utils.PlayerHasAchievement(*player, "Full Armor") && checkSkill(*player, "Full Armor") {
-			fmt.Println("\033[1;33m🎉 Congrats! 'Ice Spike' skill is now available!\033[0m")
-			merchantItems = append(merchantItems, structure.MerchantItems{
-				Name: "Ice Spike", ChangeHp: -30, Quantity: 1, Price: 15,
-			})
+
+		achievementsToSkills := []struct {
+			AchievementName string
+			SkillName       string
+			SkillDamage     int
+			SkillPrice      int
+		}{
+			{"Full Armor", "Ice Spike", -30, 15},
+			{"ez 10 Goblins !", "Thunder Strike", -25, 12},
+			{"Confirmed Hero", "Earth Smash", -40, 20},
+			// Ajoute d'autres ici...
+		}
+
+		for _, mapping := range achievementsToSkills {
+			unlocked := false
+			for _, ach := range player.Achievements {
+				if ach.Name == mapping.AchievementName && ach.Unlocked {
+					unlocked = true
+					break
+				}
+			}
+
+			if unlocked && checkSkill(*player, mapping.SkillName) {
+				fmt.Printf("\033[1;33m🎉 Congrats! '%s' skill is now available!\033[0m\n", mapping.SkillName)
+				merchantItems = append(merchantItems, structure.MerchantItems{
+					Name:     mapping.SkillName,
+					ChangeHp: mapping.SkillDamage,
+					Quantity: 1,
+					Price:    mapping.SkillPrice,
+				})
+			}
 		}
 
 		// Affichage marchand
