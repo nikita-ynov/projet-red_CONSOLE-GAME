@@ -27,7 +27,7 @@ func characterAttack(player *structure.Character, goblin *structure.Monster) {
 
 	//récupere la liste des armes dans l'inventaire
 	for _, value := range player.Inventory {
-		if value.Name == "Excalibur" {
+		if value.IsWeapon {
 			toAdd := structure.Weapon{
 				Name:        value.Name,
 				Damage:      value.ChangeHp,
@@ -39,11 +39,11 @@ func characterAttack(player *structure.Character, goblin *structure.Monster) {
 	//verifie quel attaque a été choisie par le player
 	res, weapon := CharacterTurn(arr)
 	switch res {
-	case "attack":
+	case "melee":
 		utils.MonsterRemoveHp(goblin, player.Damage)
 		fmt.Printf("\033[1;32m%s attacks %s! (%d damage)\033[0m\n", player.Name, goblin.Name, player.Damage)
 		fmt.Printf("Goblin HP: %d/%d\n", goblin.CurrentHp, goblin.HpMax)
-	case "skill":
+	case "spell":
 		if player.CurrentMana >= 10 {
 			skillName, skillDamage := TakeSkill(player)
 			utils.MonsterRemoveHp(goblin, skillDamage)
@@ -100,14 +100,17 @@ func TrainingFight(player *structure.Character) {
 	if player.CurrentHp <= 0 {
 		utils.IsWasted(player)
 	} else if goblin.CurrentHp <= 0 {
-		weaponDrop := structure.Weapon{
-			Name:        "Excalibur",
-			Damage:      rand.Intn(50),
-			LvlRequired: player.Lvl,
-		}
+
+		randomDamage := rand.Intn(50)
+
+		var randomWeapon = GetRandomWeapon()
+
+		finalDamage := int(randomWeapon.Coef * float32(randomDamage))
+
 		fmt.Print("====== YOU WIN ======\n")
 
 		utils.AddExp(player, 5)
+
 		fmt.Println(" + 5xp")
 		utils.AddCoin(player)
 		fmt.Println(" + 10 coins")
@@ -116,10 +119,11 @@ func TrainingFight(player *structure.Character) {
 		utils.AddObj(
 			player,
 			structure.Inventory{
-				Name:       weaponDrop.Name,
-				ChangeHp:   -weaponDrop.Damage,
+				Name:       randomWeapon.Name,
+				ChangeHp:   -finalDamage,
 				ChangeMana: 0,
 				Quantity:   1,
+				IsWeapon:   true,
 			},
 		)
 
