@@ -42,7 +42,8 @@ func AddManna(player *structure.Character, n int) {
 func AddExp(player *structure.Character, exp int) {
 	player.Exp += exp
 
-	if exp >= 10*player.Lvl {
+	if player.Exp >= 10*player.Lvl {
 		player.Lvl += 1
+		player.Exp = 0
 	}
 }
