@@ -50,7 +50,7 @@ func TrainingFight(player *structure.Character) {
 	fmt.Println("\033[1;32m====== START TRAINING ======\033[0m")
 
 	for i := 0; goblin.CurrentHp > 0 && player.CurrentHp > 0; i++ {
-		time.Sleep(3 * time.Second)
+		time.Sleep(1 * time.Second)
 		if player.Initiative > goblin.Initiative {
 			characterAttack(player, &goblin)
 			if goblin.CurrentHp <= 0 {
