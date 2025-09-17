@@ -4,6 +4,7 @@ import (
 	"PROJETRED/structure"
 	"PROJETRED/utils"
 	"fmt"
+	"math/rand"
 	"time"
 )
 
@@ -21,7 +22,22 @@ func goblinAttack(i int, goblin structure.Monster, player *structure.Character) 
 }
 
 func characterAttack(player *structure.Character, goblin *structure.Monster) {
-	res := CharacterTurn()
+
+	arr := []*structure.Weapon{}
+
+	//récupere la liste des armes dans l'inventaire
+	for _, value := range player.Inventory {
+		if value.Name == "Excalibur" {
+			toAdd := structure.Weapon{
+				Name:        value.Name,
+				Damage:      value.ChangeHp,
+				LvlRequired: 0,
+			}
+			arr = append(arr, &toAdd)
+		}
+	}
+
+	res, weapon := CharacterTurn(arr)
 	switch res {
 	case "attack":
 		utils.MonsterRemoveHp(goblin, player.Damage)
@@ -41,6 +57,11 @@ func characterAttack(player *structure.Character, goblin *structure.Monster) {
 		}
 	case "health potion":
 		Takepot(player)
+	case "weapon":
+		fmt.Println("weapon")
+		utils.MonsterRemoveHp(goblin, weapon.Damage)
+		fmt.Printf("\033[1;32m%s attack %s using %s (%d damage)\033[0m\n", player.Name, goblin.Name, weapon.Name, weapon.Damage)
+		fmt.Printf("Goblin HP: %d/%d\n", goblin.CurrentHp, goblin.HpMax)
 	}
 }
 
@@ -81,8 +102,25 @@ func TrainingFight(player *structure.Character) {
 	if player.CurrentHp <= 0 {
 		utils.IsWasted(player)
 	} else if goblin.CurrentHp <= 0 {
+		weaponDrop := structure.Weapon{
+			Name:        "Excalibur",
+			Damage:      rand.Intn(50),
+			LvlRequired: player.Lvl,
+		}
 		fmt.Print("====== YOU WIN ======\n")
 		utils.AddExp(player, 5)
+		fmt.Printf("====== GOBLIN DROP %s ======\n", weaponDrop.Name)
+		fmt.Printf("%s damage : %d\n", weaponDrop.Name, weaponDrop.Damage)
+		utils.AddObj(
+			player,
+			structure.Inventory{
+				Name:        weaponDrop.Name,
+				ChangeHp:    -weaponDrop.Damage,
+				ChangeManna: 0,
+				Quantity:    1,
+			},
+		)
+
 	}
 
 	utils.Exit()
