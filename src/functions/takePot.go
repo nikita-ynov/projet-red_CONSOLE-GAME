@@ -38,7 +38,6 @@ func Takepot(player *structure.Character) {
 			fmt.Printf("%d. %s [💧 +%d Mana]\n", i+1, potion.Name, potion.ChangeManna)
 		}
 	}
-
 	// Player choice loop
 	for choice < 1 || choice > len(potions) {
 		fmt.Print("\nEnter your choice: ")
