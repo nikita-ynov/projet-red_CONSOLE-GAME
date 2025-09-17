@@ -16,7 +16,7 @@ func Takepot(player *structure.Character) {
 	// Filter usable potions
 	potions := []structure.Inventory{}
 	for _, item := range player.Inventory {
-		if item.ChangeHp > 0 || item.ChangeManna > 0 {
+		if item.ChangeHp > 0 || item.ChangeMana > 0 {
 			potions = append(potions, item)
 		}
 	}
@@ -34,8 +34,8 @@ func Takepot(player *structure.Character) {
 	for i, potion := range potions {
 		if potion.ChangeHp > 0 {
 			fmt.Printf("%d. %s [❤️ +%d HP]\n", i+1, potion.Name, potion.ChangeHp)
-		} else if potion.ChangeManna > 0 {
-			fmt.Printf("%d. %s [💧 +%d Mana]\n", i+1, potion.Name, potion.ChangeManna)
+		} else if potion.ChangeMana > 0 {
+			fmt.Printf("%d. %s [💧 +%d Mana]\n", i+1, potion.Name, potion.ChangeMana)
 		}
 	}
 	// Player choice loop
@@ -54,10 +54,10 @@ func Takepot(player *structure.Character) {
 		utils.AddHp(player, selected.ChangeHp)
 		fmt.Printf("\033[1;32mYou used %s and recovered %d HP!\033[0m\n", selected.Name, selected.ChangeHp)
 		fmt.Printf("Current HP: %d/%d\n", player.CurrentHp, player.HpMax)
-	} else if selected.ChangeManna > 0 {
-		utils.AddManna(player, selected.ChangeManna)
-		fmt.Printf("\033[1;34mYou used %s and recovered %d Mana!\033[0m\n", selected.Name, selected.ChangeManna)
-		fmt.Printf("Current Mana: %d/%d\n", player.CurrentManna, player.MannaMax)
+	} else if selected.ChangeMana > 0 {
+		utils.AddManna(player, selected.ChangeMana)
+		fmt.Printf("\033[1;34mYou used %s and recovered %d Mana!\033[0m\n", selected.Name, selected.ChangeMana)
+		fmt.Printf("Current Mana: %d/%d\n", player.CurrentMana, player.ManaMax)
 	}
 
 	// Remove potion from inventory

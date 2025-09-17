@@ -33,7 +33,7 @@ func characterAttack(player *structure.Character, goblin *structure.Monster) {
 			utils.MonsterRemoveHp(goblin, skillDamage)
 			utils.RemoveMana(player, -10)
 			fmt.Printf("\033[1;34m%s uses skill '%s'! (%d damage)\033[0m\n", player.Name, skillName, skillDamage)
-			fmt.Printf("Goblin HP: %d/%d | Mana: %d/%d\n", goblin.CurrentHp, goblin.HpMax, player.CurrentManna, player.MannaMax)
+			fmt.Printf("Goblin HP: %d/%d | Mana: %d/%d\n", goblin.CurrentHp, goblin.HpMax, player.CurrentMana, player.ManaMax)
 
 		} else {
 			fmt.Println("\033[1;33mNot enough Mana to use a skill!\033[0m")
@@ -45,7 +45,6 @@ func characterAttack(player *structure.Character, goblin *structure.Monster) {
 }
 
 func TrainingFight(player *structure.Character) {
-	//fmt.Print("\033[H\033[2J")
 	goblin := InitGoblin("Training Goblin", 100, 100, -5)
 	fmt.Println("\033[1;32m====== START TRAINING ======\033[0m")
 

@@ -1,11 +1,11 @@
 package structure
 
 type Inventory struct {
-	Name        string
-	ChangeHp    int
-	ChangeManna int
-	Protection  int
-	Quantity    int
+	Name       string
+	ChangeHp   int
+	ChangeMana int
+	Protection int
+	Quantity   int
 }
 
 type Skills struct {
@@ -20,8 +20,8 @@ type Character struct {
 	Exp            int
 	HpMax          int
 	CurrentHp      int
-	MannaMax       int
-	CurrentManna   int
+	ManaMax        int
+	CurrentMana    int
 	Money          int
 	Damage         int
 	Initiative     int
@@ -32,12 +32,12 @@ type Character struct {
 }
 
 type MerchantItems struct {
-	Name        string
-	ChangeHp    int
-	ChangeManna int
-	Quantity    int
-	UniqueObj   int
-	Price       int
+	Name       string
+	ChangeHp   int
+	ChangeMana int
+	Quantity   int
+	UniqueObj  int
+	Price      int
 }
 
 type Monster struct {

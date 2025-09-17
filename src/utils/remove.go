@@ -38,13 +38,13 @@ func RemoveHp(player *structure.Character, n int) bool {
 }
 
 func RemoveMana(player *structure.Character, n int) bool {
-	player.CurrentManna += n
+	player.CurrentMana += n
 
-	if player.CurrentManna > player.MannaMax {
-		player.CurrentManna = player.MannaMax
+	if player.CurrentMana > player.ManaMax {
+		player.CurrentMana = player.ManaMax
 	}
-	if player.CurrentManna <= 0 {
-		player.CurrentManna = 0
+	if player.CurrentMana <= 0 {
+		player.CurrentMana = 0
 		return true
 	}
 
