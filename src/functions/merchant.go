@@ -1,7 +1,7 @@
 package functions
 
 import (
-	"PROJETRED/structure"
+	structure "PROJETRED/structure"
 	"PROJETRED/utils"
 	"fmt"
 )
@@ -20,7 +20,7 @@ func Merchant(player *structure.Character) {
 	for exit == 1 {
 		fmt.Print("\033[H\033[2J")
 
-		// Items disponibles
+		// Items disponibles de base
 		merchantItems := []structure.MerchantItems{
 			{Name: "Life Potion", ChangeHp: 50, Quantity: 1, Price: 5},
 			{Name: "Mana Potion", ChangeMana: 50, Quantity: 1, Price: 5},
@@ -29,20 +29,51 @@ func Merchant(player *structure.Character) {
 			{Name: "Wild Boar Leather", Quantity: 1, Price: 3},
 			{Name: "Crow Feather", Quantity: 1, Price: 1},
 			{Name: "Wolf Fur", Quantity: 1, Price: 1},
+			{Name: "Fire Ball", Quantity: 1, Price: 10},
 		}
 
+		// Extension inventaire
 		if player.InventoryLimit < 30 {
 			merchantItems = append(merchantItems, structure.MerchantItems{
 				Name: "Upgrade Inventory (+10 slots)", Quantity: 1, Price: 30,
 			})
 		}
-		if checkSkill(*player, "Fire Ball") {
-			merchantItems = append(merchantItems, structure.MerchantItems{
-				Name: "Fire Ball", ChangeHp: -20, Quantity: 1, Price: 10,
-			})
+
+		// Skills spéciaux : apparaissent uniquement après succès
+
+		achievementsToSkills := []struct {
+			AchievementName string
+			SkillName       string
+			SkillDamage     int
+			SkillPrice      int
+		}{
+			{"Full Armor", "Ice Spike", -30, 15},
+			{"ez 10 Goblins !", "Thunder Strike", -25, 12},
+			{"Confirmed Hero", "Earth Smash", -40, 20},
+			// Ajoute d'autres ici...
 		}
 
-		// Affichage du marchand
+		for _, mapping := range achievementsToSkills {
+			unlocked := false
+			for _, ach := range player.Achievements {
+				if ach.Name == mapping.AchievementName && ach.Unlocked {
+					unlocked = true
+					break
+				}
+			}
+
+			if unlocked && checkSkill(*player, mapping.SkillName) {
+				fmt.Printf("\033[1;33m🎉 Congrats! '%s' skill is now available!\033[0m\n", mapping.SkillName)
+				merchantItems = append(merchantItems, structure.MerchantItems{
+					Name:     mapping.SkillName,
+					ChangeHp: mapping.SkillDamage,
+					Quantity: 1,
+					Price:    mapping.SkillPrice,
+				})
+			}
+		}
+
+		// Affichage marchand
 		fmt.Println("\033[1;33m====== MERCHANT ======\033[0m")
 		fmt.Printf("Your Money: \033[1;32m%d 💰\033[0m\n", player.Money)
 		fmt.Println("0. Exit")
@@ -63,7 +94,7 @@ func Merchant(player *structure.Character) {
 			}
 		}
 
-		// Choix du joueur
+		// Choix joueur
 		var choice int
 		for {
 			fmt.Print("\nEnter your choice: ")
@@ -71,7 +102,7 @@ func Merchant(player *structure.Character) {
 			if err != nil {
 				fmt.Println("Invalid input, try again.")
 				var discard string
-				fmt.Scanln(&discard) // vider buffer
+				fmt.Scanln(&discard)
 				continue
 			}
 
@@ -103,6 +134,9 @@ func Merchant(player *structure.Character) {
 
 		// Achat
 		utils.RemoveMoney(player, selected.Price)
+		if player.Money == 1 {
+			UnlockAchievement(player, "Poverty", "End up with only 1 lonely coin in your purse")
+		}
 		switch selected.Name {
 		case "Upgrade Inventory (+10 slots)":
 			utils.UpgradeInvenorySlot(player, 10)

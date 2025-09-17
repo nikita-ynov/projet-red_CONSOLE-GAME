@@ -62,6 +62,17 @@ func DisplayInfo(player *structure.Character) {
 	}
 
 	fmt.Println("\n===============================")
+
+	// Option pour ouvrir le menu équipement
+	fmt.Println("1 - Open equipment menu")
+	fmt.Println("Other key - Exit")
+	var choice int
+	fmt.Print("Enter your choice : ")
+	_, err := fmt.Scan(&choice)
+	if err == nil && choice == 1 {
+		DisplayEquipment(player)
+	}
+
 	utils.Exit()
 }
 
