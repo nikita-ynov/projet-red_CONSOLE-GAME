@@ -109,9 +109,6 @@ func TrainingFight(player *structure.Character) {
 
 		finalDamage := int(randomWeapon.Coef * float32(randomDamage))
 
-		// fmt.Print("====== GOBLIN DIED ======\n")
-
-		// utils.AddExp(player, 5)
 		fmt.Println(" + 5xp")
 		utils.AddCoin(player)
 		fmt.Println(" + 10 coins")
