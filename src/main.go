@@ -16,7 +16,7 @@ func main() {
 
 	for exit {
 		fmt.Print("\033[H\033[2J")
-		menuChoice := functions.Menu()
+		menuChoice := functions.Menu(&player)
 		switch menuChoice {
 		case 1:
 			functions.DisplayInfo(&player)
@@ -34,6 +34,8 @@ func main() {
 		case 6:
 			fmt.Print("====== GOODBYE ======")
 			exit = false
+		case 7:
+			functions.DisplayAchievements(&player)
 		}
 
 	}

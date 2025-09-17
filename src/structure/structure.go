@@ -1,5 +1,11 @@
 package structure
 
+type Achievement struct {
+	Name        string
+	Description string
+	Unlocked    bool
+}
+
 type Inventory struct {
 	Name       string
 	ChangeHp   int
@@ -14,21 +20,24 @@ type Skills struct {
 }
 
 type Character struct {
-	Name           string
-	Class          string
-	Lvl            int
-	Exp            int
-	HpMax          int
-	CurrentHp      int
-	ManaMax        int
-	CurrentMana    int
-	Money          int
-	Damage         int
-	Initiative     int
-	InventoryLimit int
-	Inventory      []Inventory
-	Skills         []Skills
-	Equipment      Equipment // maintenant c’est bien défini
+	Name                      string
+	Class                     string
+	Lvl                       int
+	Exp                       int
+	HpMax                     int
+	CurrentHp                 int
+	ManaMax                   int
+	CurrentMana               int
+	Money                     int
+	Damage                    int
+	Initiative                int
+	InventoryLimit            int
+	Inventory                 []Inventory
+	Skills                    []Skills
+	Equipment                 Equipment // maintenant c’est bien défini
+	Achievements              []Achievement
+	AchievementsMenuVisible   bool
+	GoblinsKilledWithoutDying int
 }
 
 type MerchantItems struct {

@@ -1,10 +1,12 @@
 package functions
 
 import (
+	"PROJETRED/structure"
 	"fmt"
 )
 
-func Menu() int {
+func Menu(player *structure.Character) int {
+
 	fmt.Print("\033[H\033[2J") // Clear console
 	fmt.Println("\033[1;36m====== MAIN MENU ======\033[0m")
 	fmt.Println("1 - Display Player Info")
@@ -13,7 +15,9 @@ func Menu() int {
 	fmt.Println("4 - Training Battle")
 	fmt.Println("5 - Blacksmith")
 	fmt.Println("6 - Exit")
-
+	if player.AchievementsMenuVisible {
+		fmt.Println("7 - Achievements")
+	}
 	var choice int
 	for {
 		fmt.Print("\nEnter your choice: ")
@@ -24,7 +28,7 @@ func Menu() int {
 			fmt.Scanln(&discard) // clear input buffer
 			continue
 		}
-		if choice >= 1 && choice <= 6 {
+		if choice >= 1 && choice <= 7 {
 			break
 		}
 		fmt.Println("\033[1;33mInvalid choice! Please choose a valid option.\033[0m")
