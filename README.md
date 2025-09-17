@@ -25,33 +25,34 @@ Tout se joue directement dans le terminal avec des choix numériques.
 
 ## 🗂 Structure du projet
    ```bash
-PROJETRED/
-│── main.go # Point d’entrée du jeu
-│
-├── structure/ # Définitions des structures (personnage, inventaire, monstres…)
-│ └── structure.go
-│
-├── functions/ # Logique principale du jeu
-│ ├── menu.go # Menu principal
-│ ├── characterCreation.go# Création du personnage
-│ ├── initCharacter.go # Initialisation des stats du héros
-│ ├── initGoblin.go # Initialisation des monstres
-│ ├── traningFight.go # Combat d’entraînement
-│ ├── characterTurn.go # Choix des actions en combat
-│ ├── takePot.go # Utilisation des potions
-│ ├── takeSkill.go # Utilisation des compétences
-│ ├── displayInfo.go # Affichage des stats du joueur
-│ ├── DisplayEquipment.go # Menu équipement
-│ ├── equipment.go # Gestion de l’équipement
-│ ├── merchant.go # Marchand (achat d’objets/compétences)
-│ └── blacksmith.go # Forgeron (craft d’armures)
-│
-└── utils/ # Fonctions utilitaires
-├── add.go # Ajout (objets, compétences, HP, mana…)
-├── remove.go # Retrait (objets, HP, mana…)
-├── inventory.go # Gestion de l’inventaire
-├── exit.go # Pause / Attente touche entrée
-└── isWasted.go # Mort et renaissance
+   PROJETRED/
+   │── main.go # Point d’entrée du jeu
+   │
+   ├── structure/ # Définitions des structures (personnage, inventaire, monstres…)
+   │ └── structure.go
+   │
+   ├── functions/ # Logique principale du jeu
+   │ ├── menu.go # Menu principal
+   │ ├── characterCreation.go# Création du personnage
+   │ ├── initCharacter.go # Initialisation des stats du héros
+   │ ├── initGoblin.go # Initialisation des monstres
+   │ ├── traningFight.go # Combat d’entraînement
+   │ ├── characterTurn.go # Choix des actions en combat
+   │ ├── takePot.go # Utilisation des potions
+   │ ├── takeSkill.go # Utilisation des compétences
+   │ ├── displayInfo.go # Affichage des stats du joueur
+   │ ├── DisplayEquipment.go # Menu équipement
+   │ ├── equipment.go # Gestion de l’équipement
+   │ ├── merchant.go # Marchand (achat d’objets/compétences)
+   │ └── blacksmith.go # Forgeron (craft d’armures)
+   │
+   └── utils/ # Fonctions utilitaires
+   ├── add.go # Ajout (objets, compétences, HP, mana…)
+   ├── remove.go # Retrait (objets, HP, mana…)
+   ├── inventory.go # Gestion de l’inventaire
+   ├── exit.go # Pause / Attente touche entrée
+   └── isWasted.go # Mort et renaissance
+   ```
 ---
 
 ## ▶️ Lancer le projet
