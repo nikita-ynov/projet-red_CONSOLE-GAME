@@ -1,7 +1,6 @@
 package functions
 
 import (
-	"PROJETRED/data"
 	"PROJETRED/structure"
 	"PROJETRED/utils"
 	"fmt"
@@ -102,9 +101,9 @@ func TrainingFight(player *structure.Character) {
 		utils.IsWasted(player)
 	} else if goblin.CurrentHp <= 0 {
 
-		randomIndex := rand.Intn(len(data.WeaponsData))
-		randomWeapon := data.WeaponsData[randomIndex]
 		randomDamage := rand.Intn(50)
+
+		var randomWeapon = GetRandomWeapon()
 
 		finalDamage := int(randomWeapon.Coef * float32(randomDamage))
 
