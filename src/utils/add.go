@@ -6,7 +6,7 @@ import (
 
 func AddObj(player *structure.Character, item structure.Inventory) {
 	for i, element := range player.Inventory {
-		if element.Name == item.Name {
+		if element.Name == item.Name && element.ChangeHp == item.ChangeHp {
 			player.Inventory[i].Quantity += item.Quantity
 			return
 		}

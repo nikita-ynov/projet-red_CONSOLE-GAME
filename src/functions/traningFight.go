@@ -113,10 +113,10 @@ func TrainingFight(player *structure.Character) {
 		utils.AddObj(
 			player,
 			structure.Inventory{
-				Name:        weaponDrop.Name,
-				ChangeHp:    -weaponDrop.Damage,
-				ChangeManna: 0,
-				Quantity:    1,
+				Name:       weaponDrop.Name,
+				ChangeHp:   -weaponDrop.Damage,
+				ChangeMana: 0,
+				Quantity:   1,
 			},
 		)
 

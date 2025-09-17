@@ -18,7 +18,7 @@ func InitCharacter(name string, class string, maxHp, spawnHp, money int) structu
 		ManaMax:                 100,
 		CurrentMana:             100,
 		Money:                   money,
-		Damage:                  -10,
+		Damage:                  -15,
 		Initiative:              10,
 		InventoryLimit:          10,
 		Inventory:               objects,
