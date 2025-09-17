@@ -28,7 +28,7 @@ func characterAttack(player *structure.Character, goblin *structure.Monster) {
 		fmt.Printf("\033[1;32m%s attacks %s! (%d damage)\033[0m\n", player.Name, goblin.Name, player.Damage)
 		fmt.Printf("Goblin HP: %d/%d\n", goblin.CurrentHp, goblin.HpMax)
 	case "skill":
-		if player.CurrentHp > 10 {
+		if player.CurrentMana >= 10 {
 			skillName, skillDamage := TakeSkill(player)
 			utils.MonsterRemoveHp(goblin, skillDamage)
 			utils.RemoveMana(player, -10)
