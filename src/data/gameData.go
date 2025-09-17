@@ -13,3 +13,13 @@ var WeaponsData = []CoefWeapon{
 	{Name: "Excaliburne", Coef: 1.5, DropRate: 80},
 	{Name: "Excalibatard", Coef: 1.7, DropRate: 100},
 }
+
+const (
+	Reset   = "\033[0m"
+	Red     = "\033[31m"
+	Green   = "\033[32m"
+	Yellow  = "\033[33m"
+	Cyan    = "\033[36m"
+	Magenta = "\033[35m"
+	Bold    = "\033[1m"
+)

@@ -38,14 +38,26 @@ func DisplayInfo(player *structure.Character) {
 		fmt.Println("   (empty)")
 	} else {
 		for _, item := range player.Inventory {
-			fmt.Printf("   • %s x%v", item.Name, item.Quantity)
-			if item.ChangeHp < 0 {
-				fmt.Printf("  [⚔ %v HP]\n", item.ChangeHp)
-			} else if item.ChangeHp > 0 {
-				fmt.Printf("  [❤️ +%v HP]\n", item.ChangeHp)
+			if !item.IsWeapon {
+				fmt.Printf("   • %s x%v", item.Name, item.Quantity)
+				if item.ChangeHp < 0 {
+					fmt.Printf("  [⚔ %v HP]\n", item.ChangeHp)
+				} else if item.ChangeHp > 0 {
+					fmt.Printf("  [❤️ +%v HP]\n", item.ChangeHp)
+				} else {
+					fmt.Println()
+				}
 			} else {
-				fmt.Println()
+				fmt.Printf("   • %s x%v", item.Name, item.Quantity)
+				if item.ChangeHp < 0 {
+					fmt.Printf("  [⚔ %v DMG]\n", item.ChangeHp)
+				} else if item.ChangeHp > 0 {
+					fmt.Printf("  [❤️ +%v DMG]\n", item.ChangeHp)
+				} else {
+					fmt.Println()
+				}
 			}
+
 		}
 	}
 

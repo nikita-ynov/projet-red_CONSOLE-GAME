@@ -9,7 +9,7 @@ func CharacterTurn(weapons []*structure.Weapon) (string, structure.Weapon) {
 
 	var choice int
 	fmt.Println("\033[1;36m======= PLAYER TURN =======\033[0m")
-	fmt.Println("1. Melee ⚔")
+	fmt.Println("1. knife ⚔")
 	fmt.Println("2. Use Spell 🔥")
 	fmt.Println("3. Take Health/Mana Potion 💧")
 	for i := range weapons {
@@ -40,7 +40,7 @@ func CharacterTurn(weapons []*structure.Weapon) (string, structure.Weapon) {
 
 	switch choice {
 	case 1:
-		return "melee", selectedWeapon
+		return "knife", selectedWeapon
 	case 2:
 		return "spell", selectedWeapon
 	case 3:

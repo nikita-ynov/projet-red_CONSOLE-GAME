@@ -1,6 +1,7 @@
 package functions
 
 import (
+	"PROJETRED/data"
 	"PROJETRED/structure"
 	"PROJETRED/utils"
 	"fmt"
@@ -39,7 +40,7 @@ func characterAttack(player *structure.Character, goblin *structure.Monster) {
 	//verifie quel attaque a été choisie par le player
 	res, weapon := CharacterTurn(arr)
 	switch res {
-	case "melee":
+	case "knife":
 		utils.MonsterRemoveHp(goblin, player.Damage)
 		fmt.Printf("\033[1;32m%s attacks %s! (%d damage)\033[0m\n", player.Name, goblin.Name, player.Damage)
 		fmt.Printf("Goblin HP: %d/%d\n", goblin.CurrentHp, goblin.HpMax)
@@ -107,20 +108,31 @@ func TrainingFight(player *structure.Character) {
 
 		finalDamage := int(randomWeapon.Coef * float32(randomDamage))
 
-		fmt.Print("====== YOU WIN ======\n")
-		utils.AddExp(player, 5)
-		fmt.Printf("====== GOBLIN DROP %s ======\n", randomWeapon.Name)
-		fmt.Printf("%s damage : %d\n", randomWeapon.Name, finalDamage)
-		utils.AddObj(
-			player,
-			structure.Inventory{
-				Name:       randomWeapon.Name,
-				ChangeHp:   -finalDamage,
-				ChangeMana: 0,
-				Quantity:   1,
-				IsWeapon:   true,
-			},
-		)
+		// fmt.Print("====== GOBLIN DIED ======\n")
+		// utils.AddExp(player, 5)
+		// fmt.Printf("====== GOBLIN DROP %s ======\n", randomWeapon.Name)
+		// fmt.Printf("%s damage : %d\n", randomWeapon.Name, finalDamage)
+		fmt.Printf("%s%s====== GOBLIN DIED ======%s\n", data.Bold, data.Red, data.Reset)
+
+		// Gain d'expérience
+		fmt.Printf("%s%s+5 XP pour %s %s\n", data.Bold, data.Green, player.Name, data.Reset)
+
+		// Drop de l'arme
+		fmt.Printf("%s%s====== GOBLIN DROPPED: %s ======%s\n", data.Bold, data.Yellow, randomWeapon.Name, data.Reset)
+		fmt.Printf("%s%sDamage de l'arme : %d%s\n", data.Bold, data.Cyan, finalDamage, data.Reset)
+
+		if !utils.InventoryIsAtMaxCapacity(player) {
+			utils.AddObj(
+				player,
+				structure.Inventory{
+					Name:       randomWeapon.Name,
+					ChangeHp:   -finalDamage,
+					ChangeMana: 0,
+					Quantity:   1,
+					IsWeapon:   true,
+				},
+			)
+		}
 
 	}
 	// Succès : tuer 10 goblins sans mourir
