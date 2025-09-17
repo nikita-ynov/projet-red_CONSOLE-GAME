@@ -1,7 +1,7 @@
 package functions
 
 import (
-	"PROJETRED/structure"
+	structure "PROJETRED/structure"
 	"PROJETRED/utils"
 	"fmt"
 )
@@ -20,7 +20,7 @@ func Merchant(player *structure.Character) {
 	for exit == 1 {
 		fmt.Print("\033[H\033[2J")
 
-		// Items disponibles
+		// Items disponibles de base
 		merchantItems := []structure.MerchantItems{
 			{Name: "Life Potion", ChangeHp: 50, Quantity: 1, Price: 5},
 			{Name: "Mana Potion", ChangeMana: 50, Quantity: 1, Price: 5},
@@ -29,20 +29,25 @@ func Merchant(player *structure.Character) {
 			{Name: "Wild Boar Leather", Quantity: 1, Price: 3},
 			{Name: "Crow Feather", Quantity: 1, Price: 1},
 			{Name: "Wolf Fur", Quantity: 1, Price: 1},
+			{Name: "Fire Ball", Quantity: 1, Price: 10},
 		}
 
+		// Extension inventaire
 		if player.InventoryLimit < 30 {
 			merchantItems = append(merchantItems, structure.MerchantItems{
 				Name: "Upgrade Inventory (+10 slots)", Quantity: 1, Price: 30,
 			})
 		}
-		if checkSkill(*player, "Fire Ball") {
+
+		// Skills spéciaux : apparaissent uniquement après succès
+		if utils.PlayerHasAchievement(*player, "10Goblins") && checkSkill(*player, "Fire Ball") {
+			fmt.Println("\033[1;33m🎉 Congrats! 'Ice Spike' skill is now available!\033[0m")
 			merchantItems = append(merchantItems, structure.MerchantItems{
-				Name: "Fire Ball", ChangeHp: -20, Quantity: 1, Price: 10,
+				Name: "Ice Spike", ChangeHp: -30, Quantity: 1, Price: 15,
 			})
 		}
 
-		// Affichage du marchand
+		// Affichage marchand
 		fmt.Println("\033[1;33m====== MERCHANT ======\033[0m")
 		fmt.Printf("Your Money: \033[1;32m%d 💰\033[0m\n", player.Money)
 		fmt.Println("0. Exit")
@@ -63,7 +68,7 @@ func Merchant(player *structure.Character) {
 			}
 		}
 
-		// Choix du joueur
+		// Choix joueur
 		var choice int
 		for {
 			fmt.Print("\nEnter your choice: ")
@@ -71,7 +76,7 @@ func Merchant(player *structure.Character) {
 			if err != nil {
 				fmt.Println("Invalid input, try again.")
 				var discard string
-				fmt.Scanln(&discard) // vider buffer
+				fmt.Scanln(&discard)
 				continue
 			}
 
