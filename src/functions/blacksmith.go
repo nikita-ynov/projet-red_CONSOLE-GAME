@@ -53,21 +53,66 @@ func Forgeron(player *structure.Character) {
 			},
 		}
 
-		var choice int
-		maxChoice := len(BlacksmithItems)
-
 		fmt.Println("====== BLACK SMITH ======")
 		fmt.Println("0. Exit")
+
+		// Affichage des ressources actuelles
+		fmt.Println("\nYour current resources:")
+		fmt.Printf("- Crow Feather: %d\n", CrowFeather)
+		fmt.Printf("- Wolf Fur: %d\n", WolfFur)
+		fmt.Printf("- Wild Boar Leather: %d\n", WildBoarLeather)
+		fmt.Printf("- Skin Troll: %d\n", TrollSkin)
+		fmt.Printf("- Gold: %d\n\n", player.Money)
+
+		// Afficher les objets disponibles avec leurs coûts
 		for index, item := range BlacksmithItems {
-			fmt.Printf("%v. %s\n", index+1, item.Name)
+			fmt.Printf("%v. %s (Cost: %d gold)\n", index+1, item.Name, item.Price)
+
+			// Ressources nécessaires
+			if item.CrowFeather > 0 {
+				color := "\033[32m"
+				if CrowFeather < item.CrowFeather {
+					color = "\033[31m" // rouge si insuffisant
+				}
+				fmt.Printf("%s   - %dx Crow Feather\033[0m\n", color, item.CrowFeather)
+			}
+			if item.WolfFur > 0 {
+				color := "\033[32m"
+				if WolfFur < item.WolfFur {
+					color = "\033[31m"
+				}
+				fmt.Printf("%s   - %dx Wolf Fur\033[0m\n", color, item.WolfFur)
+			}
+			if item.WildBoarLeather > 0 {
+				color := "\033[32m"
+				if WildBoarLeather < item.WildBoarLeather {
+					color = "\033[31m"
+				}
+				fmt.Printf("%s   - %dx Wild Boar Leather\033[0m\n", color, item.WildBoarLeather)
+			}
+			if item.TrollSkin > 0 {
+				color := "\033[32m"
+				if TrollSkin < item.TrollSkin {
+					color = "\033[31m"
+				}
+				fmt.Printf("%s   - %dx Skin Troll\033[0m\n", color, item.TrollSkin)
+			}
+			color := "\033[32m"
+			if player.Money < item.Price {
+				color = "\033[31m"
+			}
+			fmt.Printf("%s   - %d gold\033[0m\n\n", color, item.Price)
 		}
 
-		for choice < 1 || choice > maxChoice {
-			fmt.Print("Enter your choice :   ")
-			fmt.Scan(&choice)
-			if choice == 0 {
-				return
-			}
+		var choice int
+		fmt.Print("Enter your choice: ")
+		fmt.Scan(&choice)
+		if choice == 0 {
+			return
+		}
+		if choice < 1 || choice > len(BlacksmithItems) {
+			fmt.Println("Invalid choice.")
+			continue
 		}
 
 		selected := BlacksmithItems[choice-1]
@@ -75,24 +120,14 @@ func Forgeron(player *structure.Character) {
 		// Vérification des ressources
 		if selected.TrollSkin > TrollSkin || selected.CrowFeather > CrowFeather ||
 			selected.WildBoarLeather > WildBoarLeather || selected.WolfFur > WolfFur {
-			fmt.Print("\033[H\033[2J")
-			fmt.Println("You don't have the resources yet")
+			fmt.Println("\033[31mYou don't have the resources yet.\033[0m")
 			utils.Exit()
 			return
 		}
 
 		// Vérification argent
 		if player.Money < selected.Price {
-			fmt.Print("\033[H\033[2J")
-			fmt.Println("You don't have enough money")
-			utils.Exit()
-			return
-		}
-
-		// Vérification capacité inventaire
-		if utils.InventoryIsAtMaxCapacity(player) {
-			fmt.Print("\033[H\033[2J")
-			fmt.Println("Your inventory is full")
+			fmt.Println("\033[31mYou don't have enough money.\033[0m")
 			utils.Exit()
 			return
 		}
@@ -102,60 +137,52 @@ func Forgeron(player *structure.Character) {
 
 		// Retirer les ressources nécessaires
 		if selected.CrowFeather > 0 {
-			itemsToRemove = append(itemsToRemove, structure.Inventory{
-				Name:     "Crow Feather",
-				ChangeHp: 0,
-				Quantity: selected.CrowFeather,
-			})
+			itemsToRemove = append(itemsToRemove, structure.Inventory{Name: "Crow Feather", Quantity: selected.CrowFeather})
 		}
 		if selected.WolfFur > 0 {
-			itemsToRemove = append(itemsToRemove, structure.Inventory{
-				Name:     "Wolf Fur",
-				ChangeHp: 0,
-				Quantity: selected.WolfFur,
-			})
+			itemsToRemove = append(itemsToRemove, structure.Inventory{Name: "Wolf Fur", Quantity: selected.WolfFur})
 		}
 		if selected.WildBoarLeather > 0 {
-			itemsToRemove = append(itemsToRemove, structure.Inventory{
-				Name:     "Wild Boar Leather",
-				ChangeHp: 0,
-				Quantity: selected.WildBoarLeather,
-			})
+			itemsToRemove = append(itemsToRemove, structure.Inventory{Name: "Wild Boar Leather", Quantity: selected.WildBoarLeather})
 		}
 		if selected.TrollSkin > 0 {
-			itemsToRemove = append(itemsToRemove, structure.Inventory{
-				Name:     "Skin Troll",
-				ChangeHp: 0,
-				Quantity: selected.TrollSkin,
-			})
+			itemsToRemove = append(itemsToRemove, structure.Inventory{Name: "Skin Troll", Quantity: selected.TrollSkin})
 		}
 
 		for _, item := range itemsToRemove {
 			utils.RemoveObj(player, item)
 		}
 
-		// Définir la protection selon le type d’équipement
+		// Protection selon type d’objet
 		protection := 0
 		switch selected.Name {
 		case "Explorer hat":
 			protection = 5
 		case "Explorer tunic":
-			protection = 10
+			protection = 15
 		case "Explorer boots":
-			protection = 5
+			protection = 10
 		}
 
-		// Ajouter l’équipement dans l’inventaire avec Protection
+		// Ajouter équipement
 		utils.AddObj(player, structure.Inventory{
 			Name:       selected.Name,
 			Quantity:   1,
-			ChangeHp:   0,
 			Protection: protection,
 		})
 
-		fmt.Print("\033[H\033[2J")
-		fmt.Printf("====== YOU BOUGHT : %s! ======\n", selected.Name)
-		fmt.Print("0. Exit\n1. Buy more\nEnter your choice :   ")
+		// Message d’achat en jaune
+		fmt.Printf("\n\033[33m====== YOU BOUGHT: %s! ======\033[0m\n", selected.Name)
+
+		// Afficher ressources restantes
+		fmt.Println("\nResources left:")
+		fmt.Printf("- Crow Feather: %d\n", CrowFeather-selected.CrowFeather)
+		fmt.Printf("- Wolf Fur: %d\n", WolfFur-selected.WolfFur)
+		fmt.Printf("- Wild Boar Leather: %d\n", WildBoarLeather-selected.WildBoarLeather)
+		fmt.Printf("- Skin Troll: %d\n", TrollSkin-selected.TrollSkin)
+		fmt.Printf("- Gold: %d\n", player.Money)
+
+		fmt.Print("\n0. Exit\n1. Buy more\nEnter your choice: ")
 		fmt.Scan(&exit)
 	}
 }

@@ -45,7 +45,7 @@ func characterAttack(player *structure.Character, goblin *structure.Monster) {
 }
 
 func TrainingFight(player *structure.Character) {
-	fmt.Print("\033[H\033[2J")
+	//fmt.Print("\033[H\033[2J")
 	goblin := InitGoblin("Training Goblin", 100, 100, -5)
 	fmt.Println("\033[1;32m====== START TRAINING ======\033[0m")
 

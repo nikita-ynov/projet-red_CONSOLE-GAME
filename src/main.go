@@ -2,6 +2,7 @@ package main
 
 import (
 	functions "PROJETRED/functions"
+	image "PROJETRED/image"
 	"fmt"
 )
 
@@ -24,6 +25,9 @@ func main() {
 		case 3:
 			functions.Merchant(&player)
 		case 4:
+			fmt.Print("\033[H\033[2J")
+			image.GoblinImage()
+			fmt.Println("")
 			functions.TrainingFight(&player)
 		case 5:
 			functions.Forgeron(&player)

@@ -10,6 +10,9 @@ func RemoveEquipmentPlayer(player *structure.Character, slot string) {
 	switch slot {
 	case "helmet":
 		if player.Equipment.Helmet.Name != "" {
+			// Retirer la protection des HP max
+			player.HpMax -= player.Equipment.Helmet.Protection
+
 			player.Inventory = append(player.Inventory, structure.Inventory{
 				Name:       player.Equipment.Helmet.Name,
 				Protection: player.Equipment.Helmet.Protection,
@@ -19,6 +22,8 @@ func RemoveEquipmentPlayer(player *structure.Character, slot string) {
 		}
 	case "breastplate":
 		if player.Equipment.Breastplate.Name != "" {
+			player.HpMax -= player.Equipment.Breastplate.Protection
+
 			player.Inventory = append(player.Inventory, structure.Inventory{
 				Name:       player.Equipment.Breastplate.Name,
 				Protection: player.Equipment.Breastplate.Protection,
@@ -28,6 +33,8 @@ func RemoveEquipmentPlayer(player *structure.Character, slot string) {
 		}
 	case "legwarmer":
 		if player.Equipment.Legwarmer.Name != "" {
+			player.HpMax -= player.Equipment.Legwarmer.Protection
+
 			player.Inventory = append(player.Inventory, structure.Inventory{
 				Name:       player.Equipment.Legwarmer.Name,
 				Protection: player.Equipment.Legwarmer.Protection,
@@ -45,10 +52,9 @@ func SwitchEquipmentPlayer(item structure.Inventory, player *structure.Character
 
 	switch item.Name {
 	case "Explorer hat":
-		// Sauvegarde de l’ancien équipement
 		oldName = player.Equipment.Helmet.Name
 		oldProtection = player.Equipment.Helmet.Protection
-		// Équiper le nouvel objet
+
 		player.Equipment.Helmet = structure.Helmet{
 			Name:       item.Name,
 			Protection: item.Protection,
@@ -56,6 +62,7 @@ func SwitchEquipmentPlayer(item structure.Inventory, player *structure.Character
 	case "Explorer tunic":
 		oldName = player.Equipment.Breastplate.Name
 		oldProtection = player.Equipment.Breastplate.Protection
+
 		player.Equipment.Breastplate = structure.Breastplate{
 			Name:       item.Name,
 			Protection: item.Protection,
@@ -63,6 +70,7 @@ func SwitchEquipmentPlayer(item structure.Inventory, player *structure.Character
 	case "Explorer boots":
 		oldName = player.Equipment.Legwarmer.Name
 		oldProtection = player.Equipment.Legwarmer.Protection
+
 		player.Equipment.Legwarmer = structure.Legwarmer{
 			Name:       item.Name,
 			Protection: item.Protection,
@@ -71,6 +79,10 @@ func SwitchEquipmentPlayer(item structure.Inventory, player *structure.Character
 		fmt.Println("Unknown equipment type.")
 		return
 	}
+
+	// Mise à jour des HP max
+	player.HpMax -= oldProtection   // retirer l’ancien bonus
+	player.HpMax += item.Protection // ajouter le nouveau
 
 	// Remettre l’ancien équipement dans l’inventaire si ce n’est pas vide
 	if oldName != "" {
