@@ -24,6 +24,7 @@ Tout se joue directement dans le terminal avec des choix numériques.
 ---
 
 ## 🗂 Structure du projet
+   ```bash
 PROJETRED/
 │── main.go # Point d’entrée du jeu
 │
