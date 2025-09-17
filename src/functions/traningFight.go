@@ -116,8 +116,6 @@ func TrainingFight(player *structure.Character) {
 		utils.AddCoin(player)
 		fmt.Println(" + 10 coins")
 
-		// fmt.Printf("====== GOBLIN DROP %s ======\n", randomWeapon.Name)
-		// fmt.Printf("%s damage : %d\n", randomWeapon.Name, finalDamage)
 		fmt.Printf("%s%s====== GOBLIN DIED ======%s\n", data.Bold, data.Red, data.Reset)
 
 		// Gain d'expérience
@@ -125,7 +123,7 @@ func TrainingFight(player *structure.Character) {
 
 		// Drop de l'arme
 		fmt.Printf("%s%s====== GOBLIN DROPPED: %s ======%s\n", data.Bold, data.Yellow, randomWeapon.Name, data.Reset)
-		fmt.Printf("%s%sDamage de l'arme : %d%s\n", data.Bold, data.Cyan, finalDamage, data.Reset)
+		fmt.Printf("%s%s %s Damage : %d%s\n", data.Bold, data.Cyan, randomWeapon.Name, finalDamage, data.Reset)
 
 		if !utils.InventoryIsAtMaxCapacity(player) {
 			utils.AddObj(
