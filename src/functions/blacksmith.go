@@ -117,7 +117,7 @@ func Forgeron(player *structure.Character) {
 		}
 		if selected.WildBoarLeather > 0 {
 			itemsToRemove = append(itemsToRemove, structure.Inventory{
-				Name:     "Wild boar Leather",
+				Name:     "Wild Boar Leather",
 				ChangeHp: 0,
 				Quantity: selected.WildBoarLeather,
 			})
