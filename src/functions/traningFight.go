@@ -22,7 +22,7 @@ func goblinAttack(i int, goblin structure.Monster, player *structure.Character) 
 }
 
 func characterAttack(player *structure.Character, goblin *structure.Monster) {
-
+	//stock la liste des armes de l'inventaire
 	arr := []*structure.Weapon{}
 
 	//récupere la liste des armes dans l'inventaire
@@ -36,7 +36,7 @@ func characterAttack(player *structure.Character, goblin *structure.Monster) {
 			arr = append(arr, &toAdd)
 		}
 	}
-
+	//verifie quel attaque a été choisie par le player
 	res, weapon := CharacterTurn(arr)
 	switch res {
 	case "attack":
@@ -58,7 +58,6 @@ func characterAttack(player *structure.Character, goblin *structure.Monster) {
 	case "health potion":
 		Takepot(player)
 	case "weapon":
-		fmt.Println("weapon")
 		utils.MonsterRemoveHp(goblin, weapon.Damage)
 		fmt.Printf("\033[1;32m%s attack %s using %s (%d damage)\033[0m\n", player.Name, goblin.Name, weapon.Name, weapon.Damage)
 		fmt.Printf("Goblin HP: %d/%d\n", goblin.CurrentHp, goblin.HpMax)
