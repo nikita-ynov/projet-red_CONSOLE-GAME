@@ -48,15 +48,6 @@ func DisplayInfo(player *structure.Character) {
 			}
 		}
 	}
-	var choice string
-	fmt.Println("-----------------------")
-	fmt.Println("1 - Open equipment menu")
-	fmt.Println("other key - exit")
-	fmt.Print("enter your choice : ")
-	fmt.Scan(&choice)
-	if choice == "1" {
-		DisplayEquipment(player)
-	}
 
 	fmt.Println("\n===============================")
 	utils.Exit()

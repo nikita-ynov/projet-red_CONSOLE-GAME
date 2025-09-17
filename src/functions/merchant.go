@@ -40,7 +40,7 @@ func Merchant(player *structure.Character) {
 		}
 
 		// Skills spéciaux : apparaissent uniquement après succès
-		if utils.PlayerHasAchievement(*player, "10Goblins") && checkSkill(*player, "Fire Ball") {
+		if utils.PlayerHasAchievement(*player, "Full Armor") && checkSkill(*player, "Full Armor") {
 			fmt.Println("\033[1;33m🎉 Congrats! 'Ice Spike' skill is now available!\033[0m")
 			merchantItems = append(merchantItems, structure.MerchantItems{
 				Name: "Ice Spike", ChangeHp: -30, Quantity: 1, Price: 15,
@@ -108,6 +108,9 @@ func Merchant(player *structure.Character) {
 
 		// Achat
 		utils.RemoveMoney(player, selected.Price)
+		if player.Money == 1 {
+			UnlockAchievement(player, "Poverty", "End up with only 1 lonely coin in your purse")
+		}
 		switch selected.Name {
 		case "Upgrade Inventory (+10 slots)":
 			utils.UpgradeInvenorySlot(player, 10)

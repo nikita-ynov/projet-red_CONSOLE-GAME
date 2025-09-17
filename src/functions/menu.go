@@ -23,7 +23,7 @@ func Menu(player *structure.Character) int {
 		fmt.Print("\nEnter your choice: ")
 		_, err := fmt.Scan(&choice)
 		if err != nil {
-			fmt.Println("\033[1;33mInvalid input! Please enter a number.\033[0m")
+			fmt.Println("\033[1;31mInvalid input! Please enter a number.\033[0m")
 			var discard string
 			fmt.Scanln(&discard) // clear input buffer
 			continue
@@ -31,7 +31,7 @@ func Menu(player *structure.Character) int {
 		if choice >= 1 && choice <= 7 {
 			break
 		}
-		fmt.Println("\033[1;33mInvalid choice! Please choose a valid option.\033[0m")
+		fmt.Println("\033[1;31mInvalid choice! Please choose a valid option.\033[0m")
 	}
 
 	return choice

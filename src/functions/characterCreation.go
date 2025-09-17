@@ -61,7 +61,7 @@ func CharacterCreation() structure.Character {
 
 	fmt.Printf("\n\033[1;32mWelcome %s the %s! Your starting HP is %d/%d.\033[0m\n", name, class, spawnHp, maxHp)
 
-	mainCharacter := InitCharacter(name, class, maxHp, spawnHp, 100)
+	mainCharacter := InitCharacter(name, class, maxHp, spawnHp, 2)
 
 	return mainCharacter
 }

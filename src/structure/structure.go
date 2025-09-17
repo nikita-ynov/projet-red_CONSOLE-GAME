@@ -40,6 +40,12 @@ type Character struct {
 	GoblinsKilledWithoutDying int
 }
 
+type Weapon struct {
+	Name        string
+	Damage      int
+	LvlRequired int
+}
+
 type MerchantItems struct {
 	Name       string
 	ChangeHp   int
