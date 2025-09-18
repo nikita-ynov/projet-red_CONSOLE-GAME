@@ -30,7 +30,7 @@ func Forgeron(player *structure.Character) {
 			}
 		}
 
-		itemsToRemove := []structure.Inventory{}
+		itemsToRemove := []structure.Item{}
 
 		BlacksmithItems := []structure.BlacksmithItems{
 			{
@@ -137,16 +137,16 @@ func Forgeron(player *structure.Character) {
 
 		// Retirer les ressources nécessaires
 		if selected.CrowFeather > 0 {
-			itemsToRemove = append(itemsToRemove, structure.Inventory{Name: "Crow Feather", Quantity: selected.CrowFeather})
+			itemsToRemove = append(itemsToRemove, structure.Item{Name: "Crow Feather", Quantity: selected.CrowFeather})
 		}
 		if selected.WolfFur > 0 {
-			itemsToRemove = append(itemsToRemove, structure.Inventory{Name: "Wolf Fur", Quantity: selected.WolfFur})
+			itemsToRemove = append(itemsToRemove, structure.Item{Name: "Wolf Fur", Quantity: selected.WolfFur})
 		}
 		if selected.WildBoarLeather > 0 {
-			itemsToRemove = append(itemsToRemove, structure.Inventory{Name: "Wild Boar Leather", Quantity: selected.WildBoarLeather})
+			itemsToRemove = append(itemsToRemove, structure.Item{Name: "Wild Boar Leather", Quantity: selected.WildBoarLeather})
 		}
 		if selected.TrollSkin > 0 {
-			itemsToRemove = append(itemsToRemove, structure.Inventory{Name: "Skin Troll", Quantity: selected.TrollSkin})
+			itemsToRemove = append(itemsToRemove, structure.Item{Name: "Skin Troll", Quantity: selected.TrollSkin})
 		}
 
 		for _, item := range itemsToRemove {
@@ -165,7 +165,7 @@ func Forgeron(player *structure.Character) {
 		}
 
 		// Ajouter équipement
-		utils.AddObj(player, structure.Inventory{
+		utils.AddObj(player, structure.Item{
 			Name:       selected.Name,
 			Quantity:   1,
 			Protection: protection,

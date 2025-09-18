@@ -4,7 +4,7 @@ import (
 	"PROJETRED/structure"
 )
 
-func AddObj(player *structure.Character, item structure.Inventory) {
+func AddObj(player *structure.Character, item structure.Item) {
 	for i, element := range player.Inventory {
 		if element.Name == item.Name && element.ChangeHp == item.ChangeHp {
 			player.Inventory[i].Quantity += item.Quantity
