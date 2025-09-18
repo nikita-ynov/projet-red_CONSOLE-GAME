@@ -31,18 +31,17 @@ func Merchant(player *structure.Character) {
 			{Name: "Wild Boar Leather", Quantity: 1, Price: 3},
 			{Name: "Crow Feather", Quantity: 1, Price: 1},
 			{Name: "Wolf Fur", Quantity: 1, Price: 1},
-			{Name: "Fire Ball", ChangeHp: -20, Quantity: 1, Price: 10},
+			{Name: "Fire Ball", ChangeHp: -20, Quantity: 1, Price: 10, IsSpell: true},
 		}
 
 		merchantItems := []structure.MerchantItems{}
 
 		// Filtrer les compétences déjà connues
+
 		for _, item := range baseItems {
-			isSkill := item.Name == "Fire Ball"
-			if isSkill && !checkSkill(player, item.Name) {
-				continue // le joueur connaît déjà ce sort
+			if !utils.IsitemInInventory(player.Skills, item) {
+				merchantItems = append(merchantItems, item)
 			}
-			merchantItems = append(merchantItems, item)
 		}
 
 		// Extension inventaire

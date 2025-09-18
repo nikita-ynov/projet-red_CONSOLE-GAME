@@ -10,21 +10,21 @@ func InitCharacter(name string, class string, maxHp, spawnHp, money int) structu
 	punch := []structure.Skills{{Name: "Punch", Damage: -15}}
 
 	player := structure.Character{
-		Name:                    name,
-		Class:                   class,
-		Lvl:                     1,
-		HpMax:                   maxHp,
-		CurrentHp:               spawnHp,
-		ManaMax:                 100,
-		CurrentMana:             100,
-		Money:                   money,
-		Damage:                  -100,
-		Initiative:              10,
-		InventoryLimit:          10,
-		Inventory:               objects,
-		Skills:                  punch,
-		Equipment:               equipements,
-		AchievementsMenuVisible: false, // menu caché au départ
+		Name:           name,
+		Class:          class,
+		Lvl:            1,
+		HpMax:          maxHp,
+		CurrentHp:      spawnHp,
+		ManaMax:        100,
+		CurrentMana:    100,
+		Money:          money,
+		Damage:         -100,
+		Initiative:     10,
+		InventoryLimit: 10,
+		Inventory:      objects,
+		Skills:         punch,
+		Equipment:      equipements,
+		AchievMenuVis:  false, // menu caché au départ
 		Achievements: []structure.Achievement{
 			{Name: "ez 10 Goblins!", Description: "Slay 10 goblins in a row without dying", Unlocked: false},
 			{Name: "Confirmed Hero", Description: "Reach level 10", Unlocked: false},

@@ -13,6 +13,7 @@ type Item struct {
 	Protection int
 	Quantity   int
 	IsWeapon   bool
+	IsSpell    bool
 }
 
 type Skills struct {
@@ -21,25 +22,25 @@ type Skills struct {
 }
 
 type Character struct {
-	Name                      string
-	Class                     string
-	Lvl                       int
-	Exp                       int
-	HpMax                     int
-	CurrentHp                 int
-	ManaMax                   int
-	CurrentMana               int
-	Money                     int
-	Damage                    int
-	Initiative                int
-	InventoryLimit            int
-	Inventory                 []Item
-	Skills                    []Skills
-	Equipment                 Equipment // maintenant c’est bien défini
-	Achievements              []Achievement
-	AchievementsMenuVisible   bool
-	GoblinsKilledWithoutDying int
-	Deaths                    int
+	Name           string
+	Class          string
+	Lvl            int
+	Exp            int
+	HpMax          int
+	CurrentHp      int
+	ManaMax        int
+	CurrentMana    int
+	Money          int
+	Damage         int
+	Initiative     int
+	InventoryLimit int
+	Inventory      []Item
+	Skills         []Skills
+	Equipment      Equipment // maintenant c’est bien défini
+	Achievements   []Achievement
+	AchievMenuVis  bool
+	Gobkillinaraw  int
+	Deaths         int
 }
 
 type Weapon struct {

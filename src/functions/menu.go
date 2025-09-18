@@ -15,7 +15,7 @@ func Menu(player *structure.Character) int {
 	fmt.Println("4 - Training Battle")
 	fmt.Println("5 - Blacksmith")
 	fmt.Println("6 - Exit")
-	if player.AchievementsMenuVisible {
+	if player.AchievMenuVis {
 		fmt.Println("7 - Achievements")
 	}
 	var choice int
