@@ -36,8 +36,7 @@ func OpenInventory(player *structure.Character) {
 
 	if len(player.Inventory) == 0 {
 		fmt.Println("Your inventory is empty.")
-		fmt.Println("Press Enter to return...")
-		fmt.Scanln()
+
 		return
 	}
 
@@ -62,6 +61,7 @@ func OpenInventory(player *structure.Character) {
 	var choice int
 	fmt.Scan(&choice)
 	if choice <= 0 || choice > len(player.Inventory) {
+
 		return
 	}
 
@@ -74,7 +74,5 @@ func OpenInventory(player *structure.Character) {
 		player.Inventory = append(player.Inventory[:choice-1], player.Inventory[choice-1+1:]...)
 		fmt.Printf("Removed %s from inventory.\n", selected.Name)
 	}
-	fmt.Scanln()
-	fmt.Println("Press Enter to return...")
-	fmt.Scanln()
+
 }

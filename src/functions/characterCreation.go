@@ -7,7 +7,7 @@ import (
 )
 
 func CharacterCreation() structure.Character {
-	chooseClass := []string{"Human", "Elf", "Dwarf"}
+	chooseClass := []string{"Human", "Elf", "Dwarf", "Hobbit", "Orcs"}
 
 	var name string
 	var choice int
@@ -55,9 +55,15 @@ func CharacterCreation() structure.Character {
 	case 3:
 		class = chooseClass[2]
 		maxHp = 120
+	case 4:
+		class = chooseClass[3]
+		maxHp = 50
+	case 5:
+		class = chooseClass[4]
+		maxHp = 150
 	}
 
-	spawnHp = maxHp / 10 //2 <<<<<<<<<<<<<<<
+	spawnHp = maxHp / 2
 
 	fmt.Printf("\n\033[1;32mWelcome %s the %s! Your starting HP is %d/%d.\033[0m\n", name, class, spawnHp, maxHp)
 

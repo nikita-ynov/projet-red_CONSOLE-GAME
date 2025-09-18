@@ -64,9 +64,10 @@ func DisplayInfo(player *structure.Character) {
 	fmt.Println("\n===============================")
 
 	// Option pour ouvrir le menu équipement
-	fmt.Println("1 - Open equipment menu")
-	fmt.Println("2 - Open inventory menu")
-	fmt.Println("Other key - Exit")
+	fmt.Println("0 - Exit")
+	fmt.Println("1 - Open equipment ")
+	fmt.Println("2 - Open inventory ")
+
 	var choice int
 	fmt.Print("Enter your choice : ")
 	_, err := fmt.Scan(&choice)
@@ -75,6 +76,8 @@ func DisplayInfo(player *structure.Character) {
 	} else if err == nil && choice == 2 {
 
 		utils.OpenInventory(player)
+	} else if err == nil && choice == 0 {
+		return
 	}
 
 	utils.Exit()

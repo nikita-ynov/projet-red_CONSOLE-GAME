@@ -18,9 +18,8 @@ func checkSkill(player *structure.Character, name string) bool {
 
 func Merchant(player *structure.Character) {
 	exit := 1
-
+	fmt.Println("")
 	for exit == 1 {
-		fmt.Print("\033[H\033[2J")
 
 		// Items de base
 		baseItems := []structure.MerchantItems{
