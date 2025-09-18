@@ -39,6 +39,7 @@ type Character struct {
 	Achievements              []Achievement
 	AchievementsMenuVisible   bool
 	GoblinsKilledWithoutDying int
+	Deathinarow               int
 }
 
 type Weapon struct {

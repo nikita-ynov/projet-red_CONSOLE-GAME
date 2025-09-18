@@ -98,10 +98,13 @@ func TrainingFight(player *structure.Character) {
 
 	// Résultat
 	if player.CurrentHp <= 0 {
+		player.Deathinarow += 1
 		utils.IsWasted(player)
-
+		if player.Deathinarow == 3 {
+			UnlockAchievement(player, "The Noob Player", "Die 3 times in a row")
+		}
 	} else if goblin.CurrentHp <= 0 {
-
+		player.Deathinarow = 0
 		randomDamage := rand.Intn(50)
 
 		var randomWeapon = GetRandomWeapon()

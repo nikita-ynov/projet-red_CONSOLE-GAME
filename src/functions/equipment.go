@@ -149,4 +149,8 @@ func EquipPlayer(player *structure.Character) {
 			break
 		}
 	}
+	if player.Equipment.Helmet.Name == "Explorer hat" && player.Equipment.Breastplate.Name == "Explorer tunic" && player.Equipment.Legwarmer.Name == "Explorer boots" {
+		UnlockAchievement(player, "Full Armor", "Equip a complete armor set")
+	} // tester si les trois equipments sont equiper en simultaner
+	// si oui, alors UnlockAchievement Full Armor
 }

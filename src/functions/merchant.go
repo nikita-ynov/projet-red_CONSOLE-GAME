@@ -142,6 +142,12 @@ func Merchant(player *structure.Character) {
 			utils.UpgradeInvenorySlot(player, 10)
 		case "Fire Ball":
 			utils.AddSkill(player, structure.Skills{Name: selected.Name, Damage: selected.ChangeHp})
+		case "Ice Spike":
+			utils.AddSkill(player, structure.Skills{Name: selected.Name, Damage: selected.ChangeHp})
+		case "Thunder Strike":
+			utils.AddSkill(player, structure.Skills{Name: selected.Name, Damage: selected.ChangeHp})
+		case "Earth Smash":
+			utils.AddSkill(player, structure.Skills{Name: selected.Name, Damage: selected.ChangeHp})
 		default:
 			utils.AddObj(player, structure.Inventory{
 				Name:       selected.Name,
