@@ -54,6 +54,7 @@ type MerchantItems struct {
 	Quantity   int
 	UniqueObj  int
 	Price      int
+	IsSpell    bool
 }
 
 type Monster struct {

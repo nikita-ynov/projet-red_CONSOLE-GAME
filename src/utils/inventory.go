@@ -17,3 +17,14 @@ func UpgradeInvenorySlot(player *structure.Character, n int) {
 		player.InventoryLimit += n
 	}
 }
+
+func IsitemInInventory(inventory []structure.Skills, item structure.MerchantItems) bool {
+
+	for _, itemToCheck := range inventory {
+		if itemToCheck.Name == item.Name && item.IsSpell {
+			return true
+		}
+	}
+
+	return false
+}

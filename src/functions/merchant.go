@@ -21,7 +21,7 @@ func Merchant(player *structure.Character) {
 		fmt.Print("\033[H\033[2J")
 
 		// Items disponibles de base
-		merchantItems := []structure.MerchantItems{
+		newArr := []structure.MerchantItems{
 			{Name: "Life Potion", ChangeHp: 50, Quantity: 1, Price: 5},
 			{Name: "Mana Potion", ChangeMana: 50, Quantity: 1, Price: 5},
 			{Name: "Snus", Quantity: 1, Price: 1},
@@ -29,7 +29,17 @@ func Merchant(player *structure.Character) {
 			{Name: "Wild Boar Leather", Quantity: 1, Price: 3},
 			{Name: "Crow Feather", Quantity: 1, Price: 1},
 			{Name: "Wolf Fur", Quantity: 1, Price: 1},
-			{Name: "Fire Ball", Quantity: 1, Price: 10},
+			{Name: "Fire Ball", Quantity: 1, Price: 10, IsSpell: true},
+		}
+
+		merchantItems := []structure.MerchantItems{}
+		//Check si l'item est un sort et si il est deja dans la lsite de sort
+		for _, item := range newArr {
+			if utils.IsitemInInventory(player.Skills, item) {
+				continue
+			}
+			merchantItems = append(merchantItems, item)
+
 		}
 
 		// Extension inventaire
