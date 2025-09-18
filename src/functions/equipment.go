@@ -149,4 +149,7 @@ func EquipPlayer(player *structure.Character) {
 			break
 		}
 	}
+	if player.Equipment.Breastplate.Name == "Explorer tunic" && player.Equipment.Helmet.Name == "Explorer hat" && player.Equipment.Legwarmer.Name == "Explorer boots" {
+		UnlockAchievement(player, "Full Armor", "Equip a complete armor set")
+	}
 }

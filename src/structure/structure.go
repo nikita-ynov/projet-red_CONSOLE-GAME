@@ -39,6 +39,7 @@ type Character struct {
 	Achievements              []Achievement
 	AchievementsMenuVisible   bool
 	GoblinsKilledWithoutDying int
+	Deaths                    int
 }
 
 type Weapon struct {
@@ -54,6 +55,7 @@ type MerchantItems struct {
 	Quantity   int
 	UniqueObj  int
 	Price      int
+	IsSpell    bool
 }
 
 type Monster struct {

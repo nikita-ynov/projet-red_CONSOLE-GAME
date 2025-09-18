@@ -57,7 +57,7 @@ func CharacterCreation() structure.Character {
 		maxHp = 120
 	}
 
-	spawnHp = maxHp / 2
+	spawnHp = maxHp / 10 //2 <<<<<<<<<<<<<<<
 
 	fmt.Printf("\n\033[1;32mWelcome %s the %s! Your starting HP is %d/%d.\033[0m\n", name, class, spawnHp, maxHp)
 

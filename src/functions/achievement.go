@@ -17,6 +17,7 @@ func UnlockAchievement(player *structure.Character, name string, description str
 				player.Achievements[i].Unlocked = true
 				fmt.Printf("\033[1;33mAchievement unlocked: %s! - %s\033[0m\n", name, description)
 				firstUnlock = true
+
 			}
 			break
 		}
@@ -37,4 +38,5 @@ func UnlockAchievement(player *structure.Character, name string, description str
 	if firstUnlock {
 		player.AchievementsMenuVisible = true
 	}
+
 }

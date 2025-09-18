@@ -100,24 +100,26 @@ func TrainingFight(player *structure.Character) {
 	// Résultat
 	if player.CurrentHp <= 0 {
 		utils.IsWasted(player)
+		player.GoblinsKilledWithoutDying = 0
+		if player.Deaths >= 3 {
+			UnlockAchievement(player, "The Noob Player", "Die 3 times in a row")
+		}
 
 	} else if goblin.CurrentHp <= 0 {
-
+		player.Deaths = 0
 		randomDamage := rand.Intn(50)
 
 		var randomWeapon = GetRandomWeapon()
 
 		finalDamage := int(randomWeapon.Coef * float32(randomDamage))
 
-		fmt.Println(" + 5xp")
-		utils.AddCoin(player)
-		fmt.Println(" + 10 coins")
-
 		fmt.Printf("%s%s====== GOBLIN DIED ======%s\n", data.Bold, data.Red, data.Reset)
+		utils.AddExp(player, 5)
+		utils.AddCoin(player)
 
 		// Gain d'expérience
-		fmt.Printf("%s%s+5 XP pour %s %s\n", data.Bold, data.Green, player.Name, data.Reset)
-
+		fmt.Printf("%s%s+5 XP   %s\n", data.Bold, data.Green, data.Reset)
+		fmt.Printf("%s%s+10 COINS   %s\n", data.Bold, data.Green, data.Reset)
 		// Drop de l'arme
 		fmt.Printf("%s%s====== GOBLIN DROPPED: %s ======%s\n", data.Bold, data.Yellow, randomWeapon.Name, data.Reset)
 		fmt.Printf("%s%s %s Damage : %d%s\n", data.Bold, data.Cyan, randomWeapon.Name, finalDamage, data.Reset)

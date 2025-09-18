@@ -1,7 +1,7 @@
 package functions
 
 import (
-	structure "PROJETRED/structure"
+	"PROJETRED/structure"
 	"PROJETRED/utils"
 	"fmt"
 )
@@ -9,47 +9,53 @@ import (
 func Takepot(player *structure.Character) {
 	var choice int
 
-	// Clear console and header
 	fmt.Print("\033[H\033[2J")
 	fmt.Println("\033[1;36m====== USE POTION ======\033[0m")
 
 	// Filter usable potions
-	potions := []structure.Inventory{}
-	for _, item := range player.Inventory {
+	usableIndexes := []int{}
+	for i, item := range player.Inventory {
 		if item.ChangeHp > 0 || item.ChangeMana > 0 {
-			potions = append(potions, item)
+			usableIndexes = append(usableIndexes, i)
 		}
 	}
 
-	// No potions available
-	if len(potions) == 0 {
+	if len(usableIndexes) == 0 {
 		fmt.Println("\033[1;33mYou don't have any potions to use!\033[0m")
 		utils.Exit()
 		return
 	}
 
-	// Display potions menu
+	// Display menu
 	fmt.Println("\nChoose a potion to use:")
 	fmt.Println("0. Exit")
-	for i, potion := range potions {
-		if potion.ChangeHp > 0 {
-			fmt.Printf("%d. %s [❤️ +%d HP]\n", i+1, potion.Name, potion.ChangeHp)
-		} else if potion.ChangeMana > 0 {
-			fmt.Printf("%d. %s [💧 +%d Mana]\n", i+1, potion.Name, potion.ChangeMana)
+	for idx, invIndex := range usableIndexes {
+		item := player.Inventory[invIndex]
+		if item.ChangeHp > 0 {
+			fmt.Printf("%d. %s [❤️ +%d HP]\n", idx+1, item.Name, item.ChangeHp)
+		} else if item.ChangeMana > 0 {
+			fmt.Printf("%d. %s [💧 +%d Mana]\n", idx+1, item.Name, item.ChangeMana)
 		}
 	}
-	// Player choice loop
-	for choice < 1 || choice > len(potions) {
+
+	// Player choice
+	for {
 		fmt.Print("\nEnter your choice: ")
 		fmt.Scan(&choice)
 		if choice == 0 {
 			return
 		}
+		if choice >= 1 && choice <= len(usableIndexes) {
+			break
+		}
+		fmt.Println("Invalid choice, try again.")
 	}
 
-	selected := potions[choice-1]
+	// Get the actual index in player.Inventory
+	selectedIndex := usableIndexes[choice-1]
+	selected := player.Inventory[selectedIndex]
 
-	// Apply potion effect
+	// Apply effect
 	if selected.ChangeHp > 0 {
 		utils.AddHp(player, selected.ChangeHp)
 		fmt.Printf("\033[1;32mYou used %s and recovered %d HP!\033[0m\n", selected.Name, selected.ChangeHp)
@@ -60,8 +66,12 @@ func Takepot(player *structure.Character) {
 		fmt.Printf("Current Mana: %d/%d\n", player.CurrentMana, player.ManaMax)
 	}
 
-	// Remove potion from inventory
-	utils.RemoveObj(player, selected)
+	// Remove only 1 quantity
+	if player.Inventory[selectedIndex].Quantity > 1 {
+		player.Inventory[selectedIndex].Quantity--
+	} else {
+		player.Inventory = append(player.Inventory[:selectedIndex], player.Inventory[selectedIndex+1:]...)
+	}
 
 	utils.Exit()
 }
