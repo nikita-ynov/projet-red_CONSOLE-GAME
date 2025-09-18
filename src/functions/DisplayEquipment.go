@@ -2,6 +2,7 @@ package functions
 
 import (
 	"PROJETRED/structure"
+	"PROJETRED/utils"
 	"fmt"
 )
 
@@ -46,15 +47,24 @@ func DisplayEquipment(player *structure.Character) {
 	}
 
 	fmt.Printf("You have %d items equipable\n", numItemEquipable)
+	var choice int
 	if numItemEquipable > 0 {
-		var choice string
 		fmt.Println("Do you want to equip one ?")
 		fmt.Println("1 - YES")
 		fmt.Println("0 - NO")
 		fmt.Scan(&choice)
 
-		if choice == "1" {
-			EquipPlayer(player) // à implémenter
+		if choice == 1 {
+			EquipPlayer(player) // Appelle ton menu d’équipement
 		}
+
+	} else {
+
+		for choice != 0 {
+			fmt.Println("0 - Back to Player Stats :")
+			fmt.Scan(&choice)
+		}
+		return
 	}
+	utils.Exit()
 }

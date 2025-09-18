@@ -155,7 +155,7 @@ func Merchant(player *structure.Character) {
 			utils.AddSkill(player, structure.Skills{Name: selected.Name, Damage: selected.ChangeHp})
 			fmt.Printf("\033[1;32mSkill '%s' learned! ✅\033[0m\n", selected.Name)
 		default:
-			utils.AddObj(player, structure.Inventory{
+			utils.AddObj(player, structure.Item{
 				Name:       selected.Name,
 				ChangeHp:   selected.ChangeHp,
 				ChangeMana: selected.ChangeMana,

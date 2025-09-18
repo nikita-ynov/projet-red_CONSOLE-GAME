@@ -6,7 +6,7 @@ type Achievement struct {
 	Unlocked    bool
 }
 
-type Inventory struct {
+type Item struct {
 	Name       string
 	ChangeHp   int
 	ChangeMana int
@@ -33,7 +33,7 @@ type Character struct {
 	Damage                    int
 	Initiative                int
 	InventoryLimit            int
-	Inventory                 []Inventory
+	Inventory                 []Item
 	Skills                    []Skills
 	Equipment                 Equipment // maintenant c’est bien défini
 	Achievements              []Achievement

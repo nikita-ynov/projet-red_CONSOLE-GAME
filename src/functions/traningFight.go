@@ -127,7 +127,7 @@ func TrainingFight(player *structure.Character) {
 		if !utils.InventoryIsAtMaxCapacity(player) {
 			utils.AddObj(
 				player,
-				structure.Inventory{
+				structure.Item{
 					Name:       randomWeapon.Name,
 					ChangeHp:   -finalDamage,
 					ChangeMana: 0,

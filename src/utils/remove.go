@@ -4,8 +4,8 @@ import (
 	"PROJETRED/structure"
 )
 
-func RemoveObj(player *structure.Character, item structure.Inventory) {
-	arr := []structure.Inventory{}
+func RemoveObj(player *structure.Character, item structure.Item) {
+	arr := []structure.Item{}
 	for _, element := range player.Inventory {
 		if element.Name == item.Name { // comparaison sur le nom uniquement
 			// réduire la quantité

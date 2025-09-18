@@ -13,7 +13,7 @@ func RemoveEquipmentPlayer(player *structure.Character, slot string) {
 			// Retirer la protection des HP max
 			player.HpMax -= player.Equipment.Helmet.Protection
 
-			player.Inventory = append(player.Inventory, structure.Inventory{
+			player.Inventory = append(player.Inventory, structure.Item{
 				Name:       player.Equipment.Helmet.Name,
 				Protection: player.Equipment.Helmet.Protection,
 				Quantity:   1,
@@ -24,7 +24,7 @@ func RemoveEquipmentPlayer(player *structure.Character, slot string) {
 		if player.Equipment.Breastplate.Name != "" {
 			player.HpMax -= player.Equipment.Breastplate.Protection
 
-			player.Inventory = append(player.Inventory, structure.Inventory{
+			player.Inventory = append(player.Inventory, structure.Item{
 				Name:       player.Equipment.Breastplate.Name,
 				Protection: player.Equipment.Breastplate.Protection,
 				Quantity:   1,
@@ -35,7 +35,7 @@ func RemoveEquipmentPlayer(player *structure.Character, slot string) {
 		if player.Equipment.Legwarmer.Name != "" {
 			player.HpMax -= player.Equipment.Legwarmer.Protection
 
-			player.Inventory = append(player.Inventory, structure.Inventory{
+			player.Inventory = append(player.Inventory, structure.Item{
 				Name:       player.Equipment.Legwarmer.Name,
 				Protection: player.Equipment.Legwarmer.Protection,
 				Quantity:   1,
@@ -46,7 +46,7 @@ func RemoveEquipmentPlayer(player *structure.Character, slot string) {
 }
 
 // SwitchEquipmentPlayer gère le changement d’équipement et remet l’ancien dans l’inventaire
-func SwitchEquipmentPlayer(item structure.Inventory, player *structure.Character) {
+func SwitchEquipmentPlayer(item structure.Item, player *structure.Character) {
 	var oldName string
 	var oldProtection int
 
@@ -86,7 +86,7 @@ func SwitchEquipmentPlayer(item structure.Inventory, player *structure.Character
 
 	// Remettre l’ancien équipement dans l’inventaire si ce n’est pas vide
 	if oldName != "" {
-		player.Inventory = append(player.Inventory, structure.Inventory{
+		player.Inventory = append(player.Inventory, structure.Item{
 			Name:       oldName,
 			Protection: oldProtection,
 			Quantity:   1,
@@ -103,7 +103,7 @@ func EquipPlayer(player *structure.Character) {
 	fmt.Println("====== EQUIP ITEM ======")
 
 	// Filtrer les items équipables (Protection > 0)
-	equipable := []structure.Inventory{}
+	equipable := []structure.Item{}
 	for _, item := range player.Inventory {
 		if item.Protection > 0 {
 			equipable = append(equipable, item)
