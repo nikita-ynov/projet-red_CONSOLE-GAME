@@ -22,25 +22,25 @@ type Skills struct {
 }
 
 type Character struct {
-	Name           string
-	Class          string
-	Lvl            int
-	Exp            int
-	HpMax          int
-	CurrentHp      int
-	ManaMax        int
-	CurrentMana    int
-	Money          int
-	Damage         int
-	Initiative     int
-	InventoryLimit int
-	Inventory      []Item
-	Skills         []Skills
-	Equipment      Equipment
-	Achievements   []Achievement
-	AchievMenuVis  bool
-	Gobkillinaraw  int
-	Deaths         int
+	Name             string
+	Class            string
+	Lvl              int
+	Exp              int
+	HpMax            int
+	CurrentHp        int
+	ManaMax          int
+	CurrentMana      int
+	Money            int
+	Damage           int
+	Initiative       int
+	InventoryLimit   int
+	Inventory        []Item
+	Skills           []Skills
+	Equipment        Equipment
+	Achievements     []Achievement
+	AchievMenuVis    bool
+	MonsterKillCount int
+	DeathsCount      int
 }
 
 type Weapon struct {

@@ -10,6 +10,6 @@ func IsWasted(player *structure.Character) {
 	fmt.Print("====== YOU ARE DEAD ======\n")
 	player.CurrentHp = player.HpMax / 2
 	fmt.Printf("You are rebirth with %v/%v HP\n", player.HpMax/2, player.HpMax)
-	player.Deaths++
+	player.DeathsCount++
 
 }

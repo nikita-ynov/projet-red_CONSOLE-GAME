@@ -100,13 +100,13 @@ func TrainingFight(player *structure.Character) {
 	// Résultat
 	if player.CurrentHp <= 0 {
 		utils.IsWasted(player)
-		player.Gobkillinaraw = 0
-		if player.Deaths >= 3 {
+		player.MonsterKillCount = 0
+		if player.DeathsCount >= 3 {
 			UnlockAchievement(player, "The Noob Player", "Die 3 times in a row")
 		}
 
 	} else if goblin.CurrentHp <= 0 {
-		player.Deaths = 0
+		player.DeathsCount = 0
 		randomDamage := rand.Intn(50)
 
 		var randomWeapon = GetRandomWeapon()
@@ -139,10 +139,10 @@ func TrainingFight(player *structure.Character) {
 
 	}
 	// Succès : tuer 10 goblins sans mourir
-	player.Gobkillinaraw++
-	if player.Gobkillinaraw >= 10 {
+	player.MonsterKillCount++
+	if player.MonsterKillCount >= 10 {
 		UnlockAchievement(player, "ez 10 Goblins!", "Slay 10 goblins in a row without dying")
-		player.Gobkillinaraw = 0 // reset pour un prochain cycle
+		player.MonsterKillCount = 0 // reset pour un prochain cycle
 
 	}
 	if player.Lvl == 10 {
