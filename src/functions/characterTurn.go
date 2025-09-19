@@ -16,7 +16,7 @@ func CharacterTurn(weapons []*structure.Weapon) (string, structure.Weapon) {
 		fmt.Printf("%d. Attack using %s (%d damage)\n", i+4, weapons[i].Name, weapons[i].Damage)
 	}
 
-	maxChoice := len(weapons) + 4
+	maxChoice := len(weapons) + 3
 	var selectedWeapon structure.Weapon
 	for {
 		fmt.Print("\nEnter your choice: ")
