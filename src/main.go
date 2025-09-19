@@ -23,7 +23,6 @@ func main() {
 		case 2:
 			functions.Takepot(&player)
 		case 3:
-
 			functions.Merchant(&player)
 		case 4:
 			fmt.Print("\033[H\033[2J")
