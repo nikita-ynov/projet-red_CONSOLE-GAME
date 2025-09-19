@@ -1,6 +1,7 @@
 package functions
 
 import (
+	"PROJETRED/image"
 	structure "PROJETRED/structure"
 	"PROJETRED/utils"
 	"fmt"
@@ -17,9 +18,12 @@ func checkSkill(player *structure.Character, name string) bool {
 }
 
 func Merchant(player *structure.Character) {
+
 	exit := 1
 	fmt.Println("")
 	for exit == 1 {
+		fmt.Print("\033[H\033[2J") // Clear console
+		image.MerchantImage()
 
 		// Items de base
 		baseItems := []structure.MerchantItems{
