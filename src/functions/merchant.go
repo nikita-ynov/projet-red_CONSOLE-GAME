@@ -63,8 +63,8 @@ func Merchant(player *structure.Character) {
 			SkillPrice      int
 		}{
 			{"Full Armor", "Ice Spike", -30, 15},
-			{"ez 10 Goblins!", "Thunder Strike", -25, 12},
-			{"Confirmed Hero", "Earth Smash", -40, 20},
+			{"ez 10 Goblins!", "Thunder Strike", -35, 25},
+			{"Confirmed Hero", "Earth Smash", -40, 40},
 		}
 
 		for _, mapping := range achievementsToSkills {
