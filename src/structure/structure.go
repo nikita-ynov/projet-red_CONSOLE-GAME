@@ -36,7 +36,7 @@ type Character struct {
 	InventoryLimit int
 	Inventory      []Item
 	Skills         []Skills
-	Equipment      Equipment // maintenant c’est bien défini
+	Equipment      Equipment
 	Achievements   []Achievement
 	AchievMenuVis  bool
 	Gobkillinaraw  int
