@@ -24,6 +24,7 @@ func Merchant(player *structure.Character) {
 	for exit == 1 {
 		fmt.Print("\033[H\033[2J") // Clear console
 		image.MerchantImage()
+		fmt.Println("")
 
 		// Items de base
 		baseItems := []structure.MerchantItems{
